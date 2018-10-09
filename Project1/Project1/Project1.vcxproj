@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E2581D3C-42FF-401B-8F10-156115B556B2}</ProjectGuid>
-    <RootNamespace>Newproject</RootNamespace>
+    <ProjectGuid>{D6567757-E35A-4350-B38A-102D8564F73E}</ProjectGuid>
+    <RootNamespace>Project1</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -69,8 +69,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(DXSDK_DIR)Include</IncludePath>
-    <LibraryPath>$(DXSDK_DIR)Lib\x86</LibraryPath>
+    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -113,20 +113,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameL\Audio.cpp" />
-    <ClCompile Include="GameL\DirectXDevice.cpp" />
-    <ClCompile Include="GameL\DrawFont.cpp" />
-    <ClCompile Include="GameL\DrawTexture.cpp" />
-    <ClCompile Include="GameL\GameL_Main.cpp" />
-    <ClCompile Include="GameL\HitBoxManager.cpp" />
-    <ClCompile Include="GameL\MultiThread.cpp" />
-    <ClCompile Include="GameL\SceneManager.cpp" />
-    <ClCompile Include="GameL\SceneObjManager.cpp" />
-    <ClCompile Include="GameL\SetWindow.cpp" />
-    <ClCompile Include="GameL\UserData.cpp" />
-    <ClCompile Include="GameL\WinInputs.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="GameHead.h" />
     <ClInclude Include="GameL\Audio.h" />
     <ClInclude Include="GameL\DirectXDevice.h" />
@@ -140,6 +126,20 @@
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
     <ClInclude Include="main.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameL\Audio.cpp" />
+    <ClCompile Include="GameL\DirectXDevice.cpp" />
+    <ClCompile Include="GameL\DrawFont.cpp" />
+    <ClCompile Include="GameL\DrawTexture.cpp" />
+    <ClCompile Include="GameL\GameL_Main.cpp" />
+    <ClCompile Include="GameL\HitBoxManager.cpp" />
+    <ClCompile Include="GameL\MultiThread.cpp" />
+    <ClCompile Include="GameL\SceneManager.cpp" />
+    <ClCompile Include="GameL\SceneObjManager.cpp" />
+    <ClCompile Include="GameL\SetWindow.cpp" />
+    <ClCompile Include="GameL\UserData.cpp" />
+    <ClCompile Include="GameL\WinInputs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="GameL\Draw2DTex.hlsl" />
