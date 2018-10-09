@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="ソース ファイル\GameMain">
+      <UniqueIdentifier>{edf8eb9b-3b3c-4181-8068-bdb56eb4a16b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h">
@@ -54,6 +57,15 @@
     <ClInclude Include="GameL\WinInputs.h">
       <Filter>リソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Correction.h">
+      <Filter>ソース ファイル\GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMain.h">
+      <Filter>ソース ファイル\GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBlock.h">
+      <Filter>ソース ファイル\GameMain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -91,6 +103,15 @@
     </ClCompile>
     <ClCompile Include="GameL\WinInputs.cpp">
       <Filter>リソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Correction.cpp">
+      <Filter>ソース ファイル\GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMain.cpp">
+      <Filter>ソース ファイル\GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBlock.cpp">
+      <Filter>ソース ファイル\GameMain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
