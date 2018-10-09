@@ -27,8 +27,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -68,7 +68,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(DXSDK_DIR)Include</IncludePath>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -122,19 +125,6 @@
     <ClCompile Include="GameL\SetWindow.cpp" />
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
-    <ClCompile Include="ObjGameClear.cpp" />
-    <ClCompile Include="ObjGameOver.cpp" />
-    <ClCompile Include="ObjMenu.cpp" />
-    <ClCompile Include="ObjOperation.cpp" />
-    <ClCompile Include="ObjRanking.cpp" />
-    <ClCompile Include="ObjTitle.cpp" />
-    <ClCompile Include="SceneGameClear.cpp" />
-    <ClCompile Include="SceneGameOver.cpp" />
-    <ClCompile Include="SceneMain.cpp" />
-    <ClCompile Include="SceneMenu.cpp" />
-    <ClCompile Include="SceneOperation.cpp" />
-    <ClCompile Include="SceneRanking.cpp" />
-    <ClCompile Include="SceneTitle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h" />
@@ -150,19 +140,6 @@
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="ObjGameClear.h" />
-    <ClInclude Include="ObjGameOver.h" />
-    <ClInclude Include="ObjMenu.h" />
-    <ClInclude Include="ObjOperation.h" />
-    <ClInclude Include="ObjRanking.h" />
-    <ClInclude Include="ObjTitle.h" />
-    <ClInclude Include="SceneGameClear.h" />
-    <ClInclude Include="SceneGameOver.h" />
-    <ClInclude Include="SceneMain.h" />
-    <ClInclude Include="SceneMenu.h" />
-    <ClInclude Include="SceneOperation.h" />
-    <ClInclude Include="SceneRanking.h" />
-    <ClInclude Include="SceneTitle.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="GameL\Draw2DTex.hlsl" />
