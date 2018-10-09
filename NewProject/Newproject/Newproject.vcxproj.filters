@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\GameScene">
+      <UniqueIdentifier>{c9997c1a-b3e4-4613-a825-ed067493bed4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameScene\GameClear">
+      <UniqueIdentifier>{a1b29276-e403-4958-8adc-5dfbe3ddedc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameScene\GameOver">
+      <UniqueIdentifier>{ba809f44-3446-47a6-9cd2-4243bbeb5584}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameScene\GameTitle">
+      <UniqueIdentifier>{819ff445-a767-4826-85b2-fc6b7af50657}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameScene\GameOperation">
+      <UniqueIdentifier>{15988b68-d961-429a-b880-09c21e2a52b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameScene\GameMenu">
+      <UniqueIdentifier>{01d14a65-5909-479e-98d6-dcbd7774768d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameScene\Ranking">
+      <UniqueIdentifier>{8eba43ec-1416-4746-a3a2-5a995e2f616c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\GameMain">
+      <UniqueIdentifier>{3ce2ebc3-bd46-4520-b4da-76a7a28db9ff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ObjGameClear.cpp">
+      <Filter>ソース ファイル\GameScene\GameClear</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameClear.cpp">
+      <Filter>ソース ファイル\GameScene\GameClear</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameOver.cpp">
+      <Filter>ソース ファイル\GameScene\GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameOver.cpp">
+      <Filter>ソース ファイル\GameScene\GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjRanking.cpp">
+      <Filter>ソース ファイル\GameScene\Ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneRanking.cpp">
+      <Filter>ソース ファイル\GameScene\Ranking</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjTitle.cpp">
+      <Filter>ソース ファイル\GameScene\GameTitle</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>ソース ファイル\GameScene\GameTitle</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjOperation.cpp">
+      <Filter>ソース ファイル\GameScene\GameOperation</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneOperation.cpp">
+      <Filter>ソース ファイル\GameScene\GameOperation</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMenu.cpp">
+      <Filter>ソース ファイル\GameScene\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMenu.cpp">
+      <Filter>ソース ファイル\GameScene\GameMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMain.cpp">
+      <Filter>ソース ファイル\GameMain</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameHead.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameClear.h">
+      <Filter>ソース ファイル\GameScene\GameClear</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameClear.h">
+      <Filter>ソース ファイル\GameScene\GameClear</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameOver.h">
+      <Filter>ソース ファイル\GameScene\GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameOver.h">
+      <Filter>ソース ファイル\GameScene\GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjRanking.h">
+      <Filter>ソース ファイル\GameScene\Ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneRanking.h">
+      <Filter>ソース ファイル\GameScene\Ranking</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTitle.h">
+      <Filter>ソース ファイル\GameScene\GameTitle</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>ソース ファイル\GameScene\GameTitle</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjOperation.h">
+      <Filter>ソース ファイル\GameScene\GameOperation</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneOperation.h">
+      <Filter>ソース ファイル\GameScene\GameOperation</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMenu.h">
+      <Filter>ソース ファイル\GameScene\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMenu.h">
+      <Filter>ソース ファイル\GameScene\GameMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMain.h">
+      <Filter>ソース ファイル\GameMain</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
