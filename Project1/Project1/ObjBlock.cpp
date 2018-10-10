@@ -38,33 +38,25 @@ void CObjBlock::Init()
 void CObjBlock::Action()
 {
 	//背景関連ーーーーーーーーーーーーーーーーーーーーーーーー
-	////ランナーの位置を取得
-	//CObjRunner* runner = (CObjRunner*)Objs::GetObj(OBJ_RUNNER);
-	////チェックポイントを取得
-	//CObjCheckPoint* check = (CObjCheckPoint*)Objs::GetObj(OBJ_CHECK_POINT);
-	////火の取得
-	//CObjFire* fire = (CObjFire*)Objs::GetObj(OBJ_FIRE);
-	////ゲージの情報を持ってくる
-	//CObjGauge* gau = (CObjGauge*)Objs::GetObj(OBJ_GAUGE);
+	//ランナーの位置を取得
+	CObjRunner* runner = (CObjRunner*)Objs::GetObj(OBJ_RUNNER);
 
-	//float rx = runner->GetX();
-	//float ry = runner->GetY();
+	float rx = runner->GetX();
+	float ry = runner->GetY();
 
-	////チェックポイントのが出てなかったらとまらないようにする
-	//float m_check_x = 999.0f;
-	////チェックポイントが出現しているなら位置をとる
-	//if (check != nullptr)
-	//	m_check_x = check->GetX() + m_scroll ;
+	//チェックポイントのが出てなかったらとまらないようにする
+	float m_check_x = 999.0f;
 
-	////チェックポイントの描画がすべてWindowに収まっている場合
-	//if (m_check_x < 400.0f)
-	//{
-	//	//背景1の動作
-	//	m_bx1 -= 0.0f;
 
-	//	//背景2の動作
-	//	m_bx2 -= 0.0f;
-	//}
+	//チェックポイントの描画がすべてWindowに収まっている場合
+	if (m_check_x < 400.0f)
+	{
+		//背景1の動作
+		m_bx1 -= 0.0f;
+
+		//背景2の動作
+		m_bx2 -= 0.0f;
+	}
 
 	////後方
 	//else if (runner->GetCheckPoint() == true && m_check_x < 400.0f || gau->GetGauge() == 192)
@@ -76,133 +68,65 @@ void CObjBlock::Action()
 	//	m_bx2 -= 0.0f;
 	//}
 
-	//else if (rx < -50 || runner->GetHoleFallCon() == true || runner->GetDeath() == true) //画面より左側に行けないようにする
-	//{
-	//	//背景1の動作
-	//	m_bx1 -= 0.0f;
+	else if (rx < -50 || runner->GetHoleFallCon() == true || runner->GetDeath() == true) //画面より左側に行けないようにする
+	{
+		//背景1の動作
+		m_bx1 -= 0.0f;
 
-	//	//背景2の動作
-	//	m_bx2 -= 0.0f;
-	//}
-	////前方スクロールライン
-	//else if (rx > -50 && runner->GetHoleFallCon() == false)
-	//{
-	//	// 主人公が炎に当たっている場合スクロールを二倍にする
-	//	if(runner->GetStickFire() == true)
-	//	{
-	//		m_scroll -= 4.0f;//主人公が本来動くべき分の値をm_scrollに加える
+		//背景2の動作
+		m_bx2 -= 0.0f;
+	}
+	//前方スクロールライン
+	else if (rx > -50 && runner->GetHoleFallCon() == false)
+	{
+		// 主人公が炎に当たっている場合スクロールを二倍にする
+		if (runner->GetStickFire() == true)
+		{
+			m_scroll -= 4.0f;//主人公が本来動くべき分の値をm_scrollに加える
 
-	//		//背景1の動作
-	//		m_bx1 -= 4.0f;
-	//		if (m_bx1 < -800.0f)
-	//		{
-	//			m_bx1 = 800.0f;
-	//			m_scroll_num++;//背景1が終わればカウントする
-	//		}
-	//		//背景2の動作
-	//		m_bx2 -= 4.0f;
-	//		if (m_bx2 < -800.0f)
-	//			m_bx2 = 800.0f;
-	//	}
-	//	else
-	//	{
-	//		m_scroll -= 2.0f;//主人公が本来動くべき分の値をm_scrollに加える
+			//背景1の動作
+			m_bx1 -= 4.0f;
+			if (m_bx1 < -800.0f)
+			{
+				m_bx1 = 800.0f;
+				m_scroll_num++;//背景1が終わればカウントする
+			}
+			//背景2の動作
+			m_bx2 -= 4.0f;
+			if (m_bx2 < -800.0f)
+				m_bx2 = 800.0f;
+		}
+		else
+		{
+			m_scroll -= 2.0f;//主人公が本来動くべき分の値をm_scrollに加える
 
-	//		//背景1の動作
-	//		m_bx1 -= 2.0f;
-	//		if (m_bx1 < -800.0f)
-	//		{
-	//			m_bx1 = 800.0f;
-	//			m_scroll_num++;//背景1が終わればカウントする
-	//		}
-	//		//背景2の動作
-	//		m_bx2 -= 2.0f;
-	//		if (m_bx2 < -800.0f)
-	//			m_bx2 = 800.0f;
-	//	}
-	//	
-	//}
-	
+			//背景1の動作
+			m_bx1 -= 2.0f;
+			if (m_bx1 < -800.0f)
+			{
+				m_bx1 = 800.0f;
+				m_scroll_num++;//背景1が終わればカウントする
+			}
+			//背景2の動作
+			m_bx2 -= 2.0f;
+			if (m_bx2 < -800.0f)
+				m_bx2 = 800.0f;
+		}
+
+	}
+
 
 	//マップ関連ーーーーーーーーーー
 	float line = 0.0f;
 
 	//敵出現ライン
 	//主人公の位置+800 - ランナーの位置を敵出現ラインにする
-	//line = rx + (-m_scroll) + (800 - rx);
+	line = rx + (-m_scroll) + (800 - rx);
 
 	//敵出現ラインを要素番号化
 	int ex = ((int)line) / 64;
-
-	//敵出現ラインの列を検索
-	for (int i = 0; i < 10; i++)
-	{
-		//列の中から１を探す
-		if (m_map[i][ex] == 1)
-		{
-			
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-		//列の中から２を探す
-		if (m_map[i][ex] == 2)
-		{
-			
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-
-		//列の中から3を探す
-		if (m_map[i][ex] == 3)
-		{
-			
-
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-
-		//列の中から4を探す
-		if (m_map[i][ex] == 4)
-		{
-			
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-
-		//列の中から5を探す
-		if (m_map[i][ex] == 5)
-		{
-			
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-
-		//列の中から6を探す
-		if (m_map[i][ex] == 6)
-		{
-			
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-
-		//列の中から7を探す
-		if (m_map[i][ex] == 7)
-		{
-			
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-
-		//列の中から8を探す
-		if (m_map[i][ex] == 8)
-		{
-			
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-	}
-
 }
+	
 
 //描画
 void CObjBlock::Draw()

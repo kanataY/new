@@ -128,7 +128,20 @@
     <ClInclude Include="GameL\WinInputs.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjBlock.h" />
+    <ClInclude Include="ObjGameClear.h" />
+    <ClInclude Include="ObjGameOver.h" />
+    <ClInclude Include="ObjMenu.h" />
+    <ClInclude Include="ObjOperation.h" />
+    <ClInclude Include="ObjRanking.h" />
+    <ClInclude Include="ObjRunner.h" />
+    <ClInclude Include="ObjTitle.h" />
+    <ClInclude Include="SceneGameClear.h" />
+    <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneMain.h" />
+    <ClInclude Include="SceneMenu.h" />
+    <ClInclude Include="SceneOperation.h" />
+    <ClInclude Include="SceneRanking.h" />
+    <ClInclude Include="SceneTitle.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Correction.cpp" />
@@ -145,7 +158,20 @@
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
     <ClCompile Include="ObjBlock.cpp" />
+    <ClCompile Include="ObjGameClear.cpp" />
+    <ClCompile Include="ObjGameOver.cpp" />
+    <ClCompile Include="ObjMenu.cpp" />
+    <ClCompile Include="ObjOperation.cpp" />
+    <ClCompile Include="ObjRanking.cpp" />
+    <ClCompile Include="ObjRunner.cpp" />
+    <ClCompile Include="ObjTitle.cpp" />
+    <ClCompile Include="SceneGameClear.cpp" />
+    <ClCompile Include="SceneGameOver.cpp" />
     <ClCompile Include="SceneMain.cpp" />
+    <ClCompile Include="SceneMenu.cpp" />
+    <ClCompile Include="SceneOperation.cpp" />
+    <ClCompile Include="SceneRanking.cpp" />
+    <ClCompile Include="SceneTitle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="GameL\Draw2DTex.hlsl" />

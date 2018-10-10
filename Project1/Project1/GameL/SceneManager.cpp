@@ -58,7 +58,7 @@ void CSceneManager::GameLoop()
 			m_Time=0;
 			m_TimeCount=0;
 		}
-		CDrawFont::StrDraw(c,0,0,16,cl);
+		//CDrawFont::StrDraw(c,0,0,16,cl);
 	}
 	//-------------------
 

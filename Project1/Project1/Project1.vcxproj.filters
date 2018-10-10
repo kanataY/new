@@ -16,6 +16,9 @@
     <Filter Include="ソース ファイル\GameMain">
       <UniqueIdentifier>{edf8eb9b-3b3c-4181-8068-bdb56eb4a16b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\GameScene">
+      <UniqueIdentifier>{3bf55cf7-d0da-4b36-a40b-a11200f93300}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h">
@@ -57,14 +60,53 @@
     <ClInclude Include="GameL\WinInputs.h">
       <Filter>リソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="ObjBlock.h">
+      <Filter>ソース ファイル\GameMain</Filter>
+    </ClInclude>
     <ClInclude Include="Correction.h">
       <Filter>ソース ファイル\GameMain</Filter>
     </ClInclude>
-    <ClInclude Include="SceneMain.h">
+    <ClInclude Include="ObjRunner.h">
       <Filter>ソース ファイル\GameMain</Filter>
     </ClInclude>
-    <ClInclude Include="ObjBlock.h">
-      <Filter>ソース ファイル\GameMain</Filter>
+    <ClInclude Include="SceneMain.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameClear.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGameOver.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMenu.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjRanking.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjTitle.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameClear.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameOver.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMenu.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneOperation.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneRanking.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjOperation.h">
+      <Filter>ソース ファイル\GameScene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -104,14 +146,53 @@
     <ClCompile Include="GameL\WinInputs.cpp">
       <Filter>リソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="ObjBlock.cpp">
+      <Filter>ソース ファイル\GameMain</Filter>
+    </ClCompile>
     <ClCompile Include="Correction.cpp">
       <Filter>ソース ファイル\GameMain</Filter>
     </ClCompile>
-    <ClCompile Include="SceneMain.cpp">
+    <ClCompile Include="ObjRunner.cpp">
       <Filter>ソース ファイル\GameMain</Filter>
     </ClCompile>
-    <ClCompile Include="ObjBlock.cpp">
-      <Filter>ソース ファイル\GameMain</Filter>
+    <ClCompile Include="SceneMain.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameClear.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGameOver.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMenu.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjRanking.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjTitle.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameClear.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameOver.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMenu.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneOperation.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneRanking.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjOperation.cpp">
+      <Filter>ソース ファイル\GameScene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

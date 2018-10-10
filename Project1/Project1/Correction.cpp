@@ -74,22 +74,6 @@ float CObjCorrection::RangeYTrack(float y)
 	return y;
 }
 
-//炎を表示させる　箱
-void CObjCorrection::FireDisplayCrates(float x, float y)
-{
-	////炎
-	//CObjFire* fi = new CObjFire(x , y , 0);
-	//Objs::InsertObj(fi, OBJ_FIRE, 999);
-
-}
-
-//炎を表示させる
-void CObjCorrection::FireDisplay(float x, float y)
-{
-	////炎
-	//CObjFire* fi = new CObjFire(x, y, 1);
-	//Objs::InsertObj(fi, OBJ_FIRE, 999);
-}
 
 //画面外に行くと消える処理
 bool CObjCorrection::Screen_Out(float x)
@@ -111,6 +95,9 @@ float CObjCorrection::Screen_In(float x)
 {
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+	//ランナーの位置を取得
+	CObjRunner* runner = (CObjRunner*)Objs::GetObj(OBJ_RUNNER);
 	
 	//画面外ならtrueを返す
 	if (x > 750.0f)
