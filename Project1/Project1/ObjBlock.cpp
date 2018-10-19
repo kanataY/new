@@ -27,7 +27,6 @@ void CObjBlock::Init()
 	m_py = 0.0f;	//ˆÊ’u
 	m_bx1 = 0.0f;
 	m_bx2 = 800.0f;
-	m_rain = false;
 
 	m_scroll = 0.0f;
 	m_scroll_run = 800.0f;
