@@ -440,12 +440,10 @@ void CObjRunner::Draw()
 	}
 	else //˜r‚ğU‚è‰º‚ë‚µ‚Ä‚¢‚é
 	{
-
 		dst2.m_top = 0.0f + m_py + 50.0f;
 		dst2.m_left = 0.0f + m_px + 45.0f;
 		dst2.m_right = 20.0f + m_px + 45.0f - m_hole_fall;
 		dst2.m_bottom = 32.0f + m_py + 50.0f - m_hole_fall;
-
 
 		//•`‰æ
 		Draw::Draw(11, &src2, &dst2, c, -100.0f);
