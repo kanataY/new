@@ -51,7 +51,7 @@ void CSceneTitle::InitScene()
 	Audio::LoadAudio(0, L"BGM&SE\\BGMTitle_.wav", BACK_MUSIC);
 
 	//音楽スタート
-	Audio::Start(0);
+	//Audio::Start(0);
 
 	//タイトルオブジェクト作成
 	CObjTitle* obj = new CObjTitle();

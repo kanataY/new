@@ -117,10 +117,13 @@ void CSceneMain::InitScene()
 
 		break;
 	}
+
+	//外部グラフィックファイルを読み込み2番に登録(64ピクセル)
+	Draw::LoadImageW(L"Image\\object\\puddle.png", 55, TEX_SIZE_64);
 	
 	//主人公オブジェクト作成
-	CObjRunner* obj = new CObjRunner(remaining);
-	Objs::InsertObj(obj, OBJ_RUNNER, 13);
+	CObjHero* he = new CObjHero(remaining);
+	Objs::InsertObj(he, OBJ_HERO, 13);
 
 	//背景（ブロック）オブジェクト作成
 	CObjBlock* block = new CObjBlock(map);
@@ -132,25 +135,25 @@ void CSceneMain::InitScene()
 
 
 	//音楽読み込み
-	Audio::LoadAudio(0, L"BGM&SE\\BGMGameMain_.wav", BACK_MUSIC);
+	//Audio::LoadAudio(0, L"BGM&SE\\BGMGameMain_.wav", BACK_MUSIC);
 
-	Audio::LoadAudio(1, L"BGM&SE\\dashu_.wav", EFFECT); // 走る音
-	Audio::LoadAudio(2, L"BGM&SE\\Fier2__.wav", EFFECT); // 燃える音
-	Audio::LoadAudio(3, L"BGM&SE\\jump_.wav", EFFECT);  // ジャンプ
-	Audio::LoadAudio(4, L"BGM&SE\\rakka_.wav", EFFECT); // 落ちる音
-	Audio::LoadAudio(5, L"BGM&SE\\water_.wav", EFFECT); // 水に落ちた音
-	Audio::LoadAudio(6, L"BGM&SE\\track_.wav", EFFECT); // トラック
-	Audio::LoadAudio(7, L"BGM&SE\\gool.wav", EFFECT); // チェックポイントの歓声
-	Audio::LoadAudio(8, L"BGM&SE\\gool2.wav", EFFECT); // チェックポイントの歓声2
-	Audio::LoadAudio(9, L"BGM&SE\\himei.wav", EFFECT); // オカマの悲鳴
-	Audio::LoadAudio(10, L"BGM&SE\\kiss.wav", EFFECT); // オカマのキス
+	//Audio::LoadAudio(1, L"BGM&SE\\dashu_.wav", EFFECT); // 走る音
+	//Audio::LoadAudio(2, L"BGM&SE\\Fier2__.wav", EFFECT); // 燃える音
+	//Audio::LoadAudio(3, L"BGM&SE\\jump_.wav", EFFECT);  // ジャンプ
+	//Audio::LoadAudio(4, L"BGM&SE\\rakka_.wav", EFFECT); // 落ちる音
+	//Audio::LoadAudio(5, L"BGM&SE\\water_.wav", EFFECT); // 水に落ちた音
+	//Audio::LoadAudio(6, L"BGM&SE\\track_.wav", EFFECT); // トラック
+	//Audio::LoadAudio(7, L"BGM&SE\\gool.wav", EFFECT); // チェックポイントの歓声
+	//Audio::LoadAudio(8, L"BGM&SE\\gool2.wav", EFFECT); // チェックポイントの歓声2
+	//Audio::LoadAudio(9, L"BGM&SE\\himei.wav", EFFECT); // オカマの悲鳴
+	//Audio::LoadAudio(10, L"BGM&SE\\kiss.wav", EFFECT); // オカマのキス
 
 
 	////ボリュームを1.5増やす
 	//float v = Audio::VolumeMaster(1.5);
 
 	//音楽スタート
-	Audio::Start(0);
+	//Audio::Start(0);
 }
 
 //実行中メソッド

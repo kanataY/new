@@ -5,7 +5,7 @@
 using namespace GameL;
 
 //マクロ　
-#define MAP_X_MAX 200
+#define MAP_X_MAX 100
 
 //オブジェクト：ブロック＆背景
 class CObjBlock : public CObj
@@ -23,9 +23,17 @@ public:
 	int  GetMap(int x, int y);//マップ情報の取得
 	void  SetMap(int x, int y, int m) { m_map[y][x] = m; }
 
-	
+	//ブロックとの当たり判定
+	void BlockHit(
+		float* x, float* y, bool scroll_on,
+		bool* up, bool* down, bool* left, bool* right,
+		float* vx, float* vy, int* bt
+	);
 
 private:
+
+	void BlockDraw(float x, float y, RECT_F* dst, float c[]);
+
 	float m_px;		//位置
 	float m_py;
 	float m_bx1;     //背景の動く値
