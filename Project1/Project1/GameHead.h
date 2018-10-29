@@ -6,7 +6,7 @@ enum OBJ_NAME
 	OBJ_NO_NAME,	//オブジェクト名無し(禁止)
 	//ゲームで使うオブジェクトの名前
 	//OBJ_○○と表記
-	OBJ_RUNNER,				//ランナー
+	OBJ_HERO,				//ランナー
 	OBJ_BLOCK,				//ブロック
 
 	//補正
@@ -28,7 +28,7 @@ enum HIT_ELEMENTS
 	ELEMENT_NULL,//属性無し 全ての属性と当たり判定が実行される
 	//以下　同じ属性同士では当たり判定は実行されない
 	//属性は追加可能だが、デバック時の色は初期設定分しか無い
-	ELEMENT_RUNNER,
+	ELEMENT_HERO,
 	ELEMENT_ENEMY,
 	ELEMENT_ITEM,
 };
@@ -55,7 +55,7 @@ struct UserData
 //------------------------------------------------
 
 //ゲームシーンオブジェクトヘッダ------------------
-#include "ObjRunner.h"			//ランナー
+#include "ObjHero.h"			//ランナー
 #include "ObjBlock.h"			//ブロック
 
 #include "ObjTitle.h"			//タイトル

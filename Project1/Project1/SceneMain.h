@@ -5,7 +5,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-#define MAP_X 200
+#define MAP_X 100
 #define MAP_Y 10
 
 //シーン：メイン
