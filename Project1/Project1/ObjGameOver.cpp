@@ -80,37 +80,37 @@ void CObjGameOver::Action()
 //ドロー
 void CObjGameOver::Draw()
 {
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	//float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-	//Font::StrDraw(L"GAMEOVER", 10, 10, 100, c);
+	////Font::StrDraw(L"GAMEOVER", 10, 10, 100, c);
 
-	RECT_F src;	//描画先切り取り位置
-	RECT_F dst;	//描画先表示位置
+	//RECT_F src;	//描画先切り取り位置
+	//RECT_F dst;	//描画先表示位置
 
-	//背景--------------------------------
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 1024.0f;
-	src.m_bottom = 1024.0f;
+	////背景--------------------------------
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 1024.0f;
+	//src.m_bottom = 1024.0f;
 
-	dst.m_top = 0.0f;
-	dst.m_left = 0.0f;
-	dst.m_right = 800.0f;
-	dst.m_bottom = 600.0f;
+	//dst.m_top = 0.0f;
+	//dst.m_left = 0.0f;
+	//dst.m_right = 800.0f;
+	//dst.m_bottom = 600.0f;
 
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	//Draw::Draw(0, &src, &dst, c, 0.0f);
 
-	//スコア
-	//得点の描画ーーーーーーーーーーーーーーーーーーーーーーーーーーー
-	wchar_t str[128];
-	swprintf_s(str, L"スコア：%d点", ((UserData*)Save::GetData())->m_point);
-	Font::StrDraw(str, 220, 210, 38, c);
-	//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-	//メニュー遷移説明
-	Font::StrDraw(L"Zでメニューへ", 20, 550, 24, c);
+	////スコア
+	////得点の描画ーーーーーーーーーーーーーーーーーーーーーーーーーーー
+	//wchar_t str[128];
+	//swprintf_s(str, L"スコア：%d点", ((UserData*)Save::GetData())->m_point);
+	//Font::StrDraw(str, 220, 210, 38, c);
+	////－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+	////メニュー遷移説明
+	//Font::StrDraw(L"Zでメニューへ", 20, 550, 24, c);
 
-	//ランキング遷移説明
-	Font::StrDraw(L"Xでランキングへ", 600, 550, 24, c);
-	//----------------------------------------------------
+	////ランキング遷移説明
+	//Font::StrDraw(L"Xでランキングへ", 600, 550, 24, c);
+	////----------------------------------------------------
 
 }

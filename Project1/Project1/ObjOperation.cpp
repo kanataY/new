@@ -153,227 +153,227 @@ void CObjOperation::Action()
 //ドロー
 void CObjOperation::Draw()
 {
-	//タイトル画面
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	////タイトル画面
+	//float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-	RECT_F src;	//描画先切り取り位置
-	RECT_F dst;	//描画先表示位置
+	//RECT_F src;	//描画先切り取り位置
+	//RECT_F dst;	//描画先表示位置
 
-	wchar_t str[128];
+	//wchar_t str[128];
 
-	//操作説明画面------------------------------------
-	//シーン1の時
-	if (m_scene_flag == 0)
-	{
-		
-		//切り取り位置設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1024.0f;
-		src.m_bottom = 1024.0f;
+	////操作説明画面------------------------------------
+	////シーン1の時
+	//if (m_scene_flag == 0)
+	//{
+	//	
+	//	//切り取り位置設定
+	//	src.m_top = 0.0f;
+	//	src.m_left = 0.0f;
+	//	src.m_right = 1024.0f;
+	//	src.m_bottom = 1024.0f;
 
-		//描画位置設定
-		dst.m_top = 0.0f;
-		dst.m_left = 0.0f;
-		dst.m_right = 800.0f;
-		dst.m_bottom = 600.0f;
-		//0番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(0, &src, &dst, c, 0.0f);
+	//	//描画位置設定
+	//	dst.m_top = 0.0f;
+	//	dst.m_left = 0.0f;
+	//	dst.m_right = 800.0f;
+	//	dst.m_bottom = 600.0f;
+	//	//0番目に登録しているsrc・dst・cで描画する
+	//	Draw::Draw(0, &src, &dst, c, 0.0f);
 
-		//進ときに使う文字設定
-		swprintf_s(str, L"Enterkeyで次へ");
-		//進ときに使う文字を描画
-		Font::StrDraw(str, 655, 580, 20, c);
+	//	//進ときに使う文字設定
+	//	swprintf_s(str, L"Enterkeyで次へ");
+	//	//進ときに使う文字を描画
+	//	Font::StrDraw(str, 655, 580, 20, c);
 
-		//戻るときに使う文字設定
-		swprintf_s(str, L"ZkeyでMenuへ");
-		//戻るときに使う文字を描画
-		Font::StrDraw(str, 5, 580, 20, c);
-	}
-	//シーン2の時
-	if (m_scene_flag == 1)
-	{
-		//背景----------------------------------------------------------------------------------------
-		//切り取り位置設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1024.0f;
-		src.m_bottom = 1024.0f;
+	//	//戻るときに使う文字設定
+	//	swprintf_s(str, L"ZkeyでMenuへ");
+	//	//戻るときに使う文字を描画
+	//	Font::StrDraw(str, 5, 580, 20, c);
+	//}
+	////シーン2の時
+	//if (m_scene_flag == 1)
+	//{
+	//	//背景----------------------------------------------------------------------------------------
+	//	//切り取り位置設定
+	//	src.m_top = 0.0f;
+	//	src.m_left = 0.0f;
+	//	src.m_right = 1024.0f;
+	//	src.m_bottom = 1024.0f;
 
-		//描画位置設定
-		dst.m_top = 0.0f;
-		dst.m_left = 0.0f;
-		dst.m_right = 800.0f;
-		dst.m_bottom = 600.0f;
-		//1番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(1, &src, &dst, c, 0.0f);
-		//--------------------------------------------------------------------------
-		//スマホ-----------------------------------------------------
-		//切り取り位置の設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + m_ani_frame * 64;
-		src.m_right = 64.0f + m_ani_frame * 64;
-		src.m_bottom = 256.0f;
+	//	//描画位置設定
+	//	dst.m_top = 0.0f;
+	//	dst.m_left = 0.0f;
+	//	dst.m_right = 800.0f;
+	//	dst.m_bottom = 600.0f;
+	//	//1番目に登録しているsrc・dst・cで描画する
+	//	Draw::Draw(1, &src, &dst, c, 0.0f);
+	//	//--------------------------------------------------------------------------
+	//	//スマホ-----------------------------------------------------
+	//	//切り取り位置の設定
+	//	src.m_top = 0.0f;
+	//	src.m_left = 0.0f + m_ani_frame * 64;
+	//	src.m_right = 64.0f + m_ani_frame * 64;
+	//	src.m_bottom = 256.0f;
 
-		//表示位置の設定
-		dst.m_top = 280.0f;
-		dst.m_left = 90.0f;
-		dst.m_right = dst.m_left + 80.0f;
-		dst.m_bottom = dst.m_top + 64.0f;
+	//	//表示位置の設定
+	//	dst.m_top = 280.0f;
+	//	dst.m_left = 90.0f;
+	//	dst.m_right = dst.m_left + 80.0f;
+	//	dst.m_bottom = dst.m_top + 64.0f;
 
-		//描画
-		Draw::Draw(3, &src, &dst, c, 0.0f);
-		//-----------------------------------------------------------
+	//	//描画
+	//	Draw::Draw(3, &src, &dst, c, 0.0f);
+	//	//-----------------------------------------------------------
 
-		//おかま-------------------------------------------------------------
-		//切り取り位置の設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + m_okam_ani_frame * 64;
-		src.m_right = 64.0f + m_okam_ani_frame * 64;
-		src.m_bottom = 512.0f;
+	//	//おかま-------------------------------------------------------------
+	//	//切り取り位置の設定
+	//	src.m_top = 0.0f;
+	//	src.m_left = 0.0f + m_okam_ani_frame * 64;
+	//	src.m_right = 64.0f + m_okam_ani_frame * 64;
+	//	src.m_bottom = 512.0f;
 
-		//表示位置の設定
-		dst.m_top = 380.0f;
-		dst.m_right = 90.0f;
-		dst.m_left = dst.m_right + 80.0f;
-		dst.m_bottom = dst.m_top + 64.0f;
+	//	//表示位置の設定
+	//	dst.m_top = 380.0f;
+	//	dst.m_right = 90.0f;
+	//	dst.m_left = dst.m_right + 80.0f;
+	//	dst.m_bottom = dst.m_top + 64.0f;
 
-		//4番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(4, &src, &dst, c, 0.0f);
-		//-----------------------------------------------------------------------
-		//トラック-----------------------------------------------------------------------
-		//切り取り位置の設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + m_ani_frame * 128;
-		src.m_right = 128.0f + m_ani_frame * 128;
-		src.m_bottom = 512.0f;
+	//	//4番目に登録しているsrc・dst・cで描画する
+	//	Draw::Draw(4, &src, &dst, c, 0.0f);
+	//	//-----------------------------------------------------------------------
+	//	//トラック-----------------------------------------------------------------------
+	//	//切り取り位置の設定
+	//	src.m_top = 0.0f;
+	//	src.m_left = 0.0f + m_ani_frame * 128;
+	//	src.m_right = 128.0f + m_ani_frame * 128;
+	//	src.m_bottom = 512.0f;
 
-		//表示位置の設定
-		dst.m_top = 480.0f;
-		dst.m_right = 90.0f;
-		dst.m_left = 90.0f + dst.m_right;
-		dst.m_bottom = dst.m_top + 70.0f;
+	//	//表示位置の設定
+	//	dst.m_top = 480.0f;
+	//	dst.m_right = 90.0f;
+	//	dst.m_left = 90.0f + dst.m_right;
+	//	dst.m_bottom = dst.m_top + 70.0f;
 
-		//描画
-		Draw::Draw(5, &src, &dst, c, 0.0f);
-		//--------------------------------------------------------------------------
+	//	//描画
+	//	Draw::Draw(5, &src, &dst, c, 0.0f);
+	//	//--------------------------------------------------------------------------
 
 
-		//進ときに使う文字設定
-		swprintf_s(str, L"Enterkeyで次へ");
-		//進ときに使う文字を描画
-		Font::StrDraw(str, 655, 580, 20, c);
-		//戻るときに使う文字設定
-		swprintf_s(str, L"Zkeyで前へ");
-		//戻るときに使う文字を描画
-		Font::StrDraw(str, 5, 580, 20, c);
-	}
+	//	//進ときに使う文字設定
+	//	swprintf_s(str, L"Enterkeyで次へ");
+	//	//進ときに使う文字を描画
+	//	Font::StrDraw(str, 655, 580, 20, c);
+	//	//戻るときに使う文字設定
+	//	swprintf_s(str, L"Zkeyで前へ");
+	//	//戻るときに使う文字を描画
+	//	Font::StrDraw(str, 5, 580, 20, c);
+	//}
 
-	//シーン3の時
-	if (m_scene_flag == 2)
-	{
-		//背景--------------------------------------------------
-		//切り取り位置設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1024.0f;
-		src.m_bottom = 1024.0f;
+	////シーン3の時
+	//if (m_scene_flag == 2)
+	//{
+	//	//背景--------------------------------------------------
+	//	//切り取り位置設定
+	//	src.m_top = 0.0f;
+	//	src.m_left = 0.0f;
+	//	src.m_right = 1024.0f;
+	//	src.m_bottom = 1024.0f;
 
-		//描画位置設定
-		dst.m_top = 0.0f;
-		dst.m_left = 0.0f;
-		dst.m_right = 800.0f;
-		dst.m_bottom = 600.0f;
-		//2番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(2, &src, &dst, c, 0.0f);
-		//--------------------------------------------------------------
+	//	//描画位置設定
+	//	dst.m_top = 0.0f;
+	//	dst.m_left = 0.0f;
+	//	dst.m_right = 800.0f;
+	//	dst.m_bottom = 600.0f;
+	//	//2番目に登録しているsrc・dst・cで描画する
+	//	Draw::Draw(2, &src, &dst, c, 0.0f);
+	//	//--------------------------------------------------------------
 
-		//スマホ-----------------------------------------------------
-		//切り取り位置の設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + m_ani_frame * 64;
-		src.m_right = 64.0f + m_ani_frame * 64;
-		src.m_bottom = 256.0f;
+	//	//スマホ-----------------------------------------------------
+	//	//切り取り位置の設定
+	//	src.m_top = 0.0f;
+	//	src.m_left = 0.0f + m_ani_frame * 64;
+	//	src.m_right = 64.0f + m_ani_frame * 64;
+	//	src.m_bottom = 256.0f;
 
-		//表示位置の設定
-		dst.m_top = 200.0f;
-		dst.m_left = 90.0f;
-		dst.m_right = dst.m_left + 80.0f;
-		dst.m_bottom = dst.m_top + 64.0f;
+	//	//表示位置の設定
+	//	dst.m_top = 200.0f;
+	//	dst.m_left = 90.0f;
+	//	dst.m_right = dst.m_left + 80.0f;
+	//	dst.m_bottom = dst.m_top + 64.0f;
 
-		//描画
-		Draw::Draw(3, &src, &dst, c, 0.0f);
-		//-----------------------------------------------------------
+	//	//描画
+	//	Draw::Draw(3, &src, &dst, c, 0.0f);
+	//	//-----------------------------------------------------------
 
-		//おかま-------------------------------------------------------------
-		//切り取り位置設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + m_okam_ani_frame * 64;
-		src.m_right = 64.0f + m_okam_ani_frame * 64;
-		src.m_bottom = 512.0f;
+	//	//おかま-------------------------------------------------------------
+	//	//切り取り位置設定
+	//	src.m_top = 0.0f;
+	//	src.m_left = 0.0f + m_okam_ani_frame * 64;
+	//	src.m_right = 64.0f + m_okam_ani_frame * 64;
+	//	src.m_bottom = 512.0f;
 
-		//表示位置の設定
-		dst.m_top = 330.0f;
-		dst.m_right = 90.0f;
-		dst.m_left = dst.m_right + 80.0f;
-		dst.m_bottom = dst.m_top + 64.0f;
+	//	//表示位置の設定
+	//	dst.m_top = 330.0f;
+	//	dst.m_right = 90.0f;
+	//	dst.m_left = dst.m_right + 80.0f;
+	//	dst.m_bottom = dst.m_top + 64.0f;
 
-		//4番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(4, &src, &dst, c, 0.0f);
-		//-----------------------------------------------------------------------
-		//トラック-----------------------------------------------------------------------
-		//切り取り位置の設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f + m_ani_frame * 128;
-		src.m_right = 128.0f + m_ani_frame * 128;
-		src.m_bottom = 512.0f;
+	//	//4番目に登録しているsrc・dst・cで描画する
+	//	Draw::Draw(4, &src, &dst, c, 0.0f);
+	//	//-----------------------------------------------------------------------
+	//	//トラック-----------------------------------------------------------------------
+	//	//切り取り位置の設定
+	//	src.m_top = 0.0f;
+	//	src.m_left = 0.0f + m_ani_frame * 128;
+	//	src.m_right = 128.0f + m_ani_frame * 128;
+	//	src.m_bottom = 512.0f;
 
-		//表示位置の設定
-		dst.m_top = 450.0f;
-		dst.m_right = 90.0f;
-		dst.m_left = 90.0f+ dst.m_right;
-		dst.m_bottom = dst.m_top+90.0f;
+	//	//表示位置の設定
+	//	dst.m_top = 450.0f;
+	//	dst.m_right = 90.0f;
+	//	dst.m_left = 90.0f+ dst.m_right;
+	//	dst.m_bottom = dst.m_top+90.0f;
 
-		//描画
-		Draw::Draw(5, &src, &dst, c, 0.0f);
+	//	//描画
+	//	Draw::Draw(5, &src, &dst, c, 0.0f);
 
-		//----------------------------------------------------------------------------------------
+	//	//----------------------------------------------------------------------------------------
 
-		//進ときに使う文字設定
-		swprintf_s(str, L"Enterkeyで次へ");
-		//進ときに使う文字を描画
-		Font::StrDraw(str, 655, 580, 20, c);
-		//戻るときに使う文字設定
-		swprintf_s(str, L"Zkeyで前へ");
-		//戻るときに使う文字を描画
-		Font::StrDraw(str, 5, 580, 20, c);
-	}
-	//---------------------------------------------------------
-	if (m_scene_flag == 3)
-	{
-		//背景--------------------------------------------------
-		//切り取り位置設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 1024.0f;
-		src.m_bottom = 1024.0f;
+	//	//進ときに使う文字設定
+	//	swprintf_s(str, L"Enterkeyで次へ");
+	//	//進ときに使う文字を描画
+	//	Font::StrDraw(str, 655, 580, 20, c);
+	//	//戻るときに使う文字設定
+	//	swprintf_s(str, L"Zkeyで前へ");
+	//	//戻るときに使う文字を描画
+	//	Font::StrDraw(str, 5, 580, 20, c);
+	//}
+	////---------------------------------------------------------
+	//if (m_scene_flag == 3)
+	//{
+	//	//背景--------------------------------------------------
+	//	//切り取り位置設定
+	//	src.m_top = 0.0f;
+	//	src.m_left = 0.0f;
+	//	src.m_right = 1024.0f;
+	//	src.m_bottom = 1024.0f;
 
-		//描画位置設定
-		dst.m_top = 0.0f;
-		dst.m_left = 0.0f;
-		dst.m_right = 800.0f;
-		dst.m_bottom = 600.0f;
-		//2番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(6, &src, &dst, c, 0.0f);
-		//--------------------------------------------------------------
+	//	//描画位置設定
+	//	dst.m_top = 0.0f;
+	//	dst.m_left = 0.0f;
+	//	dst.m_right = 800.0f;
+	//	dst.m_bottom = 600.0f;
+	//	//2番目に登録しているsrc・dst・cで描画する
+	//	Draw::Draw(6, &src, &dst, c, 0.0f);
+	//	//--------------------------------------------------------------
 
-		//進ときに使う文字設定
-		swprintf_s(str, L"EnterkeyでMenuへ");
-		//進ときに使う文字を描画
-		Font::StrDraw(str, 635, 580, 20, c);
-		//戻るときに使う文字設定
-		swprintf_s(str, L"Zkeyで前へ");
-		//戻るときに使う文字を描画
-		Font::StrDraw(str, 5, 580, 20, c);
-	}
+	//	//進ときに使う文字設定
+	//	swprintf_s(str, L"EnterkeyでMenuへ");
+	//	//進ときに使う文字を描画
+	//	Font::StrDraw(str, 635, 580, 20, c);
+	//	//戻るときに使う文字設定
+	//	swprintf_s(str, L"Zkeyで前へ");
+	//	//戻るときに使う文字を描画
+	//	Font::StrDraw(str, 5, 580, 20, c);
+	//}
 }

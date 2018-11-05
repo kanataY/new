@@ -30,21 +30,7 @@ CSceneOperation::~CSceneOperation()
 //ゲームメイン初期化メソッド
 void CSceneOperation::InitScene()
 {
-	//外部グラフィックファイルを読み込み0番に登録(1024ピクセル)
-	Draw::LoadImageW(L"Image\\back\\Operation\\Operation_key.png", 0, TEX_SIZE_1024);//操作説明
-	//外部グラフィックファイルを読み込み1番に登録(1024ピクセル)
-	Draw::LoadImageW(L"Image\\back\\Operation\\Operation_object.png", 1, TEX_SIZE_1024);//移すの説明
-	//外部グラフィックファイルを読み込み2番に登録(1024ピクセル)
-	Draw::LoadImageW(L"Image\\back\\Operation\\Operation_enemy.png", 2, TEX_SIZE_1024);//敵の説明
-	//外部グラフィックファイルを読み込み6番に登録(1024ピクセル)
-	Draw::LoadImageW(L"Image\\back\\Operation\\Operation_gimmick.png", 6, TEX_SIZE_1024);//ギミックの説明
 
-	//外部グラフィックファイルを読み込み3番に登録(256ピクセル)
-	Draw::LoadImageW(L"Image\\object\\Smartphone.png", 3, TEX_SIZE_256);    //スマホ少年
-	//外部グラフィックファイルを読み込み4番に登録(512ピクセル)
-	Draw::LoadImageW(L"Image\\object\\okama.png", 4, TEX_SIZE_512);    //オカマ
-	//外部グラフィックファイルを読み込み5番に登録(512ピクセル)
-	Draw::LoadImageW(L"Image\\object\\Track.png", 5, TEX_SIZE_512);    //トラック
 
 
 

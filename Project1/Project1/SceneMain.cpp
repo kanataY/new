@@ -17,9 +17,9 @@ using namespace GameL;
 #include "GameHead.h"
 
 
-CSceneMain::CSceneMain(int r)
+CSceneMain::CSceneMain()
 {
-	remaining = r;	//残機
+	
 }
 
 
@@ -34,95 +34,13 @@ void CSceneMain::InitScene()
 {
 	//マップ作製
 	int map[MAP_Y][MAP_X];
-	MapCreate(map);
-	//ステージごとに主人公と背景を格納
-	switch (((UserData*)Save::GetData())->m_stage_count)
-	{
-	case 1://ステージが1の時
-		//背景の画像登録-------------------------------------------------------------------
-		//外部グラフィックファイルを読み込み0番に登録(1024ピクセル)
-		Draw::LoadImageW(L"Image\\back\\back\\back1-1.png", 0, TEX_SIZE_1024); //背景1
-		//外部グラフィックファイルを読み込み1番に登録(1024ピクセル)
-		Draw::LoadImageW(L"Image\\back\\back\\back2-1.png", 1, TEX_SIZE_1024); //背景2  
-		//外部グラフィックファイルを読み込み29番に登録(1024ピクセル)
-		Draw::LoadImageW(L"Image\\back\\back\\back_final.png", 26, TEX_SIZE_1024); //背景最後
-		//----------------------------------------------------------------------------------
+	
 
-		//ランナーの画像登録-------------------------------------------------------------------------------------
-		//外部グラフィックファイルを読み込み2番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\runner.png", 2, TEX_SIZE_256);    //第一走者
-		//外部グラフィックファイルを読み込み3番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\runner_transfer.png", 3, TEX_SIZE_256);    //一走者の火をうつすモーション
-		//外部グラフィックファイルを読み込み4番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\runner_invincible.png", 4, TEX_SIZE_256);    //第一走者の点滅
-		//外部グラフィックファイルを読み込み5番に登録(192ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\runner_death.png", 5, TEX_SIZE_192);  //第一走者の死亡
+	Draw::LoadImageW(L"Image\\back\\back.png", 0, TEX_SIZE_1024);    
 
-		//ランナ--------------------------------------------------------------------------------------
-		//外部グラフィックファイルを読み込み27番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\youtuber.png", 27, TEX_SIZE_256);    //YouTuber
-		//外部グラフィックファイルを読み込み28番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\youtuber_transfer.png", 28, TEX_SIZE_256);  //YouTuberの振りかざし
-		//---------------------------------------------------------------------------------------------
-		break;
-
-	case 2://ステージが2の時
-		//背景の画像登録-------------------------------------------------------------------
-		//外部グラフィックファイルを読み込み0番に登録(1024ピクセル)
-		Draw::LoadImageW(L"Image\\back\\back\\back1-2.png", 0, TEX_SIZE_1024); //背景1
-		//外部グラフィックファイルを読み込み1番に登録(1024ピクセル)
-		Draw::LoadImageW(L"Image\\back\\back\\back2-2.png", 1, TEX_SIZE_1024); //背景2
-		//外部グラフィックファイルを読み込み26番に登録(1024ピクセル)
-		Draw::LoadImageW(L"Image\\back\\back\\back_final2.png", 26, TEX_SIZE_1024); //背景最後
-		//---------------------------------------------------------------------------------------------
-
-		//ランナ--------------------------------------------------------------------------------------
-		//外部グラフィックファイルを読み込み2番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\youtuber.png", 2, TEX_SIZE_256);    //YouTuber
-		//外部グラフィックファイルを読み込み3番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\youtuber_transfer.png", 3, TEX_SIZE_256);  //YouTuberの振りかざし
-		//外部グラフィックファイルを読み込み4番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\youtuber_invincible.png", 4, TEX_SIZE_256);    //YouTuberの点滅
-		//外部グラフィックファイルを読み込み5番に登録(192ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\youtuber_death.png", 5, TEX_SIZE_192);    //YouTuberの死亡
-		//-------------------------------------------------------------------------------------
-
-		//ゴール地点のランナ--------------------------------------------------------------------------------------
-		//外部グラフィックファイルを読み込み27番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\grandfather.png", 27, TEX_SIZE_256);    //おじいさん
-		//外部グラフィックファイルを読み込み28番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\grandfather_transfer.png", 28, TEX_SIZE_256);  //おじいさんの振りかざし
-		//---------------------------------------------------------------------------------------------
-		break;
-	case 3://ステージが3の時
-		//背景の画像登録-------------------------------------------------------------------
-		//外部グラフィックファイルを読み込み0番に登録(1024ピクセル)
-		Draw::LoadImageW(L"Image\\back\\back\\back1.png", 0, TEX_SIZE_1024); //背景1
-		//外部グラフィックファイルを読み込み1番に登録(1024ピクセル)
-		Draw::LoadImageW(L"Image\\back\\back\\back2.png", 1, TEX_SIZE_1024); //背景2
-		//外部グラフィックファイルを読み込み26番に登録(1024ピクセル)
-		Draw::LoadImageW(L"Image\\back\\back\\back_final3.png", 26, TEX_SIZE_1024); //背景最後
-		//---------------------------------------------------------------------------------------------
-
-		//ランナ--------------------------------------------------------------------------------------
-		//外部グラフィックファイルを読み込み2番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\grandfather.png", 2, TEX_SIZE_256);    //主人公3
-		//外部グラフィックファイルを読み込み3番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\grandfather_transfer.png", 3, TEX_SIZE_256);    //主人公3の移す
-		//外部グラフィックファイルを読み込み4番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\grandfather_invincible.png", 4, TEX_SIZE_256);    //主人公3の無敵
-		//外部グラフィックファイルを読み込み5番に登録(256ピクセル)
-		Draw::LoadImageW(L"Image\\hero\\grandfather_death.png", 5, TEX_SIZE_192);    //主人公3の死亡
-		//----------------------------------------------------------------------------------------
-
-		break;
-	}
-
-	//外部グラフィックファイルを読み込み2番に登録(64ピクセル)
-	Draw::LoadImageW(L"Image\\object\\puddle.png", 55, TEX_SIZE_64);
 	
 	//主人公オブジェクト作成
-	CObjHero* he = new CObjHero(remaining);
+	CObjHero* he = new CObjHero(10);
 	Objs::InsertObj(he, OBJ_HERO, 13);
 
 	//背景（ブロック）オブジェクト作成
@@ -174,12 +92,6 @@ void CSceneMain::MapCreate(int map[][MAP_X])
 	{
 	case 1:
 		p = Save::ExternalDataOpen(L"Stage01.csv", &size);//外部データ読み込み
-		break;
-	case 2:
-		p = Save::ExternalDataOpen(L"Stage02.csv", &size);//外部データ読み込み
-		break;
-	case 3:
-		p = Save::ExternalDataOpen(L"Stage03.csv", &size);//外部データ読み込み
 		break;
 	default:
 		MessageBox(0, L"ステージ番号が正しくありません。", NULL, MB_OK);

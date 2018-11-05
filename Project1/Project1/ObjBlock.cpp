@@ -89,7 +89,7 @@ void CObjBlock::Action()
 		//列の中から１を探す
 		if (m_map[i][ex] == 1)
 		{
-
+			;
 		}
 	}
 }
@@ -98,7 +98,7 @@ void CObjBlock::Action()
 //描画
 void CObjBlock::Draw()
 {
-	
+
 	//-----------背景-----------
 	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -112,59 +112,17 @@ void CObjBlock::Draw()
 	src.m_right = 1024.0f;
 	src.m_bottom = 1024.0f;
 	//背景1が4回スクロールした時
-	if (m_scroll_num>=4)
-	{
-		//表示位置の設定
-		//ゴ－ル背景描画
-		dst.m_top = 0.0f;
-		dst.m_left = 0.0f + m_bx1;
-		dst.m_right = 806.0f + m_bx1;
-		dst.m_bottom = 700.0f;
 
-		//描画
-		Draw::Draw(26, &src, &dst, c, 0.0f);
-	}
-	else
-	{
-
-		//表示位置の設定
-		//背景１
-		dst.m_top = 0.0f;
-		dst.m_left = 0.0f + m_bx1;
-		dst.m_right = 806.0f + m_bx1;
-		dst.m_bottom = 700.0f;
-
-		//描画
-		Draw::Draw(0, &src, &dst, c, 0.0f);
-	}
-	//背景２
+	//表示位置の設定
+	//ゴ－ル背景描画
 	dst.m_top = 0.0f;
-	dst.m_left = 0.0f + m_bx2;
-	dst.m_right = 806.0f + m_bx2;
+	dst.m_left = 0.0f;
+	dst.m_right = 800.0f;
 	dst.m_bottom = 700.0f;
 
 	//描画
-	Draw::Draw(1, &src, &dst, c, 0.0f);
+	Draw::Draw(0, &src, &dst, c, 0.0f);
 
-	//マップチップによるblock設置
-	for (int i = 0; i < 10; i++)
-	{
-		for (int j = 0; j < MAP_X_MAX; j++)
-		{
-
-				//表示位置の設定
-				dst.m_top = i*64.0f;
-				dst.m_left = j*64.0f + m_scroll;
-				dst.m_right = dst.m_left + 64.0f;
-				dst.m_bottom = dst.m_top + 64.0f;
-				if (m_map[i][j] == 1)
-				{
-					//ブロック
-					BlockDraw(0.0f, 0.0f, &dst, c);
-				}
-			
-		}
-	}
 }
 
 //調べたいマップの位置にあるマップ番号を返す

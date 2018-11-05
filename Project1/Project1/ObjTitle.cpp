@@ -113,115 +113,115 @@ void CObjTitle::Action()
 //ドロー
 void CObjTitle::Draw()
 {
-	//タイトル画面
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	////タイトル画面
+	//float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-	RECT_F src;	//描画先切り取り位置
-	RECT_F dst;	//描画先表示位置
+	//RECT_F src;	//描画先切り取り位置
+	//RECT_F dst;	//描画先表示位置
 
-	//タイトル画面---------------------------------------
-	//切り取り位置設定
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 1024.0f;
-	src.m_bottom = 1024.0f;
+	////タイトル画面---------------------------------------
+	////切り取り位置設定
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 1024.0f;
+	//src.m_bottom = 1024.0f;
 
-	//描画位置設定
-	dst.m_top = 0.0f;
-	dst.m_left = 0.0f;
-	dst.m_right = 800.0f;
-	dst.m_bottom = 600.0f;
+	////描画位置設定
+	//dst.m_top = 0.0f;
+	//dst.m_left = 0.0f;
+	//dst.m_right = 800.0f;
+	//dst.m_bottom = 600.0f;
 
-	//0番目に登録しているsrc・dst・cで描画する
-	Draw::Draw(0, &src, &dst, c, 0.0f);
-	//---------------------------------------------------------
+	////0番目に登録しているsrc・dst・cで描画する
+	//Draw::Draw(0, &src, &dst, c, 0.0f);
+	////---------------------------------------------------------
 
-	//タイトルの文字-------------------------------------------
-	//切り取り位置設定
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 512.0f;
-	src.m_bottom = 512.0f;
+	////タイトルの文字-------------------------------------------
+	////切り取り位置設定
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 512.0f;
+	//src.m_bottom = 512.0f;
 
-	//描画位置設定
-	dst.m_top = 80.0f;
-	dst.m_left = 90.0f;
-	dst.m_right = dst.m_left+590.0f;
-	dst.m_bottom = dst.m_top+140.0f;
+	////描画位置設定
+	//dst.m_top = 80.0f;
+	//dst.m_left = 90.0f;
+	//dst.m_right = dst.m_left+590.0f;
+	//dst.m_bottom = dst.m_top+140.0f;
 
-	//1番目に登録しているsrc・dst・cで描画する
-	Draw::Draw(1, &src, &dst, c, 0.0f);
-	//-------------------------------------------------------------
+	////1番目に登録しているsrc・dst・cで描画する
+	//Draw::Draw(1, &src, &dst, c, 0.0f);
+	////-------------------------------------------------------------
 
-	//メニューの文字-------------------------------------------
-	//切り取り位置設定
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 512.0f;
-	src.m_bottom = 512.0f;
+	////メニューの文字-------------------------------------------
+	////切り取り位置設定
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 512.0f;
+	//src.m_bottom = 512.0f;
 
-	//描画位置設定
-	dst.m_top = 290.0f;
-	dst.m_left = 150.0f;
-	dst.m_right = dst.m_left + 512.0f;
-	dst.m_bottom = dst.m_top + 120.0f;
+	////描画位置設定
+	//dst.m_top = 290.0f;
+	//dst.m_left = 150.0f;
+	//dst.m_right = dst.m_left + 512.0f;
+	//dst.m_bottom = dst.m_top + 120.0f;
 
-	//2番目に登録しているsrc・dst・cで描画する
-	Draw::Draw(2, &src, &dst, c, 0.0f);
-	///-------------------------------------------------------------
+	////2番目に登録しているsrc・dst・cで描画する
+	//Draw::Draw(2, &src, &dst, c, 0.0f);
+	/////-------------------------------------------------------------
 
-	//終了の文字-------------------------------------------
-	//切り取り位置設定
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 512.0f;
-	src.m_bottom = 512.0f;
+	////終了の文字-------------------------------------------
+	////切り取り位置設定
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 512.0f;
+	//src.m_bottom = 512.0f;
 
-	//描画位置設定
-	dst.m_top = 420.0f;
-	dst.m_left = 150.0f;
-	dst.m_right = dst.m_left + 512.0f;
-	dst.m_bottom = dst.m_top + 120.0f;
+	////描画位置設定
+	//dst.m_top = 420.0f;
+	//dst.m_left = 150.0f;
+	//dst.m_right = dst.m_left + 512.0f;
+	//dst.m_bottom = dst.m_top + 120.0f;
 
-	//3番目に登録しているsrc・dst・cで描画する
-	Draw::Draw(3, &src, &dst, c, 0.0f);
-	///-------------------------------------------------------------
+	////3番目に登録しているsrc・dst・cで描画する
+	//Draw::Draw(3, &src, &dst, c, 0.0f);
+	/////-------------------------------------------------------------
 
-	//枠の描画-------------------------------------------
-	if (m_key_flag == 0)
-	{
-		//切り取り位置設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 512.0f;
-		src.m_bottom = 512.0f;
+	////枠の描画-------------------------------------------
+	//if (m_key_flag == 0)
+	//{
+	//	//切り取り位置設定
+	//	src.m_top = 0.0f;
+	//	src.m_left = 0.0f;
+	//	src.m_right = 512.0f;
+	//	src.m_bottom = 512.0f;
 
-		//描画位置設定
-		dst.m_top = 282.0f;
-		dst.m_left = 130.0f;
-		dst.m_right = dst.m_left + 520.0f;
-		dst.m_bottom = dst.m_top + 130.0f;
+	//	//描画位置設定
+	//	dst.m_top = 282.0f;
+	//	dst.m_left = 130.0f;
+	//	dst.m_right = dst.m_left + 520.0f;
+	//	dst.m_bottom = dst.m_top + 130.0f;
 
-		//4番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(4, &src, &dst, c, 0.0f);
-	}
-	else
-	{
-		
-		//切り取り位置設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 512.0f;
-		src.m_bottom = 512.0f;
+	//	//4番目に登録しているsrc・dst・cで描画する
+	//	Draw::Draw(4, &src, &dst, c, 0.0f);
+	//}
+	//else
+	//{
+	//	
+	//	//切り取り位置設定
+	//	src.m_top = 0.0f;
+	//	src.m_left = 0.0f;
+	//	src.m_right = 512.0f;
+	//	src.m_bottom = 512.0f;
 
-		//描画位置設定
-		dst.m_top = 412.0f;
-		dst.m_left = 130.0f;
-		dst.m_right = dst.m_left + 520.0f;
-		dst.m_bottom = dst.m_top + 130.0f;
+	//	//描画位置設定
+	//	dst.m_top = 412.0f;
+	//	dst.m_left = 130.0f;
+	//	dst.m_right = dst.m_left + 520.0f;
+	//	dst.m_bottom = dst.m_top + 130.0f;
 
-		//4番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(4, &src, &dst, c, 0.0f);
-	}
-	//-------------------------------------------------------------
+	//	//4番目に登録しているsrc・dst・cで描画する
+	//	Draw::Draw(4, &src, &dst, c, 0.0f);
+	//}
+	////-------------------------------------------------------------
 }

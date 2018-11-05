@@ -12,11 +12,10 @@ using namespace GameL;
 class CSceneMain : public CScene
 {
 public:
-	CSceneMain(int r);
+	CSceneMain();
 	~CSceneMain();
 	void InitScene();//初期化メソッド
 	void Scene();	 //実行中メソッド
 private:
-	int remaining;//残機管理
 	void MapCreate(int map[][MAP_X]);	//ステージ番号ごとにマップ作成
 };

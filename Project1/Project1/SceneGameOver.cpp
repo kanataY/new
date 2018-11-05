@@ -41,9 +41,7 @@ void CSceneGameOver::InitScene()
 	//音楽スタート
 	Audio::Start(0);*/
 
-	//外部グラフィックファイルを読み込み0番に登録(1024×1024ピクセル)
-	Draw::LoadImageW(L"Image\\back\\gameover\\GameOver.png", 0, TEX_SIZE_1024);
-
+	
 	//ゲームオーバーオブジェクト作成
 	CObjGameOver* obj = new CObjGameOver();
 	Objs::InsertObj(obj, OBJ_GAME_OVER, 10);
