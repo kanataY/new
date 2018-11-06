@@ -43,13 +43,23 @@ void CObjBlock::Action()
 	float hx = hero->GetX();
 	float hy = hero->GetY();
 
-	if (hx < -50 ) //画面より左側に行けないようにする
+	if (hx < 100 )
 	{
-		//背景1の動作
-		m_bx1 -= 0.0f;
+		hero->SetX(100);			//主人公はラインを超えないようにする
 
+		m_scroll -= hero->GetVX();
+
+		//背景1の動作
+		m_bx1 -= hero->GetVX();
+		if (m_bx1 < -800.0f)
+		{
+			m_bx1 = 800.0f;
+			m_scroll_num++;//背景1が終わればカウントする
+		}
 		//背景2の動作
-		m_bx2 -= 0.0f;
+		m_bx2 -= hero->GetVX();
+		if (m_bx2 < -800.0f)
+			m_bx2 = 800.0f;
 	}
 	//前方スクロールライン
 	else if (hx > 400 )
@@ -123,6 +133,25 @@ void CObjBlock::Draw()
 	//描画
 	Draw::Draw(0, &src, &dst, c, 0.0f);
 
+	//マップチップによるblock設置
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < MAP_X_MAX; j++)
+		{
+			//表示位置の設定
+			dst.m_top = i*64.0f;
+			dst.m_left = j*64.0f + m_scroll;
+			dst.m_right = dst.m_left + 64.0f;
+			dst.m_bottom = dst.m_top + 64.0f;
+			if (m_map[i][j] == 1)
+			{
+				//ブロック
+				BlockDraw(0.0f, 0.0f, &dst, c , i ,j);
+			}
+
+		}
+	}
+
 }
 
 //調べたいマップの位置にあるマップ番号を返す
@@ -142,7 +171,7 @@ int CObjBlock::GetMap(int x, int y)
 //引数４ float   c[]  :カラー情報
 //ブロックを64×64限定描画用。リソース切り取り位置のみｘ・ｙで
 //設定できる
-void CObjBlock::BlockDraw(float x, float y, RECT_F* dst, float c[])
+void CObjBlock::BlockDraw(float x, float y, RECT_F* dst, float c[] , int i , int j)
 {
 	RECT_F src;
 	src.m_top = y;
@@ -150,7 +179,16 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F* dst, float c[])
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = src.m_top + 64.0f;
 	//描画
-	Draw::Draw(1, &src, dst, c, 0.0f);
+
+			if (m_map[i - 1][j] == 1)
+			{
+				Draw::Draw(2, &src, dst, c, 0.0f);
+			}
+			else
+			Draw::Draw(1, &src, dst, c, 0.0f);
+		
+	
+	
 
 }
 

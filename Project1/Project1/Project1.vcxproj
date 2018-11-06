@@ -138,6 +138,7 @@
     <ClInclude Include="ObjBlock.h" />
     <ClInclude Include="ObjGameClear.h" />
     <ClInclude Include="ObjGameOver.h" />
+    <ClInclude Include="ObjGold.h" />
     <ClInclude Include="ObjMenu.h" />
     <ClInclude Include="ObjOperation.h" />
     <ClInclude Include="ObjRanking.h" />
@@ -168,6 +169,7 @@
     <ClCompile Include="ObjBlock.cpp" />
     <ClCompile Include="ObjGameClear.cpp" />
     <ClCompile Include="ObjGameOver.cpp" />
+    <ClCompile Include="ObjGold.cpp" />
     <ClCompile Include="ObjMenu.cpp" />
     <ClCompile Include="ObjOperation.cpp" />
     <ClCompile Include="ObjRanking.cpp" />

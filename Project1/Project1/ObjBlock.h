@@ -32,7 +32,7 @@ public:
 
 private:
 
-	void BlockDraw(float x, float y, RECT_F* dst, float c[]);
+	void BlockDraw(float x, float y, RECT_F* dst, float c[],int i, int j);
 
 	float m_px;		//ˆÊ’u
 	float m_py;
