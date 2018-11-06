@@ -34,10 +34,12 @@ void CSceneMain::InitScene()
 {
 	//マップ作製
 	int map[MAP_Y][MAP_X];
-	
+	MapCreate(map);
 
 	Draw::LoadImageW(L"Image\\back\\back.png", 0, TEX_SIZE_1024);    
-
+	Draw::LoadImageW(L"Image\\back\\block.png", 1, TEX_SIZE_64);
+	Draw::LoadImageW(L"Image\\back\\block2.png", 2, TEX_SIZE_64);
+	Draw::LoadImageW(L"Image\\item\\100yen.png", 3, TEX_SIZE_64);
 	
 	//主人公オブジェクト作成
 	CObjHero* he = new CObjHero(10);
@@ -88,7 +90,7 @@ void CSceneMain::MapCreate(int map[][MAP_X])
 	int size;			   //ステージ情報の大きさ
 
 	//ステージごとにステージの名前を格納
-	switch (((UserData*)Save::GetData())->m_stage_count)
+	switch (((UserData*)Save::GetData())->m_stage_count = 1)
 	{
 	case 1:
 		p = Save::ExternalDataOpen(L"Stage01.csv", &size);//外部データ読み込み

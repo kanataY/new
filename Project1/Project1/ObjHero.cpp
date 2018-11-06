@@ -45,7 +45,7 @@ void CObjHero::Init()
 
 
 	//HitBox
-	Hits::SetHitBox(this, m_px, m_py, 18, 64, ELEMENT_HERO, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_HERO, OBJ_HERO, 1);
 }
 
 //ƒAƒNƒVƒ‡ƒ“
@@ -81,9 +81,9 @@ void CObjHero::Action()
 	{
 		m_vx += -m_speed;
 	}
-	if (Input::GetVKey('W') == true && m_py > 277)//ãˆÚ“®
+	if (Input::GetVKey('W') == true)//ãˆÚ“®
 	{
-		m_vy += -m_speed;
+		m_vy += -m_speed*3;
 	}
 	if (Input::GetVKey('S') == true && m_py < 536)//‰ºˆÚ“®
 	{
@@ -101,13 +101,19 @@ void CObjHero::Action()
 	m_vy += 9.8 / (16.0f);
 
 	//ƒWƒƒƒ“ƒvI—¹[[[[[[[[[[[[[[[[[[[[[
-
+	//ƒuƒƒbƒNî•ñ‚ğ‚Á‚Ä‚­‚é
+	//CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	//ˆÚ“®I—¹---------------------------------------------------
+	block->BlockHit(&m_px, &m_py, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type
+	);
 
 	//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 	//HitBox‚ÌˆÊ’u‚Ì•ÏX
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + 18.0f, m_py);
+	hit->SetPos(m_px , m_py);
 
 
 	//“–‚½‚è”»’èŠÖ˜A
@@ -135,6 +141,20 @@ void CObjHero::Draw()
 	RECT_F src2; //•`‰æŒ³Ø‚èæ‚èˆÊ’u
 	RECT_F dst2; //•`‰ææ•\¦ˆÊ’u
 
+	 //Ø‚èæ‚èˆÊ’u‚Ìİ’è
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 64.0f;
+	src.m_bottom = 64.0f;
+
+	//•\¦ˆÊ’u‚Ìİ’è
+	dst.m_top = 0.0f + m_py;
+	dst.m_left = 0.0f + m_px;
+	dst.m_right = 64.0f + m_px;
+	dst.m_bottom = 64.0f + m_py;
+
+	//•`‰æ
+	Draw::Draw(3, &src, &dst, c, 0.0f);
 	
 	//c‚è‚Ì”š‚ğ•`‰æ‚·‚é
 	static wchar_t  c_siro[8];
