@@ -14,9 +14,9 @@
 using namespace GameL;
 
 //コンストラクタ
-CObjHero::CObjHero(int r)
+CObjHero::CObjHero()
 {
-	m_remaining = r; //残機
+
 }
 
 //イニシャライズ
@@ -28,6 +28,8 @@ void CObjHero::Init()
 	m_vy = 0.0f;	//移動ベクトル
 	
 	m_speed = 0.8f;
+
+	m_gold_flag = false;
 
 	m_ani_time = 0;
 	m_ani_frame = 0;  //静止フレームを初期にする
@@ -55,7 +57,7 @@ void CObjHero::Action()
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	//補正の情報を持ってくる
-	CObjCorrection* cor = (CObjCorrection*)Objs::GetObj(CORRECTION);
+	//CObjCorrection* cor = (CObjCorrection*)Objs::GetObj(CORRECTION);
 
 
 	//アニメーションーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
@@ -73,22 +75,41 @@ void CObjHero::Action()
 
 		//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 
-	if (Input::GetVKey('D') == true)  //右移動
+	if (Input::GetVKey(VK_RIGHT) == true)  //右移動
 	{
 		m_vx += m_speed;
 	}
-	if (Input::GetVKey('A') == true)  //左移動
+	if (Input::GetVKey(VK_LEFT) == true)  //左移動
 	{
 		m_vx += -m_speed;
 	}
-	if (Input::GetVKey('W') == true)//上移動
+	if (Input::GetVKey(VK_UP) == true)//上移動
 	{
 		m_vy += -m_speed*3;
 	}
-	if (Input::GetVKey('S') == true && m_py < 536)//下移動
+	if (Input::GetVKey(VK_DOWN) == true && m_py < 536)//下移動
 	{
 		m_vy += m_speed;
 	}
+
+	//お金を置くーーーーーーーーーーーーー
+
+	if (Input::GetVKey('C') == true)  //金塊を置く
+	{
+		//金塊は一度に一回だけ
+		if (m_gold_flag == false)
+		{
+			//金塊を生成
+			CObjGold* kane = new CObjGold(m_px + 64.0f - block->GetScroll(), m_py);
+			Objs::InsertObj(kane, OBJ_GOLD, 16);
+			m_gold_flag = true;
+		}
+	}
+	else
+		m_gold_flag = false;
+
+	//－－－－－－－－－－－－－－－－－－－
+
 
 	//摩擦
 	m_vx += -(m_vx * 0.15f);
@@ -130,7 +151,6 @@ void CObjHero::Action()
 //描画
 void CObjHero::Draw()
 {
-	//ランナー-----------------------------------------------------------------
 	//描画カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	//影の描画のためのカラー情報
@@ -159,7 +179,7 @@ void CObjHero::Draw()
 	//残りの数字を描画する
 	static wchar_t  c_siro[8];
 	static float cl_siro[4] = { 0.0f,0.0f,0.0f,1.0f };
-	swprintf_s(c_siro, L"X %d", m_remaining);
+	//swprintf_s(c_siro, L"X %d", m_remaining);
 	CDrawFont::StrDraw(c_siro, 735, 16, 32, cl_siro);
 
 	//---------------------------------------------------------------------------------

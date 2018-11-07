@@ -226,7 +226,7 @@ void CObjBlock::BlockHit(
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j]>0 && m_map[i][j] != 4)
+			if (m_map[i][j]>0)
 			{
 				//—v‘f”Ô†‚ğÀ•W‚É•ÏX
 				float bx = j*64.0f;

@@ -39,10 +39,11 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Image\\back\\back.png", 0, TEX_SIZE_1024);    
 	Draw::LoadImageW(L"Image\\back\\block.png", 1, TEX_SIZE_64);
 	Draw::LoadImageW(L"Image\\back\\block2.png", 2, TEX_SIZE_64);
-	Draw::LoadImageW(L"Image\\item\\100yen.png", 3, TEX_SIZE_64);
+	Draw::LoadImageW(L"Image\\hero\\hero.png", 3, TEX_SIZE_64);
+	Draw::LoadImageW(L"Image\\item\\gold.png", 4, TEX_SIZE_64);
 	
 	//主人公オブジェクト作成
-	CObjHero* he = new CObjHero(10);
+	CObjHero* he = new CObjHero();
 	Objs::InsertObj(he, OBJ_HERO, 13);
 
 	//背景（ブロック）オブジェクト作成
@@ -50,8 +51,8 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(block, OBJ_BLOCK, 10);
 
 	//補正オブジェクト作成
-	CObjCorrection* cor = new CObjCorrection();
-	Objs::InsertObj(cor, CORRECTION, 13);
+	//CObjCorrection* cor = new CObjCorrection();
+	//Objs::InsertObj(cor, CORRECTION, 13);
 
 
 	//音楽読み込み
