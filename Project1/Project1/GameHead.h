@@ -8,6 +8,7 @@ enum OBJ_NAME
 	//OBJ_○○と表記
 	OBJ_HERO,				//ランナー
 	OBJ_BLOCK,				//ブロック
+	OBJ_GOLD,				//金塊
 
 	//補正
 	CORRECTION,				//補正
@@ -57,6 +58,7 @@ struct UserData
 //ゲームシーンオブジェクトヘッダ------------------
 #include "ObjHero.h"			//ランナー
 #include "ObjBlock.h"			//ブロック
+#include "ObjGold.h"            //金塊
 
 #include "ObjTitle.h"			//タイトル
 #include "ObjGameOver.h"		//ゲームオーバー
