@@ -30,6 +30,7 @@ void CObjHero::Init()
 	m_speed = 0.8f;
 
 	m_gold_flag = false;
+	m_gold_spawn = false;
 
 	m_ani_time = 0;
 	m_ani_frame = 0;  //静止フレームを初期にする
@@ -97,8 +98,9 @@ void CObjHero::Action()
 	if (Input::GetVKey('C') == true)  //金塊を置く
 	{
 		//金塊は一度に一回だけ
-		if (m_gold_flag == false)
+		if (m_gold_flag == false && m_gold_spawn == false)
 		{
+			//block->SetMap((m_px + 64.0f) / 64.0f, m_py / 64.0f, 2);
 			//金塊を生成
 			CObjGold* kane = new CObjGold(m_px + 64.0f - block->GetScroll(), m_py);
 			Objs::InsertObj(kane, OBJ_GOLD, 16);
@@ -196,6 +198,48 @@ void CObjHero::HitBox()
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
 
+	//CObjGold* gold = (CObjGold*)Objs::GetObj(OBJ_GOLD);
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+	//どの角度で当たっているかを確認
+	HIT_DATA** hit_data;                        //当たったときの細やかな情報を入れるための構造体
+	hit_data = hit->SearchObjNameHit(OBJ_GOLD);  //hit_dataにHitBoxとの情報を入れる
+
+	for (int i = 0; i < hit->GetCount(); i++)
+	{
+		float r2 = hit_data[0]->r;
+
+		if (r2 >= 210 && r2 < 340)
+		{
+
+			CObjBlock* b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+			//また、地面に当たっている判定にする
+			m_vy = 0.0f;
+			m_hit_down = true;
+			if (r2 >= 310 && r2 < 340)
+			{
+				m_gold_spawn = true;
+			}
+			else
+				m_gold_spawn = false;
+		}
+		 if (r2>160 && r2<200)
+		{
+			//左
+			m_hit_left = true;//主人公の右の部分が衝突している
+			
+			m_py -= 16.0f;
+		}
+		
+		if (r2<45 && r2>0 || r2>330)
+		{
+			//右
+			m_hit_right = true;//主人公の左の部分が衝突している
+			//m_py =
+			m_py -= 10.0f;
+		}
+	}
+
 }

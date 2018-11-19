@@ -18,6 +18,7 @@ CObjGold::CObjGold(float x,float y)
 {
 	m_px = x;
 	m_py = y;
+
 }
 
 //イニシャライズ
@@ -35,7 +36,7 @@ void CObjGold::Init()
 	m_block_type = 0; //踏んでいるblockの種類を確認用
 
 	//HitBox
-	Hits::SetHitBox(this, m_px, m_py, 64, 32, ELEMENT_ITEM, OBJ_GOLD, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 32, ELEMENT_NULL, OBJ_GOLD, 1);
 }
 
 //アクション
@@ -58,12 +59,8 @@ void CObjGold::Action()
 		&m_block_type
 	);
 
-	//ヒットボックスに触れている時
-	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
-	{
-		m_vy = 0.0f;
-	}
-
+	Hit();
+	
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
@@ -96,4 +93,19 @@ void CObjGold::Draw()
 	//描画
 	Draw::Draw(4, &src, &dst, c, 0.0f);
 
+}
+
+void CObjGold::Hit()
+{
+	//HitBoxの位置の変更
+	CHitBox* hit = Hits::GetHitBox(this);
+	CObjGold* gold = (CObjGold*)Objs::GetObj(OBJ_GOLD);
+	//ヒットボックスに触れている時
+	if (hit->CheckObjNameHit(OBJ_GOLD) != nullptr)
+	{
+		//ゴールドに当たっているなら動きを止める
+		m_vy = 0.0f;
+
+		
+	}
 }

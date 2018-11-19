@@ -16,6 +16,7 @@ public:
 	void Draw();	//ドロー
 	float GetX() { return m_px; }						//m_px,m_pyの値を渡す
 	float GetY() { return m_py; }
+	void  Hit();
 
 private:
 	float m_px;//位置
