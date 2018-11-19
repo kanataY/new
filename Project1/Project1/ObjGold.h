@@ -23,7 +23,7 @@ private:
 	float m_py;
 	float m_vy; //ˆÚ“®—Ê
 	float m_vx;
-
+	int a;
 				//block‚Æ‚ÌÕ“Ëó‘ÔŠm”F—p
 	bool m_hit_up;
 	bool m_hit_down;
