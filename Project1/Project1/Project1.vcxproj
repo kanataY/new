@@ -139,10 +139,12 @@
     <ClInclude Include="ObjGameClear.h" />
     <ClInclude Include="ObjGameOver.h" />
     <ClInclude Include="ObjGold.h" />
+    <ClInclude Include="ObjJumpEnemy.h" />
     <ClInclude Include="ObjMenu.h" />
     <ClInclude Include="ObjOperation.h" />
     <ClInclude Include="ObjRanking.h" />
     <ClInclude Include="ObjHero.h" />
+    <ClInclude Include="ObjRushEnemy.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneGameOver.h" />
@@ -170,10 +172,12 @@
     <ClCompile Include="ObjGameClear.cpp" />
     <ClCompile Include="ObjGameOver.cpp" />
     <ClCompile Include="ObjGold.cpp" />
+    <ClCompile Include="ObjJumpEnemy.cpp" />
     <ClCompile Include="ObjMenu.cpp" />
     <ClCompile Include="ObjOperation.cpp" />
     <ClCompile Include="ObjRanking.cpp" />
     <ClCompile Include="ObjHero.cpp" />
+    <ClCompile Include="ObjRushEnemy.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneGameClear.cpp" />
     <ClCompile Include="SceneGameOver.cpp" />

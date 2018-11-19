@@ -10,6 +10,10 @@ enum OBJ_NAME
 	OBJ_BLOCK,				//ブロック
 	OBJ_GOLD,				//金塊
 
+
+	//敵
+	OBJ_RUSH_ENEMY,			//突進する敵
+	OBJ_JUMP_ENEMY,			//ジャンプする敵
 	//補正
 	CORRECTION,				//補正
 
@@ -59,6 +63,9 @@ struct UserData
 #include "ObjHero.h"			//ランナー
 #include "ObjBlock.h"			//ブロック
 #include "ObjGold.h"            //金塊
+
+#include "ObjRushEnemy.h"		//突進する敵
+#include "ObjJumpEnemy.h"		//ジャンプする敵
 
 #include "ObjTitle.h"			//タイトル
 #include "ObjGameOver.h"		//ゲームオーバー
