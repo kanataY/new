@@ -37,6 +37,9 @@
     <Filter Include="ソース ファイル\GameScene\Title">
       <UniqueIdentifier>{63edff77-e5d1-4bd7-9f71-e3baab940e05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\GameMain\Enemy">
+      <UniqueIdentifier>{1cf33929-5ca9-4541-a05b-b2f37a9e119f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h">
@@ -129,6 +132,12 @@
     <ClInclude Include="ObjGold.h">
       <Filter>ソース ファイル\GameMain</Filter>
     </ClInclude>
+    <ClInclude Include="ObjRushEnemy.h">
+      <Filter>ソース ファイル\GameMain\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjJumpEnemy.h">
+      <Filter>ソース ファイル\GameMain\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -217,6 +226,12 @@
     </ClCompile>
     <ClCompile Include="ObjGold.cpp">
       <Filter>ソース ファイル\GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjRushEnemy.cpp">
+      <Filter>ソース ファイル\GameMain\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjJumpEnemy.cpp">
+      <Filter>ソース ファイル\GameMain\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
