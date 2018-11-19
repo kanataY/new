@@ -202,44 +202,54 @@ void CObjHero::HitBox()
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	//どの角度で当たっているかを確認
-	HIT_DATA** hit_data;                        //当たったときの細やかな情報を入れるための構造体
-	hit_data = hit->SearchObjNameHit(OBJ_GOLD);  //hit_dataにHitBoxとの情報を入れる
-
-	for (int i = 0; i < hit->GetCount(); i++)
+	if (hit->CheckObjNameHit(OBJ_GOLD) == nullptr)
 	{
-		float r2 = hit_data[0]->r;
+		//どの角度で当たっているかを確認
+		HIT_DATA** hit_data;                        //当たったときの細やかな情報を入れるための構造体
+		hit_data = hit->SearchObjNameHit(OBJ_GOLD);  //hit_dataにHitBoxとの情報を入れる
 
-		if (r2 >= 210 && r2 < 340)
+		for (int i = 0; i < hit->GetCount(); i++)
 		{
+			float r2 = hit_data[0]->r;
 
-			CObjBlock* b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
-			//また、地面に当たっている判定にする
-			m_vy = 0.0f;
-			m_hit_down = true;
-			if (r2 >= 310 && r2 < 340)
+			if (r2 >= 210 && r2 < 340)
 			{
-				m_gold_spawn = true;
+
+				CObjBlock* b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+				//また、地面に当たっている判定にする
+				m_vy = 0.0f;
+				m_hit_down = true;
+				if (r2 >= 310 && r2 < 340)
+				{
+					m_gold_spawn = true;
+				}
+				else
+					m_gold_spawn = false;
 			}
-			else
-				m_gold_spawn = false;
+			if (r2 > 160 && r2 < 200)
+			{
+				//左
+				m_hit_left = true;
+
+				m_py -= 16.0f;
+			}
+
+			if (r2 < 45 && r2>0 || r2 > 330)
+			{
+				//右
+				m_hit_right = true;
+
+				m_py -= 10.0f;
+			}
 		}
-		 if (r2>160 && r2<200)
-		{
-			//左
-			m_hit_left = true;//主人公の右の部分が衝突している
-			
-			m_py -= 16.0f;
-		}
-		
-		if (r2<45 && r2>0 || r2>330)
-		{
-			//右
-			m_hit_right = true;//主人公の左の部分が衝突している
-			//m_py =
-			m_py -= 10.0f;
-		}
+	}
+
+	//ヒットボックスに触れていない時
+	if (hit->CheckObjNameHit(OBJ_GOLD) == nullptr)
+	{
+		//金塊から降りているので金塊を置けるようにする。
+		m_gold_spawn = false;
 	}
 
 }
