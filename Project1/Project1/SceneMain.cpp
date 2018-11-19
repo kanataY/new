@@ -35,16 +35,24 @@ void CSceneMain::InitScene()
 	//マップ作製
 	int map[MAP_Y][MAP_X];
 	MapCreate(map);
-
+	//背景.ブロック----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\back\\back.png", 0, TEX_SIZE_1024);    
 	Draw::LoadImageW(L"Image\\back\\block.png", 1, TEX_SIZE_64);
 	Draw::LoadImageW(L"Image\\back\\block2.png", 2, TEX_SIZE_64);
+	//主人公関連----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\hero\\hero.png", 3, TEX_SIZE_64);
 	Draw::LoadImageW(L"Image\\item\\gold.png", 4, TEX_SIZE_64);
-	
+	//敵関連----------------------------------------------------------------------------------------------------
+	Draw::LoadImageW(L"Image\\enemy\\boo.png", 5, TEX_SIZE_128);
+	Draw::LoadImageW(L"Image\\enemy\\jumpenemy.png", 6, TEX_SIZE_128);
+	//-------------------------------------------------------------------------------------------------------------------
 	//主人公オブジェクト作成
 	CObjHero* he = new CObjHero();
 	Objs::InsertObj(he, OBJ_HERO, 13);
+
+	//主人公オブジェクト作成
+	CObjRushEnemy* boo = new CObjRushEnemy(100,20);
+	Objs::InsertObj(boo, OBJ_RUSH_ENEMY, 13);
 
 	//背景（ブロック）オブジェクト作成
 	CObjBlock* block = new CObjBlock(map);
