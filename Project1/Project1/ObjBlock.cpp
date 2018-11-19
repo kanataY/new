@@ -226,7 +226,7 @@ void CObjBlock::BlockHit(
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j]>0)
+			if (m_map[i][j]>0 && m_map[i][j] != 2)
 			{
 				//要素番号を座標に変更
 				float bx = j*64.0f;
@@ -274,7 +274,8 @@ void CObjBlock::BlockHit(
 							//上
 							*down = true;//主人公の下の部分が衝突している
 							*y = by - 64.0f;//ブロックの位置ー主人公の幅
-											//種類を渡すのスタートとg-流のみ変更する
+
+							//種類を渡すのスタートとg-流のみ変更する
 							*vy = 0.0f;
 						}
 						if (r>135 && r<225)

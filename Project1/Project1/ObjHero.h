@@ -31,7 +31,7 @@ private:
 
 	//制御系---------
 	bool m_gold_flag;  //金塊を出しすぎないようにするため
-
+	bool m_gold_spawn; //金塊を出せる位置を決める
 
 	//-アニメーション
 	int m_ani_time; //アニメーションフレーム動作感覚
