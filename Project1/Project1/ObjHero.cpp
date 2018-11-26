@@ -26,6 +26,7 @@ void CObjHero::Init()
 	m_py = 200.0f;	//位置
 	m_vx = 0.0f;
 	m_vy = 0.0f;	//移動ベクトル
+	m_gold_time = 0;
 	
 	m_speed = 0.8f;
 	m_pos = 0.0f;//右向き
@@ -101,17 +102,28 @@ void CObjHero::Action()
 		m_ani_frame = 1;
 	}
 	//お金を置くーーーーーーーーーーーーー
+	m_gold_time++;//金塊の間隔を増やす
 
 	if (Input::GetVKey('C') == true)  //金塊を置く
 	{
-		//金塊は一度に一回だけ
-		if (m_gold_flag == false && m_gold_spawn == false)
+		//金塊は一度に一回だけ,置いた後間隔が空いてから二個目を置ける   空中ではおけないように
+		if (m_gold_flag == false && m_gold_spawn == false && m_gold_time > 50 && m_vy == 0.0f)
 		{
 			//block->SetMap((m_px + 64.0f) / 64.0f, m_py / 64.0f, 2);
 			//金塊を生成
-			CObjGold* kane = new CObjGold(m_px + 64.0f - block->GetScroll(), m_py);
-			Objs::InsertObj(kane, OBJ_GOLD, 16);
+			//左向き
+			if (m_pos == 1)
+			{
+				CObjGold* kane = new CObjGold(m_px - 67.0f - block->GetScroll(), m_py);
+				Objs::InsertObj(kane, OBJ_GOLD, 16);
+			}
+			else//右向き
+			{
+				CObjGold* kane = new CObjGold(m_px + 64.0f - block->GetScroll(), m_py);
+				Objs::InsertObj(kane, OBJ_GOLD, 16);
+			}
 			m_gold_flag = true;
+			m_gold_time = 0;//間隔をあける
 		}
 	}
 	else
