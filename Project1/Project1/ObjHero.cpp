@@ -96,7 +96,10 @@ void CObjHero::Action()
 	{
 		m_vy += m_speed;
 	}
-
+	if(Input::GetVKey(VK_RIGHT) != true&& Input::GetVKey(VK_LEFT) != true)
+	{
+		m_ani_frame = 1;
+	}
 	//お金を置くーーーーーーーーーーーーー
 
 	if (Input::GetVKey('C') == true)  //金塊を置く
