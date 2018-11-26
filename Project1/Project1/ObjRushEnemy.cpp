@@ -26,7 +26,13 @@ void CObjRushEnemy::Init()
 {
 	m_vx = 0.0f;
 	m_vy = 0.0f;
+	m_speed = 1.0f;
+	m_ani_time = 0;
+	m_ani_frame = 0;  //ÃŽ~ƒtƒŒ[ƒ€‚ð‰Šú‚É‚·‚é
+	m_ani_max_time = 12; //ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔŠu•
 
+	m_move = true;
+	m_pos = 1.0f;//¶Œü‚«
 	//block‚Æ‚ÌÕ“Ëó‘ÔŠm”F—p
 	m_hit_up = false;
 	m_hit_down = false;
@@ -47,6 +53,8 @@ void CObjRushEnemy::Action()
 
 	//Ž©—R—Ž‰º‰^“®
 	m_vy += 9.8 / (16.0f);
+	
+
 
 	//ƒAƒjƒ[ƒVƒ‡ƒ“[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[
 	m_ani_time++;//ƒtƒŒ[ƒ€“®ìŠ´Šoƒ^ƒCƒ€‚ði‚ß‚é
@@ -55,13 +63,13 @@ void CObjRushEnemy::Action()
 		m_ani_frame++;//ƒtƒŒ[ƒ€‚ði‚ß‚é
 		m_ani_time = 0;
 	}
-	if (m_ani_frame == 4)//ƒtƒŒ[ƒ€‚ªÅŒã‚Ü‚Åi‚ñ‚¾‚ç–ß‚·
+	if (m_ani_frame == 2)//ƒtƒŒ[ƒ€‚ªÅŒã‚Ü‚Åi‚ñ‚¾‚ç–ß‚·
 	{
 		m_ani_frame = 0;
 	}
 	//ƒAƒjƒ[ƒVƒ‡ƒ“I—¹|||||||||||||||||||||||||||||||||||||||||||||
 
-
+	
 
 	//HitBox‚ÌˆÊ’u‚Ì•ÏX
 	CHitBox* hit = Hits::GetHitBox(this);
@@ -73,7 +81,31 @@ void CObjRushEnemy::Action()
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type,false
 	);
+	//¶‘¤‚ª•Ç‚É“–‚½‚é‚Æ”½“]
+	if (m_hit_left == true)
+	{
+		m_move = true;
+		
+	}
+	//‰E‘¤‚ª•Ç‚É“–‚½‚é‚Æ”½“]
+	if (m_hit_right == true)
+	{
+		m_move = false;
+		
+	}
 
+	//ˆÚ“®•ûŒü
+	if (m_move == true)
+	{
+		m_vx -= m_speed;
+		m_pos = 1.0f;
+	}
+	if (m_move == false)
+	{
+		m_vx += m_speed;
+		m_pos = 0.0f;
+	}
+	m_vx += -(m_vx * 0.16f);
 	//ˆÊ’u‚ÌXV
 	m_px += m_vx;
 	m_py += m_vy;
@@ -99,8 +131,8 @@ void CObjRushEnemy::Draw()
 
 	//•\Ž¦ˆÊ’u‚ÌÝ’è
 	dst.m_top = -20.0f + m_py;
-	dst.m_left = 0.0f + m_px + block->GetScroll();
-	dst.m_right = 64.0f + m_px + block->GetScroll();
+	dst.m_left = (64.0f*m_pos) + m_px + block->GetScroll();
+	dst.m_right = (64.0f-64.0f*m_pos) + m_px + block->GetScroll();
 	dst.m_bottom = 64.0f + m_py;
 
 	//•`‰æ

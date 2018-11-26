@@ -27,7 +27,6 @@ private:
 	int m_ani_time; //アニメーションフレーム動作感覚
 	int m_ani_frame;//描画フレーム
 	float m_ani_max_time;   //アニメーション動作間隔最大値
-	int m_ani_change; //アニメーション変更変数
 
 	//blockとの衝突状態確認用
 	bool m_hit_up;
