@@ -208,12 +208,13 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F* dst, float c[] , int i , int
 void CObjBlock::BlockHit(
 	float *x, float *y, bool scroll_on,
 	bool*up, bool* down, bool* left, bool* right,
-	float* vx, float*vy, int* bt
+	float* vx, float*vy, int* bt, bool b
 )
 {
 
 	//衝突状態確認用フラグの初期化
 	*up = false;
+	if(b == false)
 	*down = false;
 	*left = false;
 	*right = false;
