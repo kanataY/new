@@ -45,9 +45,12 @@ void CObjGold::Action()
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	//自由落下運動
-	if (a == 0 )
-		m_vy += 9.8 / (16.0f);
+	Hit();
+
+	if (a == 0)
+		m_vy += 9.8 / (50.0f);
+	else
+		m_vy = 0.0f;
 
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
@@ -57,10 +60,10 @@ void CObjGold::Action()
 
 	block->BlockHit(&c, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type
+		&m_block_type,true
 	);
 
-	Hit();
+	
 	
 	//位置の更新
 	m_px += m_vx;
@@ -101,13 +104,15 @@ void CObjGold::Hit()
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
 
-	//ヒットボックスに触れている時
-	if (hit->CheckObjNameHit(OBJ_GOLD) != nullptr)
+	if (a == 0 && m_hit_down == false)
 	{
-		int m_pppy = m_py;
-		//ゴールドに当たっているなら動きを止める
-		m_vy = 0.0f;
-		a = 1;
-		m_py = m_py - 64.0f;
+		//ヒットボックスに触れている時
+		if (hit->CheckObjNameHit(OBJ_GOLD) != nullptr)
+		{
+			m_py -= 5;
+			//ゴールドに当たっているなら動きを止める
+			m_vy = 0.0f;
+			a = 1;
+		}
 	}
 }

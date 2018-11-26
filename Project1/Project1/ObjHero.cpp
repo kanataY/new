@@ -48,7 +48,7 @@ void CObjHero::Init()
 
 
 	//HitBox
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_HERO, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px, m_py, 60, 64, ELEMENT_HERO, OBJ_HERO, 1);
 }
 
 //ƒAƒNƒVƒ‡ƒ“
@@ -129,14 +129,14 @@ void CObjHero::Action()
 	//ˆÚ“®I—¹---------------------------------------------------
 	block->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type
+		&m_block_type,false
 	);
 
 	//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 	//HitBox‚ÌˆÊ’u‚Ì•ÏX
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px , m_py);
+	hit->SetPos(m_px, m_py);
 
 
 	//“–‚½‚è”»’èŠÖ˜A
@@ -202,7 +202,7 @@ void CObjHero::HitBox()
 	//ƒuƒƒbƒNî•ñ‚ğ‚Á‚Ä‚­‚é
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	if (hit->CheckObjNameHit(OBJ_GOLD) == nullptr)
+	if (hit->CheckObjNameHit(OBJ_GOLD) != nullptr)
 	{
 		//‚Ç‚ÌŠp“x‚Å“–‚½‚Á‚Ä‚¢‚é‚©‚ğŠm”F
 		HIT_DATA** hit_data;                        //“–‚½‚Á‚½‚Æ‚«‚Ì×‚â‚©‚Èî•ñ‚ğ“ü‚ê‚é‚½‚ß‚Ì\‘¢‘Ì
@@ -210,39 +210,43 @@ void CObjHero::HitBox()
 
 		for (int i = 0; i < hit->GetCount(); i++)
 		{
-			float r2 = hit_data[0]->r;
-
-			if (r2 >= 210 && r2 < 340)
+			if (hit_data[i] != NULL)
 			{
+				float r2 = hit_data[i]->r;
 
-				CObjBlock* b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
-				//‚Ü‚½A’n–Ê‚É“–‚½‚Á‚Ä‚¢‚é”»’è‚É‚·‚é
-				m_vy = 0.0f;
-				m_hit_down = true;
-				if (r2 >= 310 && r2 < 340)
+				if (r2 >= 210 && r2 < 340)
 				{
-					m_gold_spawn = true;
+
+					CObjBlock* b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+					//‚Ü‚½A’n–Ê‚É“–‚½‚Á‚Ä‚¢‚é”»’è‚É‚·‚é
+					m_vy = 0.0f;
+					m_hit_down = true;
+					if (r2 >= 310 && r2 < 340)
+					{
+						m_gold_spawn = true;
+					}
+					else
+						m_gold_spawn = false;
 				}
-				else
-					m_gold_spawn = false;
-			}
-			if (r2 > 160 && r2 < 200)
-			{
-				//¶
-				m_hit_left = true;
+				if (r2 > 160 && r2 < 200)
+				{
+					//¶
+					m_hit_left = true;
 
-				m_py -= 16.0f;
-			}
+					m_py -= 16.0f;
+				}
 
-			if (r2 < 45 && r2>0 || r2 > 330)
-			{
-				//‰E
-				m_hit_right = true;
+				if (r2 < 45 && r2>0 || r2 > 330)
+				{
+					//‰E
+					m_hit_right = true;
 
-				m_py -= 10.0f;
+					m_py -= 10.0f;
+				}
 			}
 		}
+
 	}
 
 	//ƒqƒbƒgƒ{ƒbƒNƒX‚ÉG‚ê‚Ä‚¢‚È‚¢
