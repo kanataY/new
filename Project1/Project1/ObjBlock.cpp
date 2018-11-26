@@ -270,7 +270,7 @@ void CObjBlock::BlockHit(
 							
 
 						}
-						if (r>45 && r<135)
+						if (r>=45 && r<135)
 						{
 							//ã
 							*down = true;//ŽålŒö‚Ì‰º‚Ì•”•ª‚ªÕ“Ë‚µ‚Ä‚¢‚é
