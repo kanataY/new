@@ -208,12 +208,13 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F* dst, float c[] , int i , int
 void CObjBlock::BlockHit(
 	float *x, float *y, bool scroll_on,
 	bool*up, bool* down, bool* left, bool* right,
-	float* vx, float*vy, int* bt, bool b
+	float* vx, float*vy, int* bt, bool b,bool hero, float* yy
 )
 {
 
 	//衝突状態確認用フラグの初期化
 	*up = false;
+	//ゴールドなら変化させない
 	if(b == false)
 	*down = false;
 	*left = false;
@@ -227,7 +228,7 @@ void CObjBlock::BlockHit(
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j]>0 && m_map[i][j] != 2)
+			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3)
 			{
 				//要素番号を座標に変更
 				float bx = j*64.0f;
@@ -259,42 +260,63 @@ void CObjBlock::BlockHit(
 					//lenがある一定の長さより短い場合判定に入る
 					if (len<88.0f)
 					{
-						//角度で上下左右判定
-						if (r<45 && r>=0 || r>=315)
+						//主人公なら壁との判定もやる
+						if (hero == true)
 						{
-							//右
+							//左上半分なら上げる
+							if (r >= 155 && r < 190)
+							{
+								*yy -= 16.0f;
+							}
+							
+							//右上半分なら上げる
+							if (r < 25 && r >= 0 || r >= 340)
+							{
+								if (m_map[i - 1][j] == 0)
+								{
+									*yy -= 20.0f;
+								}
+							}
+						}
+						else
+						{
+							//角度で上下左右判定
+							if (r < 45 && r >= 0 || r >= 315)
+							{
+								//右
 
 								*right = true;//主人公の左の部分が衝突している
 								*x = bx + 64.0f + (scroll);//ブロックの位置ー主人公の幅
 								*vx = -(*vx) * 0.1f;//-VX*反発係数
-							
 
-						}
-						if (r>=45 && r<135)
-						{
-							//上
-							*down = true;//主人公の下の部分が衝突している
-							*y = by - 64.0f;//ブロックの位置ー主人公の幅
-
-							//種類を渡すのスタートとg-流のみ変更する
-							*vy = 0.0f;
-						}
-						if (r>=135 && r<225)
-						{
-							//左
-							*left = true;//主人公の右の部分が衝突している
-							*x = bx - 64.0f + (scroll);//ブロックの位置ー主人公の幅
-							*vx = -(*vx) * 0.1f;//-VX*反発係数
-						
-						}
-						if (r >= 225 && r < 315)
-						{
-							//下
-							*up = true;  //主人公の上の部分が衝突している
-							*y = by + 64.0f;//ブロックの位置＋主人公の幅
-							if (*vy < 0)
+							}
+							if (r >= 45 && r < 135)
 							{
+								//上
+								*down = true;//主人公の下の部分が衝突している
+								*y = by - 64.0f;//ブロックの位置ー主人公の幅
+
+								//種類を渡すのスタートとg-流のみ変更する
 								*vy = 0.0f;
+							}
+
+							if (r >= 135 && r < 225)
+							{
+								//左
+								*left = true;//主人公の右の部分が衝突している
+								*x = bx - 64.0f + (scroll);//ブロックの位置ー主人公の幅
+								*vx = -(*vx) * 0.1f;//-VX*反発係数
+
+							}
+							if (r >= 225 && r < 315)
+							{
+								//下
+								*up = true;  //主人公の上の部分が衝突している
+								*y = by + 64.0f;//ブロックの位置＋主人公の幅
+								if (*vy < 0)
+								{
+									*vy = 0.0f;
+								}
 							}
 						}
 					}

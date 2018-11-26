@@ -131,9 +131,15 @@ void CObjHero::Action()
 	//ÉuÉçÉbÉNèÓïÒÇéùÇ¡ÇƒÇ≠ÇÈ
 	//CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//à⁄ìÆèIóπ---------------------------------------------------
+	float b = m_py + 32.0f;
+	block->BlockHit(&m_px, &b, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type,false,true, &m_py
+	);
+
 	block->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type,false
+		&m_block_type, false, false, 0
 	);
 
 	//Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|

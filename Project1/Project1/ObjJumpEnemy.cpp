@@ -56,7 +56,7 @@ void CObjJumpEnemy::Action()
 
 	block->BlockHit(&c, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type,false
+		&m_block_type,false, false,0
 	);
 
 	//ˆÊ’u‚ÌXV
