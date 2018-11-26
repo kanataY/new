@@ -33,8 +33,8 @@ void CObjHero::Init()
 	m_gold_spawn = false;
 
 	m_ani_time = 0;
-	m_ani_frame = 0;  //静止フレームを初期にする
-	m_ani_max_time = 5; //アニメーション間隔幅
+	m_ani_frame = 1;  //静止フレームを初期にする
+	m_ani_max_time = 8; //アニメーション間隔幅
 
 	m_ani_change = 2;//アニメーションを2に
 
@@ -62,7 +62,7 @@ void CObjHero::Action()
 
 
 	//アニメーションーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-	m_ani_time++;//フレーム動作感覚タイムを進める
+	
 	if (m_ani_time > m_ani_max_time)//フレーム動作感覚タイムが最大まで行ったら
 	{
 		m_ani_frame++;//フレームを進める
@@ -78,10 +78,12 @@ void CObjHero::Action()
 
 	if (Input::GetVKey(VK_RIGHT) == true)  //右移動
 	{
+		m_ani_time++;//フレーム動作感覚タイムを進める
 		m_vx += m_speed;
 	}
 	if (Input::GetVKey(VK_LEFT) == true)  //左移動
 	{
+		m_ani_time++;//フレーム動作感覚タイムを進める
 		m_vx += -m_speed;
 	}
 	if (Input::GetVKey(VK_UP) == true)//上移動
@@ -165,9 +167,9 @@ void CObjHero::Draw()
 
 	 //切り取り位置の設定
 	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 64.0f;
-	src.m_bottom = 64.0f;
+	src.m_left = 0.0f + m_ani_frame*64.0f;
+	src.m_right = 64.0f+m_ani_frame*64.0f;
+	src.m_bottom = 256.0f;
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;

@@ -40,7 +40,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Image\\back\\block.png", 1, TEX_SIZE_64);
 	Draw::LoadImageW(L"Image\\back\\block2.png", 2, TEX_SIZE_64);
 	//主人公関連----------------------------------------------------------------------------------------------------
-	Draw::LoadImageW(L"Image\\hero\\hero.png", 3, TEX_SIZE_64);
+	Draw::LoadImageW(L"Image\\hero\\hero1.png", 3, TEX_SIZE_256);
 	Draw::LoadImageW(L"Image\\item\\gold.png", 4, TEX_SIZE_64);
 	//敵関連----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\enemy\\boo.png", 5, TEX_SIZE_128);
@@ -50,8 +50,8 @@ void CSceneMain::InitScene()
 	CObjHero* he = new CObjHero();
 	Objs::InsertObj(he, OBJ_HERO, 13);
 
-	//主人公オブジェクト作成
-	CObjRushEnemy* boo = new CObjRushEnemy(100,20);
+	//突進敵オブジェクト作成
+	CObjRushEnemy* boo = new CObjRushEnemy(600,100);
 	Objs::InsertObj(boo, OBJ_RUSH_ENEMY, 13);
 
 	//背景（ブロック）オブジェクト作成
