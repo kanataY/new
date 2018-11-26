@@ -28,7 +28,7 @@ void CObjHero::Init()
 	m_vy = 0.0f;	//移動ベクトル
 	
 	m_speed = 0.8f;
-
+	m_pos = 0.0f;//右向き
 	m_gold_flag = false;
 	m_gold_spawn = false;
 
@@ -80,11 +80,13 @@ void CObjHero::Action()
 	{
 		m_ani_time++;//フレーム動作感覚タイムを進める
 		m_vx += m_speed;
+		m_pos = 0.0f;
 	}
 	if (Input::GetVKey(VK_LEFT) == true)  //左移動
 	{
 		m_ani_time++;//フレーム動作感覚タイムを進める
 		m_vx += -m_speed;
+		m_pos = 1.0f;
 	}
 	if (Input::GetVKey(VK_UP) == true)//上移動
 	{
@@ -173,8 +175,8 @@ void CObjHero::Draw()
 
 	//表示位置の設定
 	dst.m_top = 0.0f + m_py;
-	dst.m_left = 0.0f + m_px;
-	dst.m_right = 64.0f + m_px;
+	dst.m_left = (64.0*m_pos) + m_px;
+	dst.m_right = (64.0f-64.0f*m_pos) + m_px;
 	dst.m_bottom = 64.0f + m_py;
 
 	//描画

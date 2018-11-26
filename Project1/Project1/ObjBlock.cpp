@@ -260,7 +260,7 @@ void CObjBlock::BlockHit(
 					if (len<88.0f)
 					{
 						//角度で上下左右判定
-						if (r<45 && r>0 || r>315)
+						if (r<45 && r>=0 || r>=315)
 						{
 							//右
 
@@ -270,7 +270,7 @@ void CObjBlock::BlockHit(
 							
 
 						}
-						if (r>45 && r<135)
+						if (r>=45 && r<135)
 						{
 							//上
 							*down = true;//主人公の下の部分が衝突している
@@ -279,7 +279,7 @@ void CObjBlock::BlockHit(
 							//種類を渡すのスタートとg-流のみ変更する
 							*vy = 0.0f;
 						}
-						if (r>135 && r<225)
+						if (r>=135 && r<225)
 						{
 							//左
 							*left = true;//主人公の右の部分が衝突している
@@ -287,7 +287,7 @@ void CObjBlock::BlockHit(
 							*vx = -(*vx) * 0.1f;//-VX*反発係数
 						
 						}
-						if (r > 225 && r < 315)
+						if (r >= 225 && r < 315)
 						{
 							//下
 							*up = true;  //主人公の上の部分が衝突している
