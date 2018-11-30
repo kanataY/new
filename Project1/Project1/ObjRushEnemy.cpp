@@ -4,7 +4,6 @@
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\DrawFont.h"
-#include "GameL\UserData.h"
 #include "GameL\Audio.h"
 
 #include "GameHead.h"
@@ -41,8 +40,8 @@ void CObjRushEnemy::Init()
 
 	m_block_type = 0; //踏んでいるblockの種類を確認用
 
-					  //HitBox
-	Hits::SetHitBox(this, m_px, m_py, 64, 40, ELEMENT_ENEMY, OBJ_RUSH_ENEMY, 1);
+	//HitBox
+	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_RUSH_ENEMY, 1);
 }
 
 //アクション
@@ -87,11 +86,19 @@ void CObjRushEnemy::Action()
 		m_move = true;
 		
 	}
+	if (m_pos == 0.0f&&hit->CheckElementHit(ELEMENT_NULL) == true)
+	{
+
+	}
+
 	//右側が壁に当たると反転
-	if (m_hit_right == true)
+	if (m_hit_right == true )
 	{
 		m_move = false;
-		
+	}
+	if (m_pos == 1.0f&&hit->CheckElementHit(ELEMENT_NULL) == true)
+	{
+
 	}
 
 	//移動方向

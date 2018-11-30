@@ -33,27 +33,26 @@ void CAudio::Init(int max_audio)
 	m_AudioData.resize( m_aud_max);	//配列の要素数設定
 	
 	//オーディオデータ作成
-	for(int i=0;i<m_aud_max;i++)
+	for (int i = 0; i < m_aud_max; i++)
 	{
 		//各オーディオメモリ作成	
 		m_AudioData[i].reset(new AudioData);
-		
-		m_AudioData[i]->pData=nullptr;
-		m_AudioData[i]->pWave=nullptr;
-		m_AudioData[i]->Size=0;
-		m_AudioData[i]->m_volume=1.0f;
+
+		m_AudioData[i]->pData = nullptr;
+		m_AudioData[i]->pWave = nullptr;
+		m_AudioData[i]->Size = 0;
+		m_AudioData[i]->m_volume = 1.0f;
 
 		//サウンドインターフェースメモリ作成
 		m_AudioData[i]->m_pSourceVoice = new IXAudio2SourceVoice*[SCENE_AUDIO_EFFCT_MAX];
-		for(int j=0 ; j < SCENE_AUDIO_EFFCT_MAX ; j++ )
+		for (int j = 0; j < SCENE_AUDIO_EFFCT_MAX; j++)
 		{
-			m_AudioData[i]->m_pSourceVoice[j]=nullptr;
+			m_AudioData[i]->m_pSourceVoice[j] = nullptr;
 		}
 
 		//ミックスボイス作成
-		m_pXAudio2->CreateSubmixVoice(&m_AudioData[i]->m_pSFXSubmixVoice,1,44100,0,0,0,0);
+		m_pXAudio2->CreateSubmixVoice(&m_AudioData[i]->m_pSFXSubmixVoice, 1, 44100, 0, 0, 0, 0);
 	}
-
 	//マスターボリューム
 	m_pMasteringVoice->SetVolume(1.0f,0);
 }

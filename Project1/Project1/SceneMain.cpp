@@ -54,6 +54,10 @@ void CSceneMain::InitScene()
 	CObjRushEnemy* boo = new CObjRushEnemy(600,100);
 	Objs::InsertObj(boo, OBJ_RUSH_ENEMY, 13);
 
+	//突進敵オブジェクト作成
+	CObjJumpEnemy* jump = new CObjJumpEnemy(400, 500);
+	Objs::InsertObj(jump, OBJ_JUMP_ENEMY, 13);
+
 	//背景（ブロック）オブジェクト作成
 	CObjBlock* block = new CObjBlock(map);
 	Objs::InsertObj(block, OBJ_BLOCK, 10);
