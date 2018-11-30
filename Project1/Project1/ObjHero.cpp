@@ -26,6 +26,7 @@ void CObjHero::Init()
 	m_py = 200.0f;	//à íu
 	m_vx = 0.0f;
 	m_vy = 0.0f;	//à⁄ìÆÉxÉNÉgÉã
+	m_gold_time = 0;
 	
 	m_speed = 0.8f;
 	m_pos = 0.0f;//âEå¸Ç´
@@ -101,17 +102,28 @@ void CObjHero::Action()
 		m_ani_frame = 1;
 	}
 	//Ç®ã‡ÇíuÇ≠Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[
+	m_gold_time++;//ã‡âÚÇÃä‘äuÇëùÇ‚Ç∑
 
 	if (Input::GetVKey('C') == true)  //ã‡âÚÇíuÇ≠
 	{
-		//ã‡âÚÇÕàÍìxÇ…àÍâÒÇæÇØ
-		if (m_gold_flag == false && m_gold_spawn == false)
+		//ã‡âÚÇÕàÍìxÇ…àÍâÒÇæÇØ,íuÇ¢ÇΩå„ä‘äuÇ™ãÛÇ¢ÇƒÇ©ÇÁìÒå¬ñ⁄ÇíuÇØÇÈ   ãÛíÜÇ≈ÇÕÇ®ÇØÇ»Ç¢ÇÊÇ§Ç…
+		if (m_gold_flag == false && m_gold_spawn == false && m_gold_time > 50 && m_vy == 0.0f)
 		{
 			//block->SetMap((m_px + 64.0f) / 64.0f, m_py / 64.0f, 2);
 			//ã‡âÚÇê∂ê¨
-			CObjGold* kane = new CObjGold(m_px + 64.0f - block->GetScroll(), m_py);
-			Objs::InsertObj(kane, OBJ_GOLD, 16);
+			//ç∂å¸Ç´
+			if (m_pos == 1)
+			{
+				CObjGold* kane = new CObjGold(m_px - 67.0f - block->GetScroll(), m_py);
+				Objs::InsertObj(kane, OBJ_GOLD, 16);
+			}
+			else//âEå¸Ç´
+			{
+				CObjGold* kane = new CObjGold(m_px + 64.0f - block->GetScroll(), m_py);
+				Objs::InsertObj(kane, OBJ_GOLD, 16);
+			}
 			m_gold_flag = true;
+			m_gold_time = 0;//ä‘äuÇÇ†ÇØÇÈ
 		}
 	}
 	else
@@ -134,9 +146,15 @@ void CObjHero::Action()
 	//ÉuÉçÉbÉNèÓïÒÇéùÇ¡ÇƒÇ≠ÇÈ
 	//CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//à⁄ìÆèIóπ---------------------------------------------------
+	float b = m_py + 32.0f;
+	block->BlockHit(&m_px, &b, true,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+		&m_block_type,false,true, &m_py
+	);
+
 	block->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type,false
+		&m_block_type, false, false, 0
 	);
 
 	//Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|

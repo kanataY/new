@@ -14,6 +14,7 @@ public:
 	void Init();	//イニシャライズ
 	void Action();  //アクション
 	void Draw();	//ドロー
+	void Hit();     //当たり判定
 	float GetX() { return m_px; }						//m_px,m_pyの値を渡す
 	float GetY() { return m_py; }
 
