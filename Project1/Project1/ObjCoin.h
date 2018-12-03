@@ -14,10 +14,18 @@ public:
 	void Action(); //アクション
 	void Draw();   //ドロー
 private:
-	float m_x;     //弾丸のX方向の位置用変数
-	float m_y;     //弾丸のY方向の位置用変数
+	float m_px;     //弾丸のX方向の位置用変数
+	float m_py;     //弾丸のY方向の位置用変数
 	float m_vx;    //弾丸のX方向の速度用変数
-	int    m_ani;     //着弾アニメーション用
-	int    m_ani_time;//着弾アニメーション削除
+	float m_vy;//弾丸のY方向の速度用変数
+	int   m_hero_pos;//主人公の向き保存用
 	bool   m_del;     //削除チェック
+
+	//blockとの衝突状態確認用
+	bool m_hit_up;
+	bool m_hit_down;
+	bool m_hit_left;
+	bool m_hit_right;
+	//踏んでいるblockの種類を確認用
+	int m_block_type;
 };

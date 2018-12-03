@@ -139,12 +139,12 @@ void CObjHero::Action()
 			//Œü‚«‚É‚æ‚Á‚Äo‚·êŠ‚ð•Ï‚¦‚é
 			if (m_pos == 1)//¶Œü‚«
 			{
-				CObjCoin* coin = new CObjCoin(m_px - 67.0f - block->GetScroll(), m_py);
+				CObjCoin* coin = new CObjCoin(m_px, m_py+25.0f);
 				Objs::InsertObj(coin, OBJ_COIN, 16);
 			}
 			else//‰EŒü‚«
 			{
-				CObjCoin* coin = new CObjCoin(m_px + 64.0f - block->GetScroll(), m_py);
+				CObjCoin* coin = new CObjCoin(m_px+25.0f, m_py+25.0f);
 				Objs::InsertObj(coin, OBJ_COIN, 16);
 			}
 		}
