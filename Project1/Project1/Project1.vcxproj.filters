@@ -40,6 +40,9 @@
     <Filter Include="ソース ファイル\GameMain\Enemy">
       <UniqueIdentifier>{1cf33929-5ca9-4541-a05b-b2f37a9e119f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\GameMain\Hero">
+      <UniqueIdentifier>{a2e75d1a-18fd-4a1a-ac7f-e2805a7de5d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h">
@@ -90,9 +93,6 @@
     <ClInclude Include="SceneMain.h">
       <Filter>ソース ファイル\GameScene</Filter>
     </ClInclude>
-    <ClInclude Include="ObjHero.h">
-      <Filter>ソース ファイル\GameMain</Filter>
-    </ClInclude>
     <ClInclude Include="ObjGameClear.h">
       <Filter>ソース ファイル\GameScene\Gameclear</Filter>
     </ClInclude>
@@ -138,6 +138,12 @@
     <ClInclude Include="ObjJumpEnemy.h">
       <Filter>ソース ファイル\GameMain\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="ObjCoin.h">
+      <Filter>ソース ファイル\GameMain\Hero</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjHero.h">
+      <Filter>ソース ファイル\GameMain\Hero</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -180,9 +186,6 @@
       <Filter>ソース ファイル\GameMain</Filter>
     </ClCompile>
     <ClCompile Include="Correction.cpp">
-      <Filter>ソース ファイル\GameMain</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjHero.cpp">
       <Filter>ソース ファイル\GameMain</Filter>
     </ClCompile>
     <ClCompile Include="ObjGameClear.cpp">
@@ -232,6 +235,12 @@
     </ClCompile>
     <ClCompile Include="ObjJumpEnemy.cpp">
       <Filter>ソース ファイル\GameMain\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjCoin.cpp">
+      <Filter>ソース ファイル\GameMain\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHero.cpp">
+      <Filter>ソース ファイル\GameMain\Hero</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

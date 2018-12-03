@@ -42,6 +42,7 @@ void CSceneMain::InitScene()
 	//éÂêlåˆä÷òA----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\hero\\hero1.png", 3, TEX_SIZE_256);
 	Draw::LoadImageW(L"Image\\item\\gold.png", 4, TEX_SIZE_64);
+	Draw::LoadImageW(L"Image\\item\\100yen.png", 7, TEX_SIZE_32);
 	//ìGä÷òA----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\enemy\\boo.png", 5, TEX_SIZE_128);
 	Draw::LoadImageW(L"Image\\enemy\\jumpenemy.png", 6, TEX_SIZE_128);

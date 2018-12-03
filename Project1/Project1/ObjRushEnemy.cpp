@@ -87,13 +87,11 @@ void CObjRushEnemy::Action()
 	if (m_hit_left == true)
 	{
 		m_move = true;
-		
 	}
 	//‰E‘¤‚ª•Ç‚É“–‚½‚é‚Æ”½“]
 	if (m_hit_right == true)
 	{
 		m_move = false;
-		
 	}
 
 	//ˆÚ“®•ûŒü

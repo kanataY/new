@@ -32,7 +32,7 @@ void CObjHero::Init()
 	m_pos = 0.0f;//右向き
 	m_gold_flag = false;
 	m_gold_spawn = false;
-
+	m_coinshot_flag = false;
 	m_ani_time = 0;
 	m_ani_frame = 1;  //静止フレームを初期にする
 	m_ani_max_time = 8; //アニメーション間隔幅
@@ -128,8 +128,32 @@ void CObjHero::Action()
 	}
 	else
 		m_gold_flag = false;
+	//--------------------------------------------------------------------------------------
 
-	//－－－－－－－－－－－－－－－－－－－
+	//コイン攻撃-----------------------------------------------------------------------------
+	if (Input::GetVKey('V') == true)//Vで射出(仮)
+	{
+		//コインを出すフラグがオフの時
+		if (m_coinshot_flag == false)
+		{
+			//向きによって出す場所を変える
+			if (m_pos == 1)//左向き
+			{
+				CObjCoin* coin = new CObjCoin(m_px - 67.0f - block->GetScroll(), m_py);
+				Objs::InsertObj(coin, OBJ_COIN, 16);
+			}
+			else//右向き
+			{
+				CObjCoin* coin = new CObjCoin(m_px + 64.0f - block->GetScroll(), m_py);
+				Objs::InsertObj(coin, OBJ_COIN, 16);
+			}
+		}
+		//コインを出すフラグをオンにする
+		m_coinshot_flag = true;
+	}
+	else//発射ボタンが押されてない時コイン発射フラグはオフにする
+		m_coinshot_flag = false;
+	//－－－－－－－－－－－－－－－－－－－--------------------------------------------
 
 
 	//摩擦
