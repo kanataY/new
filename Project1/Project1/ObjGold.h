@@ -16,6 +16,9 @@ public:
 	void Draw();	//ドロー
 	float GetX() { return m_px; }						//m_px,m_pyの値を渡す
 	float GetY() { return m_py; }
+	bool  GetD() { return m_hit_down; }
+	bool  GetGoldFlag() { return m_gold_flag; }         //
+	bool GetGoldHero() { return m_hero_flag; }
 	void  Hit();
 
 private:
@@ -23,8 +26,11 @@ private:
 	float m_py;
 	float m_vy; //移動量
 	float m_vx;
-	int a;
-				//blockとの衝突状態確認用
+	int   m_gold_vy;   //金塊が落ちれるかどうか
+	bool  m_gold_flag; //フラグ
+	bool m_hero_flag;
+
+	//blockとの衝突状態確認用
 	bool m_hit_up;
 	bool m_hit_down;
 	bool m_hit_left;

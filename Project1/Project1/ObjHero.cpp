@@ -23,15 +23,17 @@ CObjHero::CObjHero()
 void CObjHero::Init()
 {
 	m_px = 250.0f;
-	m_py = 200.0f;	//ˆÊ’u
+	m_py = 400.0f;	//ˆÊ’u
 	m_vx = 0.0f;
 	m_vy = 0.0f;	//ˆÚ“®ƒxƒNƒgƒ‹
-	m_gold_time = 0;
+	m_gold_time = 100;
 	
 	m_speed = 0.8f;
 	m_pos = 0.0f;//‰EŒü‚«
 	m_gold_flag = false;
 	m_gold_spawn = false;
+	m_gold_Y = false;
+	m_gold_M = false;
 
 	m_ani_time = 0;
 	m_ani_frame = 1;  //ÃŽ~ƒtƒŒ[ƒ€‚ð‰Šú‚É‚·‚é
@@ -46,8 +48,7 @@ void CObjHero::Init()
 	m_hit_right = false;
 
 	m_block_type = 0; //“¥‚ñ‚Å‚¢‚éblock‚ÌŽí—Þ‚ðŠm”F—p
-
-
+	
 	//HitBox
 	Hits::SetHitBox(this, m_px, m_py, 60, 64, ELEMENT_HERO, OBJ_HERO, 1);
 }
@@ -103,31 +104,46 @@ void CObjHero::Action()
 	}
 	//‚¨‹à‚ð’u‚­[[[[[[[[[[[[[
 	m_gold_time++;//‹à‰ò‚ÌŠÔŠu‚ð‘‚â‚·
+	int a = (m_px / 64) + 2;
 
-	if (Input::GetVKey('C') == true)  //‹à‰ò‚ð’u‚­
+	float m_ppx = (m_px - block->GetScroll()) / 64; //ŽålŒö‚ÌˆÊ’u‚©‚çƒ}ƒbƒv‚ÌˆÊ’u‚ðŽæ‚Á‚Ä‚­‚é
+	float m_ppy = m_py / 64;
+
+	if(m_pos == 0.0f) //‰EŒü‚«‚ÌŽž‚Í’²®‚·‚éB
+		m_ppx += 0.8f;		//ŽlŽÌŒÜ“ü‚·‚é€”õA’²®‚·‚é
+
+	m_ppy += 0.5f;
+	m_ppx = (int)m_ppx;	//intŒ^‚É•ÏX‚µ‚ÄŽlŽÌŒÜ“ü‚·‚é
+	m_ppy = (int)m_ppy;
+
+	if (block->GetMapRecord(m_ppx + 1, m_ppy) == 0 && m_pos == 0.0f ||
+		block->GetMapRecord(m_ppx - 1, m_ppy) == 0 && m_pos == 1.0f)//¡‚¢‚éˆÊ’u‚Ì‰E‘¤A¶‘¤‚ªƒuƒƒbƒN‚¾‚Á‚½‚ç‹à‰ò‚ð’u‚¯‚È‚¢‚æ‚¤‚É‚·‚é
 	{
-		//‹à‰ò‚Íˆê“x‚Éˆê‰ñ‚¾‚¯,’u‚¢‚½ŒãŠÔŠu‚ª‹ó‚¢‚Ä‚©‚ç“ñŒÂ–Ú‚ð’u‚¯‚é   ‹ó’†‚Å‚Í‚¨‚¯‚È‚¢‚æ‚¤‚É
-		if (m_gold_flag == false && m_gold_spawn == false && m_gold_time > 50 && m_vy == 0.0f)
+		if (Input::GetVKey('C') == true)  //‹à‰ò‚ð’u‚­
 		{
-			//block->SetMap((m_px + 64.0f) / 64.0f, m_py / 64.0f, 2);
-			//‹à‰ò‚ð¶¬
-			//¶Œü‚«
-			if (m_pos == 1)
+			//‹à‰ò‚Íˆê“x‚Éˆê‰ñ‚¾‚¯,’u‚¢‚½ŒãŠÔŠu‚ª‹ó‚¢‚Ä‚©‚ç“ñŒÂ–Ú‚ð’u‚¯‚é   ‹ó’†‚Å‚Í‚¨‚¯‚È‚¢‚æ‚¤‚É
+			if (m_gold_flag == false && m_gold_spawn == false && m_gold_time > 50 && m_vy == 0.0f)
 			{
-				CObjGold* kane = new CObjGold(m_px - 67.0f - block->GetScroll(), m_py);
-				Objs::InsertObj(kane, OBJ_GOLD, 16);
+				//block->SetMap((m_px + 64.0f) / 64.0f, m_py / 64.0f, 2);
+				//‹à‰ò‚ð¶¬
+				//¶Œü‚«
+				if (m_pos == 1)
+				{
+					CObjGold* kane = new CObjGold(m_px - 67.0f - block->GetScroll(), m_py);
+					Objs::InsertObj(kane, OBJ_GOLD, 16);
+				}
+				else//‰EŒü‚«
+				{
+					CObjGold* kane = new CObjGold(m_px + 64.0f - block->GetScroll(), m_py);
+					Objs::InsertObj(kane, OBJ_GOLD, 16);
+				}
+				m_gold_flag = true;
+				m_gold_time = 0;//ŠÔŠu‚ð‚ ‚¯‚é
 			}
-			else//‰EŒü‚«
-			{
-				CObjGold* kane = new CObjGold(m_px + 64.0f - block->GetScroll(), m_py);
-				Objs::InsertObj(kane, OBJ_GOLD, 16);
-			}
-			m_gold_flag = true;
-			m_gold_time = 0;//ŠÔŠu‚ð‚ ‚¯‚é
 		}
+		else
+			m_gold_flag = false;
 	}
-	else
-		m_gold_flag = false;
 
 	//|||||||||||||||||||
 
@@ -140,21 +156,24 @@ void CObjHero::Action()
 
 
 	//Ž©—R—Ž‰º‰^“®
-	m_vy += 9.8 / (16.0f);
+	m_vy += 9.8 / (8.0f);
 
 	//ƒWƒƒƒ“ƒvI—¹[[[[[[[[[[[[[[[[[[[[[
 	//ƒuƒƒbƒNî•ñ‚ðŽ‚Á‚Ä‚­‚é
 	//CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	//ˆÚ“®I—¹---------------------------------------------------
+	//ƒuƒƒbƒN‚É‚Ì‚Ú‚ê‚é‚æ‚¤‚É‚·‚é
 	float b = m_py + 32.0f;
-	block->BlockHit(&m_px, &b, true,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type,false,true, &m_py
-	);
+
+		block->BlockHit(&m_px, &b, true,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+			&m_block_type, false, true, &m_py,&m_gold_M
+		);
+	
 
 	block->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type, false, false, 0
+		&m_block_type, false, false, 0,false
 	);
 
 	//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -162,7 +181,6 @@ void CObjHero::Action()
 	//HitBox‚ÌˆÊ’u‚Ì•ÏX
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);
-
 
 	//“–‚½‚è”»’èŠÖ˜A
 	HitBox();
@@ -223,10 +241,11 @@ void CObjHero::HitBox()
 	//HitBox‚ÌˆÊ’u‚Ì•ÏX
 	CHitBox* hit = Hits::GetHitBox(this);
 
-	//CObjGold* gold = (CObjGold*)Objs::GetObj(OBJ_GOLD);
+	CObjGold* gold = (CObjGold*)Objs::GetObj(OBJ_GOLD);
 	//ƒuƒƒbƒNî•ñ‚ðŽ‚Á‚Ä‚­‚é
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
+	//‹à‰ò‚É“–‚½‚Á‚Ä‚¢‚ê‚Î“o‚éoræ‚ê‚é‚æ‚¤‚É‚·‚é
 	if (hit->CheckObjNameHit(OBJ_GOLD) != nullptr)
 	{
 		//‚Ç‚ÌŠp“x‚Å“–‚½‚Á‚Ä‚¢‚é‚©‚ðŠm”F
@@ -241,38 +260,48 @@ void CObjHero::HitBox()
 
 				if (r2 >= 210 && r2 < 340)
 				{
-
 					CObjBlock* b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 					//‚Ü‚½A’n–Ê‚É“–‚½‚Á‚Ä‚¢‚é”»’è‚É‚·‚é
 					m_vy = 0.0f;
 					m_hit_down = true;
-					if (r2 >= 310 && r2 < 340)
+
+					if (r2 >= 310 && r2 < 340)//‹à‰ò‚Ì¶’[‚É‚¢‚é‚Æ‚«‚Í‹à‰ò‚ð’u‚¯‚È‚­‚·‚é
 					{
 						m_gold_spawn = true;
 					}
 					else
 						m_gold_spawn = false;
 				}
-				if (r2 > 160 && r2 < 200)
+
+				if (m_hit_down == true)//’n–Êor‹à‰ò‚Ìã‚É‚¢‚é‚Æ‚«
 				{
-					//¶
-					m_hit_left = true;
-
-					m_py -= 16.0f;
-				}
-
-				if (r2 < 45 && r2>0 || r2 > 330)
-				{
-					//‰E
-					m_hit_right = true;
-
-					m_py -= 10.0f;
+					if (r2 > 160 && r2 < 200)
+					{
+						//¶
+						m_hit_left = true;
+						m_gold_Y = true;	//‹à‰ò‘¤‚ÅŽålŒö‚Ì‚–‚™‚ðŠJ•ú‚·‚é
+						m_py -= 32.0f;//“o‚ê‚é‚æ‚¤‚É‚·‚é
+					}
+					else
+						m_gold_Y = false;
+					if (r2 < 45 && r2>0 || r2 > 330)
+					{
+						//‰E
+						m_hit_right = true;
+						m_gold_Y = true;	//‹à‰ò‘¤‚ÅŽålŒö‚Ì‚–‚™‚ðŠJ•ú‚·‚é
+						m_py -= 32.0f;//“o‚ê‚é‚æ‚¤‚É‚·‚é
+					}
+					else
+						m_gold_Y = false;
 				}
 			}
 		}
-
 	}
+	else
+		m_gold_M = false;
+	
+	
 
 	//ƒqƒbƒgƒ{ƒbƒNƒX‚ÉG‚ê‚Ä‚¢‚È‚¢Žž
 	if (hit->CheckObjNameHit(OBJ_GOLD) == nullptr)

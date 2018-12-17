@@ -21,13 +21,15 @@ public:
 	float GetScroll() { return m_scroll; }
 
 	int  GetMap(int x, int y);//マップ情報の取得
+	int  GetMapRecord(int x, int y);//マップ情報の取得(記録版)
 	void  SetMap(int x, int y, int m) { m_map[y][x] = m; }
+	bool  GetGold() { return m_gold_flag; }
 
 	//ブロックとの当たり判定
 	void BlockHit(
 		float* x, float* y, bool scroll_on,
 		bool* up, bool* down, bool* left, bool* right,
-		float* vx, float* vy, int* bt,bool b, bool hero,float* yy
+		float* vx, float* vy, int* bt,bool b, bool hero,float* yy,bool* gg
 	);
 
 private:
@@ -38,6 +40,8 @@ private:
 	float m_py;
 	float m_bx1;     //背景の動く値
 	float m_bx2;     //背景の動く値2
+
+	bool m_gold_flag; //壁上るときに金塊の判定を消す
 
 	float m_scroll; //スクロール位置
 	float m_scroll_run; //ランナーの位置でスクを変えるようの変数
