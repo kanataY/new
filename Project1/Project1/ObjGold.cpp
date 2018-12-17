@@ -26,7 +26,9 @@ void CObjGold::Init()
 {
 	m_vx = 0.0f;
 	m_vy = 0.0f;
-	a = 0;
+	m_gold_vy = 0;
+	m_gold_flag = false;
+	m_hero_flag = false;
 	//blockとの衝突状態確認用
 	m_hit_up = false;
 	m_hit_down = false;
@@ -46,11 +48,11 @@ void CObjGold::Action()
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 	Hit();
-
-	if (a == 0)
+	//金塊が落ちれる時自由落下をつける
+	if (m_gold_vy == 0)
 		m_vy += 9.8 / (50.0f);
 	else
-		m_vy = 0.0f;
+		m_vy = 0.0f;//その場にとどめておく（金塊にかなさる）
 
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
@@ -60,11 +62,9 @@ void CObjGold::Action()
 
 	block->BlockHit(&c, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type,true, false,0
+		&m_block_type,true, false,0, false
 	);
 
-	
-	
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
@@ -104,15 +104,47 @@ void CObjGold::Hit()
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
 
-	if (a == 0 && m_hit_down == false)
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+
+	//ブロック情報を持ってくる
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+	if (m_gold_vy == 0 && m_hit_down == false)
 	{
 		//ヒットボックスに触れている時
 		if (hit->CheckObjNameHit(OBJ_GOLD) != nullptr)
 		{
-			m_py -= 5;
 			//ゴールドに当たっているなら動きを止める
 			m_vy = 0.0f;
-			a = 1;
+			m_gold_vy = 1;
 		}
+	}
+
+	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	{
+		//どの角度で当たっているかを確認
+		HIT_DATA** hit_data;                        //当たったときの細やかな情報を入れるための構造体
+		hit_data = hit->SearchObjNameHit(OBJ_HERO);  //hit_dataにHitBoxとの情報を入れる
+
+		for (int i = 0; i < hit->GetCount(); i++)
+		{
+			if (hit_data[i] != NULL)
+			{
+				float r2 = hit_data[i]->r;
+
+				//主人公が上に乗っかている場合主人公の移動量を0にする。
+				if (r2 >= 40 && r2 < 135)
+				{
+					//上
+					//主人公が金塊の左右に当たった時、主人公がブロックを登ろうとしてるときに解除
+					if (hero->SetG() == false && hero->Gety() == false)
+						hero->SetY(m_py - 30.0f);//主人公を金塊の上に貼り付けにする。
+				}
+			}
+		}
+	}
+	else
+	{
+		m_hero_flag = false;
 	}
 }

@@ -56,7 +56,7 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(he, OBJ_HERO, 13);
 
 	//突進敵オブジェクト作成
-	CObjRushEnemy* boo = new CObjRushEnemy(600,100);
+	CObjRushEnemy* boo = new CObjRushEnemy(450,100);
 	Objs::InsertObj(boo, OBJ_RUSH_ENEMY, 13);
 
 	//突進敵オブジェクト作成

@@ -23,8 +23,10 @@ public:
 	void  SetX(float x) { m_px = x; }					//m_px,m_pyの値をほかのcppでもいじれるようにする
 	void  SetY(float y) { m_py = y; }
 	void  SetVX(float x) { m_vx = x; }					//m_vx,m_vyの値をほかのcppでもいじれるようにする
+	bool  SetG() { return m_gold_Y; }
 	void  SetVY(float y) { m_vy = y; }
-	
+	void Sety(bool b) { m_gold_M = b; }
+	bool Gety() { return m_gold_M; }
 private:
 	float m_px;			//位置
 	float m_py;
@@ -37,6 +39,9 @@ private:
 	bool m_gold_flag;  //金塊を出しすぎないようにするため
 	bool m_gold_spawn; //金塊を出せる位置を決める
 	bool m_coinshot_flag;//コインを出しすぎないようにするため
+	bool m_gold_Y;
+	bool m_gold_M;
+
 	//-アニメーション
 	int m_ani_time; //アニメーションフレーム動作感覚
 	int m_ani_frame;//描画フレーム

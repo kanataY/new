@@ -27,6 +27,7 @@ void CObjBlock::Init()
 	m_py = 0.0f;	//位置
 	m_bx1 = 0.0f;
 	m_bx2 = 800.0f;
+	m_gold_flag = false;
 
 	m_scroll = 0.0f;
 	m_scroll_run = 800.0f;
@@ -101,6 +102,11 @@ void CObjBlock::Action()
 		{
 			;
 		}
+		//列の中から4を探す
+		if (m_map[i][ex] == 4)
+		{
+		//	m_map[i][ex] = 0;
+		}
 	}
 }
 	
@@ -163,6 +169,16 @@ int CObjBlock::GetMap(int x, int y)
 {
 	if (0 <= y && y < 10 && 0 <= x && x < MAP_X_MAX)
 
+		return m_map[y][x];
+
+	return -99999;//無かった場合
+}
+
+//調べたいマップの位置にあるマップ番号を返す(記録版)
+int CObjBlock::GetMapRecord(int x, int y)
+{
+	if (0 <= y && y < 10 && 0 <= x && x < MAP_X_MAX)
+
 		return m_map_Record[y][x];
 
 	return -99999;//無かった場合
@@ -212,10 +228,10 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F* dst, float c[] , int i , int
 void CObjBlock::BlockHit(
 	float *x, float *y, bool scroll_on,
 	bool*up, bool* down, bool* left, bool* right,
-	float* vx, float*vy, int* bt, bool b,bool hero, float* yy
+	float* vx, float*vy, int* bt, bool b,bool hero, float* yy,bool* gg
 )
 {
-
+	
 	//衝突状態確認用フラグの初期化
 	*up = false;
 	//ゴールドなら変化させない
@@ -267,20 +283,23 @@ void CObjBlock::BlockHit(
 						//主人公なら壁との判定もやる
 						if (hero == true)
 						{
+
 							//左上半分なら上げる
 							if (r >= 155 && r < 190)
 							{
-								if (m_map[i - 1][j] == 0)
+								if (m_map[i - 1][j] == 0)	//当たっているブロックの一つ前が空白なら
 								{
-									*yy -= 16.0f;
+									*gg = true;//登れるようにヒーロー側＆ブロック側で処理をする
+									*yy -= 16.0f;//登らせる
 								}
 							}
 							
 							//右上半分なら上げる
-							if (r < 25 && r >= 0 || r >= 340)
+							else if (r < 25 && r >= 0 || r >= 340)
 							{
-								if (m_map[i - 1][j] == 0)
+								if (m_map[i - 1][j] == 0)//当たっているブロックの一つ前が空白なら
 								{
+									*gg = true;//登れるようにヒーロー側＆ブロック側で処理をする
 									*yy -= 20.0f;
 								}
 							}
@@ -302,7 +321,7 @@ void CObjBlock::BlockHit(
 								//上
 								*down = true;//主人公の下の部分が衝突している
 								*y = by - 64.0f;//ブロックの位置ー主人公の幅
-
+								
 								//種類を渡すのスタートとg-流のみ変更する
 								*vy = 0.0f;
 							}
@@ -323,6 +342,7 @@ void CObjBlock::BlockHit(
 								if (*vy < 0)
 								{
 									*vy = 0.0f;
+
 								}
 							}
 						}
