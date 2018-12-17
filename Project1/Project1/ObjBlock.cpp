@@ -40,7 +40,6 @@ void CObjBlock::Action()
 	//背景関連ーーーーーーーーーーーーーーーーーーーーーーーー
 	//ランナーの位置を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	CObjthorn* thorn = (CObjthorn*)Objs::GetObj(OBJ_THORN);
 
 	float hx = hero->GetX();
 	float hy = hero->GetY();
@@ -102,11 +101,6 @@ void CObjBlock::Action()
 		{
 			;
 		}
-		//列の中から4を探す
-		if (m_map[i][ex] == 4)
-		{
-		//	m_map[i][ex] = 0;
-		}
 	}
 }
 	
@@ -156,10 +150,15 @@ void CObjBlock::Draw()
 			}
 			if (m_map[i][j] == 4)
 			{
-				//コインを出す
-				CObjthorn* thorn = new CObjthorn(m_px, m_py);
-				Objs::InsertObj(thorn, OBJ_THORN, 16);
+				RECT_F src;
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = src.m_left + 16.0f;
+				src.m_bottom = src.m_top + 16.0f;
+				
+				Draw::Draw(10, &src, &dst, c, 0.0f);
 			}
+			
 		}
 	}
 }
@@ -200,16 +199,12 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F* dst, float c[] , int i , int
 	src.m_bottom = src.m_top + 64.0f;
 	//描画
 
-			if (m_map[i - 1][j] == 1)
-			{
-				Draw::Draw(2, &src, dst, c, 0.0f);
-			}
-			else
-			Draw::Draw(1, &src, dst, c, 0.0f);
-		
-	
-	
-
+	if (m_map[i - 1][j] == 1)
+	{
+		Draw::Draw(2, &src, dst, c, 0.0f);
+	}
+	else
+	Draw::Draw(1, &src, dst, c, 0.0f);
 }
 
 //BlockHit関数

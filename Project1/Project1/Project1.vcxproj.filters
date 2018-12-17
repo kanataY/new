@@ -43,9 +43,6 @@
     <Filter Include="ソース ファイル\GameMain\Hero">
       <UniqueIdentifier>{a2e75d1a-18fd-4a1a-ac7f-e2805a7de5d7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\GameMain\gimmick">
-      <UniqueIdentifier>{b6e5bbfa-abf6-4fe7-bdf9-e438af6b70f7}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h">
@@ -132,6 +129,9 @@
     <ClInclude Include="SceneTitle.h">
       <Filter>ソース ファイル\GameScene\Title</Filter>
     </ClInclude>
+    <ClInclude Include="ObjGold.h">
+      <Filter>ソース ファイル\GameMain</Filter>
+    </ClInclude>
     <ClInclude Include="ObjRushEnemy.h">
       <Filter>ソース ファイル\GameMain\Enemy</Filter>
     </ClInclude>
@@ -146,9 +146,6 @@
     </ClInclude>
     <ClInclude Include="ObjGolem.h">
       <Filter>ソース ファイル\GameMain\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="Objthorn.h">
-      <Filter>ソース ファイル\GameMain\gimmick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +230,9 @@
     <ClCompile Include="ObjTitle.cpp">
       <Filter>ソース ファイル\GameScene\Title</Filter>
     </ClCompile>
+    <ClCompile Include="ObjGold.cpp">
+      <Filter>ソース ファイル\GameMain</Filter>
+    </ClCompile>
     <ClCompile Include="ObjRushEnemy.cpp">
       <Filter>ソース ファイル\GameMain\Enemy</Filter>
     </ClCompile>
@@ -247,9 +247,6 @@
     </ClCompile>
     <ClCompile Include="ObjGolem.cpp">
       <Filter>ソース ファイル\GameMain\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="Objthorn.cpp">
-      <Filter>ソース ファイル\GameMain\gimmick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
