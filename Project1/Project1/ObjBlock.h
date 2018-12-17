@@ -30,6 +30,13 @@ public:
 		float* vx, float* vy, int* bt,bool b, bool hero,float* yy
 	);
 
+	//ƒuƒƒbƒN‚Æ‚Ì“–‚½‚è”»’è(‘å‚«‚³‚ª32‚Ì)
+	void Block32Hit(
+		float* x, float* y, bool scroll_on,
+		bool* up, bool* down, bool* left, bool* right,
+		float* vx, float* vy, int* bt, float* yy
+	);
+
 private:
 
 	void BlockDraw(float x, float y, RECT_F* dst, float c[],int i, int j);

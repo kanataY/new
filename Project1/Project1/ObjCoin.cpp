@@ -47,33 +47,26 @@ void CObjCoin::Action()
 
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
-
-
 		return;//消滅処理は、ここでアクションメゾッドを終了させる
 	}
-
 	
-		m_hero_pos = hero->GetPos(); 
+	m_hero_pos = hero->GetPos(); 
 	
 	//弾丸実行処理
 	if (m_hero_pos==0)
-		m_vx += 1.0f;
+		m_vx += 0.3f;
 	else
-		m_vx -= 1.0f;
+		m_vx -= 0.3f;
 	m_px += m_vx;
-
-	
-
-
-	block->BlockHit(&m_px, &m_py, true,
+	m_py += m_vy;
+	block->Block32Hit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type, true, true, 0
+		&m_block_type, 0
 	);
 	//弾丸のHitBox更新用ポインター取得
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);    //HitBoxの位置を弾丸の位置に更新
-
-							  //領域外に出たら弾丸を破棄する
+								//領域外に出たら弾丸を破棄する
 
 	if (m_px + block->GetScroll() < -32.0f ||m_px + block->GetScroll()>800.0f)
 	{
@@ -93,9 +86,8 @@ void CObjCoin::Action()
 	{
 		if (hit->CheckObjNameHit(data_base[i]) != nullptr||m_hit_left==true||m_hit_right==true)
 		{
-			m_del = true;					 //消滅
+			m_del = true;				 //消滅
 			hit->SetInvincibility(true); //当たり判定無効
-
 		}
 	}
 }
