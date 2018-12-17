@@ -34,6 +34,7 @@ void CObjHero::Init()
 	m_gold_spawn = false;
 	m_gold_Y = false;
 	m_gold_M = false;
+	m_coinshot_flag = false;
 
 	m_ani_time = 0;
 	m_ani_frame = 1;  //Ã~ƒtƒŒ[ƒ€‚ğ‰Šú‚É‚·‚é
@@ -48,7 +49,7 @@ void CObjHero::Init()
 	m_hit_right = false;
 
 	m_block_type = 0; //“¥‚ñ‚Å‚¢‚éblock‚Ìí—Ş‚ğŠm”F—p
-	
+
 	//HitBox
 	Hits::SetHitBox(this, m_px, m_py, 60, 64, ELEMENT_HERO, OBJ_HERO, 1);
 }
@@ -145,7 +146,30 @@ void CObjHero::Action()
 			m_gold_flag = false;
 	}
 
-	//|||||||||||||||||||
+	//ƒRƒCƒ“UŒ‚-----------------------------------------------------------------------------
+	if (Input::GetVKey('V') == true)//V‚ÅËo(‰¼)
+	{
+		//ƒRƒCƒ“‚ğo‚·ƒtƒ‰ƒO‚ªƒIƒt‚Ì
+		if (m_coinshot_flag == false)
+		{
+			//Œü‚«‚É‚æ‚Á‚Äo‚·êŠ‚ğ•Ï‚¦‚é
+			if (m_pos == 1)//¶Œü‚«
+			{
+				CObjCoin* coin = new CObjCoin(m_px, m_py+25.0f);
+				Objs::InsertObj(coin, OBJ_COIN, 16);
+			}
+			else//‰EŒü‚«
+			{
+				CObjCoin* coin = new CObjCoin(m_px+25.0f, m_py+25.0f);
+				Objs::InsertObj(coin, OBJ_COIN, 16);
+			}
+		}
+		//ƒRƒCƒ“‚ğo‚·ƒtƒ‰ƒO‚ğƒIƒ“‚É‚·‚é
+		m_coinshot_flag = true;
+	}
+	else//”­Ëƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚È‚¢ƒRƒCƒ“”­Ëƒtƒ‰ƒO‚ÍƒIƒt‚É‚·‚é
+		m_coinshot_flag = false;
+	//|||||||||||||||||||--------------------------------------------
 
 
 	//–€C

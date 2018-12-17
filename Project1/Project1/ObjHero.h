@@ -18,6 +18,8 @@ public:
 	float GetY() { return m_py; }
 	float GetVY() { return m_vy; }						//m_vx,m_vyの値を渡す
 	float GetVX() { return m_vx; }
+	int   GetPos() { return m_pos; }					//posの値渡す
+
 	void  SetX(float x) { m_px = x; }					//m_px,m_pyの値をほかのcppでもいじれるようにする
 	void  SetY(float y) { m_py = y; }
 	void  SetVX(float x) { m_vx = x; }					//m_vx,m_vyの値をほかのcppでもいじれるようにする
@@ -32,10 +34,11 @@ private:
 	float m_vy;
 	float m_speed;      //主人公の移動量のスピード管理
 	int   m_gold_time;  //金塊の置く間隔
-
+	
 	//制御系---------
 	bool m_gold_flag;  //金塊を出しすぎないようにするため
 	bool m_gold_spawn; //金塊を出せる位置を決める
+	bool m_coinshot_flag;//コインを出しすぎないようにするため
 	bool m_gold_Y;
 	bool m_gold_M;
 

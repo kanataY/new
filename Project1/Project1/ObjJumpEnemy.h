@@ -22,7 +22,10 @@ private:
 	float m_py;
 	float m_vy; //移動量
 	float m_vx;
-
+	float m_speed;
+	int m_pos;//ポスター
+	int m_jump_time;//ジャンプするまでの時間
+	bool m_jump_flag;//ジャンプしたフラグ
 	//-アニメーション
 	int m_ani_time; //アニメーションフレーム動作感覚
 	int m_ani_frame;//描画フレーム

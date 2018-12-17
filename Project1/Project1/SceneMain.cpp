@@ -42,10 +42,15 @@ void CSceneMain::InitScene()
 	//主人公関連----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\hero\\hero1.png", 3, TEX_SIZE_256);
 	Draw::LoadImageW(L"Image\\item\\gold.png", 4, TEX_SIZE_64);
+	Draw::LoadImageW(L"Image\\item\\100yen.png", 7, TEX_SIZE_32);
 	//敵関連----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\enemy\\boo.png", 5, TEX_SIZE_128);
 	Draw::LoadImageW(L"Image\\enemy\\jumpenemy.png", 6, TEX_SIZE_128);
-	//-------------------------------------------------------------------------------------------------------------------
+	//ギミック----------------------------------------------------------------
+	Draw::LoadImageW(L"Image\\gimmick\\Chest.png", 8, TEX_SIZE_128);
+	Draw::LoadImageW(L"Image\\gimmick\\switch.png", 9, TEX_SIZE_128);
+	Draw::LoadImageW(L"Image\\gimmick\\thorn.png", 10, TEX_SIZE_16);
+	//--------------------------------------------------------------------------------------
 	//主人公オブジェクト作成
 	CObjHero* he = new CObjHero();
 	Objs::InsertObj(he, OBJ_HERO, 13);
@@ -53,6 +58,10 @@ void CSceneMain::InitScene()
 	//突進敵オブジェクト作成
 	CObjRushEnemy* boo = new CObjRushEnemy(450,100);
 	Objs::InsertObj(boo, OBJ_RUSH_ENEMY, 13);
+
+	//突進敵オブジェクト作成
+	CObjJumpEnemy* jump = new CObjJumpEnemy(400, 500);
+	Objs::InsertObj(jump, OBJ_JUMP_ENEMY, 13);
 
 	//背景（ブロック）オブジェクト作成
 	CObjBlock* block = new CObjBlock(map);

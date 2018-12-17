@@ -9,7 +9,7 @@ enum OBJ_NAME
 	OBJ_HERO,				//ランナー
 	OBJ_BLOCK,				//ブロック
 	OBJ_GOLD,				//金塊
-
+	OBJ_COIN,				//コイン
 
 	//敵
 	OBJ_RUSH_ENEMY,			//突進する敵
@@ -63,6 +63,7 @@ struct UserData
 #include "ObjHero.h"			//ランナー
 #include "ObjBlock.h"			//ブロック
 #include "ObjGold.h"            //金塊
+#include "ObjCoin.h"			//コイン
 
 #include "ObjRushEnemy.h"		//突進する敵
 #include "ObjJumpEnemy.h"		//ジャンプする敵

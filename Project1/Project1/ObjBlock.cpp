@@ -80,7 +80,6 @@ void CObjBlock::Action()
 		m_bx2 -= hero->GetVX();
 		if (m_bx2 < -800.0f)
 			m_bx2 = 800.0f;
-
 	}
 
 
@@ -154,10 +153,8 @@ void CObjBlock::Draw()
 				//ブロック
 				BlockDraw(0.0f, 0.0f, &dst, c , i ,j);
 			}
-
 		}
 	}
-
 }
 
 //調べたいマップの位置にあるマップ番号を返す
@@ -342,6 +339,120 @@ void CObjBlock::BlockHit(
 								}
 							}
 						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+// Block32Hit関数
+//引数１　float* x          :判定を行うobjectのX位置
+//引数２　float* y          :判定を行うobjectのY位置
+//引数３　bool   scroll_on  :判定を行うobjectはスクロールの影響与えるかどうか（true＝与える　false=与えない）
+//引数４　bool*  up         :上下左右の上部分に当たっているかどうか返す
+//引数５　bool*  down       :上下左右の下部分に当たっているかどうか返す
+//引数６　bool*  left       :上下左右の左部分に当たっているかどうか返す
+//引数７　bool*  right      :上下左右の右部分に当たっているかどうか返す
+//引数８　float* vx         :左右判定時の反発による移動方向・力の値を変えて返す
+//引数９　float* vy         :上下判定時による自由落下運動の移動方向・力の値を変えて返す
+//引数１０int*   bt         :下部分判定時、特殊なブロックのタイプを返す
+//判定を行うobjectとブロック32×64限定で、当たり判定と上下左右判定を行う
+//その結果は引数4～10に返す
+void CObjBlock::Block32Hit(
+	float *x, float *y, bool scroll_on,
+	bool*up, bool* down, bool* left, bool* right,
+	float* vx, float*vy, int* bt, float* yy
+)
+{
+	//衝突状態確認用フラグの初期化
+	*up = false;
+	*down = false;
+	*left = false;
+	*right = false;
+
+	//踏んでいるblockの種類の初期化
+	*bt = 0;
+	//m_mapの全要素にアクセス
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			if (m_map[i][j] > 0 && m_map[i][j] != 2 && m_map[i][j] != 3)
+			{
+				//要素番号を座標に変更
+				float bx = j*64.0f;
+				float by = i*64.0f;
+
+				//スクロールの影響
+				float scroll = scroll_on ? m_scroll : 0;
+
+				//主人公とブロックの当たり判定
+				if ((*x + (-scroll) + 32.0f > bx) && (*x + (-scroll) < bx + 32.0f) && (*y + 32.0f > by) && (*y < by + 32.0f))
+				{
+					//上下左右判定
+
+					//vectorの作成
+					float rvx = (*x + (-scroll)) - bx;
+					float rvy = *y - by;
+					//長さを求める
+					float len = sqrt(rvx*rvx + rvy*rvy);
+
+					//角度を求める
+					float r = atan2(rvy, rvx);
+					r = r * 180.0f / 3.14f;
+
+					if (r <= 0.0f)
+						r = abs(r);
+					else
+						r = 360.0f - abs(r);
+
+					//lenがある一定の長さより短い場合判定に入る
+					if (len < 88.0f)
+					{
+
+
+						//角度で上下左右判定
+						if (r < 45 && r >= 0 && r >= 315)
+						{
+							//右
+
+							*right = true;//左の部分が衝突している
+							*x = bx +32.0f+ (scroll);//ブロックの位置ー主人公の幅
+							*vx = -(*vx) * 0.1f;//-VX*反発係数
+
+						}
+						if (r >= 45 && r < 135)
+						{
+							//上
+							*down = true;//主人公の下の部分が衝突している
+							*y = by - 32.0f;//ブロックの位置ー主人公の幅
+
+											//種類を渡すのスタートとg-流のみ変更する
+							*vy = 0.0f;
+						}
+
+						if (r >= 135 && r < 225)
+						{
+							//左
+							*left = true;//主人公の右の部分が衝突している
+							*x = bx - 32.0f + (scroll);//ブロックの位置ー主人公の幅
+							*vx = -(*vx) * 0.1f;//-VX*反発係数
+
+						}
+						if (r >= 225 && r < 315)
+						{
+							//下
+							*up = true;  //主人公の上の部分が衝突している
+							*y = by + 32.0f;//ブロックの位置＋主人公の幅
+							if (*vy < 0)
+							{
+								*vy = 0.0f;
+							}
+						}
+
 					}
 				}
 			}
