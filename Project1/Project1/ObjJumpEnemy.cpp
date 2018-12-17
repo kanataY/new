@@ -36,7 +36,7 @@ void CObjJumpEnemy::Init()
 	m_pos = 1.0f;//左向き
 	m_block_type = 0; //踏んでいるblockの種類を確認用
 
-					  //HitBox
+	//HitBox
 	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_JUMP_ENEMY, 1);
 }
 
@@ -134,7 +134,6 @@ void CObjJumpEnemy::Draw()
 	RECT_F dst; //描画先表示位置
 
 	//切り取り位置の設定
-
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 64.0f;
@@ -148,5 +147,4 @@ void CObjJumpEnemy::Draw()
 
 	//描画
 	Draw::Draw(6, &src, &dst, c, 0.0f);
-
 }

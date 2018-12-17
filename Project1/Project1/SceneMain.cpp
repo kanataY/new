@@ -46,7 +46,11 @@ void CSceneMain::InitScene()
 	//敵関連----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\enemy\\boo.png", 5, TEX_SIZE_128);
 	Draw::LoadImageW(L"Image\\enemy\\jumpenemy.png", 6, TEX_SIZE_128);
-	//-------------------------------------------------------------------------------------------------------------------
+	//ギミック----------------------------------------------------------------
+	Draw::LoadImageW(L"Image\\gimmick\\Chest.png", 8, TEX_SIZE_128);
+	Draw::LoadImageW(L"Image\\gimmick\\switch.png", 9, TEX_SIZE_128);
+	Draw::LoadImageW(L"Image\\gimmick\\thorn.png", 10, TEX_SIZE_16);
+	//--------------------------------------------------------------------------------------
 	//主人公オブジェクト作成
 	CObjHero* he = new CObjHero();
 	Objs::InsertObj(he, OBJ_HERO, 13);
