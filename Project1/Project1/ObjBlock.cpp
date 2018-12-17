@@ -221,7 +221,7 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F* dst, float c[] , int i , int
 void CObjBlock::BlockHit(
 	float *x, float *y, bool scroll_on,
 	bool*up, bool* down, bool* left, bool* right,
-	float* vx, float*vy, int* bt, bool b,bool hero, float* yy,bool* gg
+	float* vx, float*vy, int* bt, bool b,bool hero, float* yy,bool* gg,bool hero_hit
 )
 {
 	
@@ -235,6 +235,20 @@ void CObjBlock::BlockHit(
 
 	//踏んでいるblockの種類の初期化
 	*bt = 0;
+	float m_cx = 0.0f;
+	float m_cy = 0.f;
+
+	//主人公ならm_cx（ブロックとの当たり判定）の幅を変える
+	if (hero_hit == false)
+	{
+		 m_cx = 64.0f;
+		 m_cy = 64.0f;
+	}
+	else
+	{
+		 m_cx = 50.0f;
+		 m_cy = 64.0f;
+	}
 
 	//m_mapの全要素にアクセス
 	for (int i = 0; i < 10; i++)
@@ -251,7 +265,7 @@ void CObjBlock::BlockHit(
 				float scroll = scroll_on ? m_scroll : 0;
 
 				//主人公とブロックの当たり判定
-				if ((*x + (-scroll) + 64.0f > bx) && (*x + (-scroll) < bx + 64.0f) && (*y + 64.0f > by) && (*y < by + 64.0f))
+				if ((*x + (-scroll) + m_cx > bx) && (*x + (-scroll) < bx + m_cx) && (*y + m_cy > by) && (*y < by + m_cy))
 				{
 					//上下左右判定
 
@@ -283,7 +297,7 @@ void CObjBlock::BlockHit(
 								if (m_map[i - 1][j] == 0)	//当たっているブロックの一つ前が空白なら
 								{
 									*gg = true;//登れるようにヒーロー側＆ブロック側で処理をする
-									*yy -= 16.0f;//登らせる
+									*yy -= 35.0f;//登らせる
 								}
 							}
 							
@@ -293,7 +307,7 @@ void CObjBlock::BlockHit(
 								if (m_map[i - 1][j] == 0)//当たっているブロックの一つ前が空白なら
 								{
 									*gg = true;//登れるようにヒーロー側＆ブロック側で処理をする
-									*yy -= 20.0f;
+									*yy -= 35.0f;
 								}
 							}
 						}
@@ -305,7 +319,8 @@ void CObjBlock::BlockHit(
 								//右
 
 								*right = true;//主人公の左の部分が衝突している
-								*x = bx + 64.0f + (scroll);//ブロックの位置ー主人公の幅
+								*x = bx + m_cx + (scroll);//ブロックの位置ー主人公の幅
+								
 								*vx = -(*vx) * 0.1f;//-VX*反発係数
 
 							}
@@ -323,7 +338,7 @@ void CObjBlock::BlockHit(
 							{
 								//左
 								*left = true;//主人公の右の部分が衝突している
-								*x = bx - 64.0f + (scroll);//ブロックの位置ー主人公の幅
+								*x = bx - m_cx + (scroll);//ブロックの位置ー主人公の幅
 								*vx = -(*vx) * 0.1f;//-VX*反発係数
 
 							}

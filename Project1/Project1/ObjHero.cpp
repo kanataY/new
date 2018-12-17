@@ -51,7 +51,7 @@ void CObjHero::Init()
 	m_block_type = 0; //“¥‚ñ‚Å‚¢‚éblock‚Ìí—Ş‚ğŠm”F—p
 
 	//HitBox
-	Hits::SetHitBox(this, m_px, m_py, 60, 64, ELEMENT_HERO, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_px, m_py, 37, 50, ELEMENT_HERO, OBJ_HERO, 1);
 }
 
 //ƒAƒNƒVƒ‡ƒ“
@@ -183,31 +183,31 @@ void CObjHero::Action()
 	m_vy += 9.8 / (8.0f);
 
 	//ƒWƒƒƒ“ƒvI—¹[[[[[[[[[[[[[[[[[[[[[
-	//ƒuƒƒbƒNî•ñ‚ğ‚Á‚Ä‚­‚é
-	//CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
+	//HitBox‚ÌˆÊ’u‚Ì•ÏX
+	CHitBox* hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px + 15.0f, m_py + 15.0f);
+
+	//“–‚½‚è”»’èŠÖ˜A
+	HitBox();
+
 	//ˆÚ“®I—¹---------------------------------------------------
 	//ƒuƒƒbƒN‚É‚Ì‚Ú‚ê‚é‚æ‚¤‚É‚·‚é
 	float b = m_py + 32.0f;
 
+	if(m_vy == 0.0f)
 		block->BlockHit(&m_px, &b, true,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-			&m_block_type, false, true, &m_py,&m_gold_M
+			&m_block_type, false, true, &m_py,&m_gold_M,true
 		);
 	
 
 	block->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type, false, false, 0,false
+		&m_block_type, false, false, 0,false,true
 	);
 
 	//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-	//HitBox‚ÌˆÊ’u‚Ì•ÏX
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px, m_py);
-
-	//“–‚½‚è”»’èŠÖ˜A
-	HitBox();
 
 	//ˆÊ’u‚ÌXV
 	m_px += m_vx;
@@ -298,23 +298,22 @@ void CObjHero::HitBox()
 						m_gold_spawn = false;
 				}
 
-				if (m_hit_down == true)//’n–Êor‹à‰ò‚Ìã‚É‚¢‚é‚Æ‚«
+				if (m_hit_down == true)		//’n–Êor‹à‰ò‚Ìã‚É‚¢‚é‚Æ‚«
 				{
 					if (r2 > 160 && r2 < 200)
 					{
 						//¶
 						m_hit_left = true;
 						m_gold_Y = true;	//‹à‰ò‘¤‚ÅålŒö‚Ì‚–‚™‚ğŠJ•ú‚·‚é
-						m_py -= 32.0f;//“o‚ê‚é‚æ‚¤‚É‚·‚é
+						m_py -= 16.0f;		//“o‚ê‚é‚æ‚¤‚É‚·‚é
 					}
-					else
-						m_gold_Y = false;
-					if (r2 < 45 && r2>0 || r2 > 330)
+
+					else if (r2 < 45 && r2>0 || r2 > 330)
 					{
 						//‰E
 						m_hit_right = true;
 						m_gold_Y = true;	//‹à‰ò‘¤‚ÅålŒö‚Ì‚–‚™‚ğŠJ•ú‚·‚é
-						m_py -= 32.0f;//“o‚ê‚é‚æ‚¤‚É‚·‚é
+						m_py -= 16.0f;		//“o‚ê‚é‚æ‚¤‚É‚·‚é
 					}
 					else
 						m_gold_Y = false;
