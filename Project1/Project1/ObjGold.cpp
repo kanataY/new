@@ -62,7 +62,7 @@ void CObjGold::Action()
 
 	block->BlockHit(&c, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type,true, false,0, false
+		&m_block_type,true, false,0, false,false
 	);
 
 	//ˆÊ’u‚ÌXV

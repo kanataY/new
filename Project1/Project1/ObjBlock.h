@@ -29,7 +29,7 @@ public:
 	void BlockHit(
 		float* x, float* y, bool scroll_on,
 		bool* up, bool* down, bool* left, bool* right,
-		float* vx, float* vy, int* bt,bool b, bool hero,float* yy,bool* gg
+		float* vx, float* vy, int* bt,bool b, bool hero,float* yy,bool* gg,bool hero_hit
 	);
 
 	//ƒuƒƒbƒN‚Æ‚Ì“–‚½‚è”»’è(‘å‚«‚³‚ª32‚Ì)
