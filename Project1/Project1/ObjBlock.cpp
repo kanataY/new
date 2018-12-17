@@ -39,6 +39,7 @@ void CObjBlock::Action()
 	//背景関連ーーーーーーーーーーーーーーーーーーーーーーーー
 	//ランナーの位置を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	CObjthorn* thorn = (CObjthorn*)Objs::GetObj(OBJ_THORN);
 
 	float hx = hero->GetX();
 	float hy = hero->GetY();
@@ -146,6 +147,12 @@ void CObjBlock::Draw()
 			{
 				//ブロック
 				BlockDraw(0.0f, 0.0f, &dst, c , i ,j);
+			}
+			if (m_map[i][j] == 4)
+			{
+				//コインを出す
+				CObjthorn* thorn = new CObjthorn(m_px, m_py);
+				Objs::InsertObj(thorn, OBJ_THORN, 16);
 			}
 		}
 	}

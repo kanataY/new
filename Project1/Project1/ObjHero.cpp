@@ -57,7 +57,7 @@ void CObjHero::Action()
 {
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
+	CObjCoin* coin = ( CObjCoin*)Objs::GetObj(OBJ_COIN);
 	//補正の情報を持ってくる
 	//CObjCorrection* cor = (CObjCorrection*)Objs::GetObj(CORRECTION);
 
@@ -133,19 +133,23 @@ void CObjHero::Action()
 	//コイン攻撃-----------------------------------------------------------------------------
 	if (Input::GetVKey('V') == true)//Vで射出(仮)
 	{
-		//コインを出すフラグがオフの時
-		if (m_coinshot_flag == false)
+		//コインを出すフラグがオフでコインが存在しない時
+		if (m_coinshot_flag == false&&coin==nullptr)
 		{
 			//向きによって出す場所を変える
 			if (m_pos == 1)//左向き
 			{
+				//コインを出す
 				CObjCoin* coin = new CObjCoin(m_px, m_py+25.0f);
 				Objs::InsertObj(coin, OBJ_COIN, 16);
+				coin->SetHeroPos(1);//コインに主人公の向きを送る
 			}
 			else//右向き
 			{
+				//コインを出す
 				CObjCoin* coin = new CObjCoin(m_px+25.0f, m_py+25.0f);
 				Objs::InsertObj(coin, OBJ_COIN, 16);
+				coin->SetHeroPos(0);//コインに主人公の向きを送る
 			}
 		}
 		//コインを出すフラグをオンにする

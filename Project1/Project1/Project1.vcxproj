@@ -155,6 +155,7 @@
     <ClInclude Include="SceneOperation.h" />
     <ClInclude Include="SceneRanking.h" />
     <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="Objthorn.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Correction.cpp" />
@@ -190,6 +191,7 @@
     <ClCompile Include="SceneOperation.cpp" />
     <ClCompile Include="SceneRanking.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="Objthorn.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="GameL\Draw2DTex.hlsl">

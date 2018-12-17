@@ -13,6 +13,7 @@ public:
 	void Init();   //イニシャライズ
 	void Action(); //アクション
 	void Draw();   //ドロー
+	void SetHeroPos(int pos) { m_hero_pos = pos; }
 private:
 	float m_px;     //弾丸のX方向の位置用変数
 	float m_py;     //弾丸のY方向の位置用変数

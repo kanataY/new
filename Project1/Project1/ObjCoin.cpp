@@ -50,8 +50,6 @@ void CObjCoin::Action()
 		return;//消滅処理は、ここでアクションメゾッドを終了させる
 	}
 	
-	m_hero_pos = hero->GetPos(); 
-	
 	//弾丸実行処理
 	if (m_hero_pos==0)
 		m_vx += 0.3f;
