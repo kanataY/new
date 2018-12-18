@@ -15,6 +15,10 @@ enum OBJ_NAME
 	OBJ_RUSH_ENEMY,			//突進する敵
 	OBJ_JUMP_ENEMY,			//ジャンプする敵
 
+	//ギミック
+	OBJ_THORN,				//針
+	OBJ_SWITCH,				//スイッチ
+
 	//補正
 	CORRECTION,				//補正
 
@@ -61,14 +65,20 @@ struct UserData
 //------------------------------------------------
 
 //ゲームシーンオブジェクトヘッダ------------------
-#include "ObjHero.h"			//ランナー
+//プレイヤー
+#include "ObjHero.h"			//主人公
 #include "ObjBlock.h"			//ブロック
 #include "ObjGold.h"            //金塊
 #include "ObjCoin.h"			//コイン
 
+//敵
 #include "ObjRushEnemy.h"		//突進する敵
 #include "ObjJumpEnemy.h"		//ジャンプする敵
 
+//ギミック
+#include "Objthorn.h"			//針
+#include "Objswitch.h"			//スイッチ
+//シーン
 #include "ObjTitle.h"			//タイトル
 #include "ObjGameOver.h"		//ゲームオーバー
 #include "ObjRanking.h"			//ランキング

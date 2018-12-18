@@ -147,6 +147,8 @@
     <ClInclude Include="ObjRanking.h" />
     <ClInclude Include="ObjHero.h" />
     <ClInclude Include="ObjRushEnemy.h" />
+    <ClInclude Include="Objswitch.h" />
+    <ClInclude Include="Objthorn.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneGameOver.h" />
@@ -182,6 +184,8 @@
     <ClCompile Include="ObjRanking.cpp" />
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjRushEnemy.cpp" />
+    <ClCompile Include="Objswitch.cpp" />
+    <ClCompile Include="Objthorn.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneGameClear.cpp" />
     <ClCompile Include="SceneGameOver.cpp" />

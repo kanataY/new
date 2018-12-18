@@ -43,6 +43,9 @@
     <Filter Include="ソース ファイル\GameMain\Hero">
       <UniqueIdentifier>{a2e75d1a-18fd-4a1a-ac7f-e2805a7de5d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\GameMain\gimmick">
+      <UniqueIdentifier>{cf6a57cb-5fce-4e08-9904-258e00ab36a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameHead.h">
@@ -147,6 +150,12 @@
     <ClInclude Include="ObjGolem.h">
       <Filter>ソース ファイル\GameMain\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Objthorn.h">
+      <Filter>ソース ファイル\GameMain\gimmick</Filter>
+    </ClInclude>
+    <ClInclude Include="Objswitch.h">
+      <Filter>ソース ファイル\GameMain\gimmick</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -247,6 +256,12 @@
     </ClCompile>
     <ClCompile Include="ObjGolem.cpp">
       <Filter>ソース ファイル\GameMain\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Objthorn.cpp">
+      <Filter>ソース ファイル\GameMain\gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="Objswitch.cpp">
+      <Filter>ソース ファイル\GameMain\gimmick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
