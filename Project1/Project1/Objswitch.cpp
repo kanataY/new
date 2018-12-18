@@ -12,21 +12,14 @@ CObjswitch::CObjswitch(float x, float y)
 {
 	m_px = x;
 	m_py = y;
+	
 }
 //イニシャライズ
 void CObjswitch::Init()
 {
 	switch_on_flag = false;
-	if (switch_on_flag == false)
-	{
-		//当たり判定用HitBoxを作成
-		Hits::SetHitBox(this, m_px, m_py, 64, 32, ELEMENT_HERO, OBJ_SWITCH, 1);
-	}
-	else
-	{
-		//当たり判定用HitBoxを作成
-		Hits::SetHitBox(this, m_px, m_py, 64, 16, ELEMENT_HERO, OBJ_SWITCH, 1);
-	}
+	//当たり判定用HitBoxを作成
+	Hits::SetHitBox(this, m_px, m_py, 64, 25, ELEMENT_ENEMY, OBJ_SWITCH, 1);
 }
 //アクション
 void CObjswitch::Action()
@@ -36,7 +29,14 @@ void CObjswitch::Action()
 
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + block->GetScroll(), m_py);
+	if (switch_on_flag == false)
+	{
+		hit->SetPos(m_px + block->GetScroll(), m_py + 9.0f);
+	}
+	else
+	{
+		hit->SetPos(m_px + block->GetScroll(), m_py + 18.0f);
+	}
 }
 //ドロー
 void CObjswitch::Draw()

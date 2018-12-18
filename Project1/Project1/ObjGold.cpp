@@ -105,7 +105,7 @@ void CObjGold::Hit()
 	CHitBox* hit = Hits::GetHitBox(this);
 
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-
+	CObjswitch* swch=(CObjswitch*)Objs::GetObj(OBJ_SWITCH);
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
@@ -119,7 +119,12 @@ void CObjGold::Hit()
 			m_gold_vy = 1;
 		}
 	}
-
+	if (hit->CheckObjNameHit(OBJ_SWITCH) != nullptr&& m_hit_down == false)
+	{
+		//ゴールドに当たっているなら動きを止める
+		m_vy = 0.0f;
+		swch->SetSwitchFlag(true);
+	}
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
 		//どの角度で当たっているかを確認
