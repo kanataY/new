@@ -14,6 +14,7 @@ enum OBJ_NAME
 	//敵
 	OBJ_RUSH_ENEMY,			//突進する敵
 	OBJ_JUMP_ENEMY,			//ジャンプする敵
+	OBJ_GOLEM,				//ゴーレム
 
 	//ギミック
 	OBJ_THORN,				//針
@@ -74,7 +75,7 @@ struct UserData
 //敵
 #include "ObjRushEnemy.h"		//突進する敵
 #include "ObjJumpEnemy.h"		//ジャンプする敵
-
+#include "ObjGolem.h"			//ゴーレム
 //ギミック
 #include "Objthorn.h"			//針
 #include "Objswitch.h"			//スイッチ

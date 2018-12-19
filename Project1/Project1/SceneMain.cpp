@@ -46,6 +46,7 @@ void CSceneMain::InitScene()
 	//敵関連----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\enemy\\boo.png", 5, TEX_SIZE_128);
 	Draw::LoadImageW(L"Image\\enemy\\jumpenemy.png", 6, TEX_SIZE_128);
+	Draw::LoadImageW(L"Image\\enemy\\Golem.png", 11, TEX_SIZE_384);
 	//ギミック----------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\gimmick\\Chest.png", 8, TEX_SIZE_128);
 	Draw::LoadImageW(L"Image\\gimmick\\switch.png", 9, TEX_SIZE_128);
@@ -55,13 +56,17 @@ void CSceneMain::InitScene()
 	CObjHero* he = new CObjHero();
 	Objs::InsertObj(he, OBJ_HERO, 13);
 
-	//突進敵オブジェクト作成
-	CObjRushEnemy* boo = new CObjRushEnemy(450,100);
-	Objs::InsertObj(boo, OBJ_RUSH_ENEMY, 13);
+	////突進敵オブジェクト作成
+	//CObjRushEnemy* boo = new CObjRushEnemy(450,100);
+	//Objs::InsertObj(boo, OBJ_RUSH_ENEMY, 13);
 
-	//突進敵オブジェクト作成
-	CObjJumpEnemy* jump = new CObjJumpEnemy(400, 500);
-	Objs::InsertObj(jump, OBJ_JUMP_ENEMY, 13);
+	////ジャンプ敵オブジェクト作成
+	//CObjJumpEnemy* jump = new CObjJumpEnemy(400, 500);
+	//Objs::InsertObj(jump, OBJ_JUMP_ENEMY, 13);
+
+	//ゴーレムオブジェクト作成
+	CObjGolem* golem = new CObjGolem(450,100);
+	Objs::InsertObj(golem, OBJ_GOLEM, 13);
 
 	//スイッチオブジェクト作成
 	CObjswitch* swi = new CObjswitch(300, 480);
