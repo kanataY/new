@@ -64,7 +64,7 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(jump, OBJ_JUMP_ENEMY, 13);
 
 	//スイッチオブジェクト作成
-	CObjswitch* swi = new CObjswitch(400, 480);
+	CObjswitch* swi = new CObjswitch(300, 480);
 	Objs::InsertObj(swi, OBJ_SWITCH, 13);
 
 	//背景（ブロック）オブジェクト作成

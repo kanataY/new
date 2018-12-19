@@ -107,6 +107,7 @@ void CObjGold::Hit()
 	CHitBox* hit = Hits::GetHitBox(this);
 
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	//スイッチの情報取得
 	CObjswitch* swch=(CObjswitch*)Objs::GetObj(OBJ_SWITCH);
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);

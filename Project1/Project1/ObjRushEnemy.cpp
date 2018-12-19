@@ -41,7 +41,7 @@ void CObjRushEnemy::Init()
 	m_block_type = 0; //踏んでいるblockの種類を確認用
 
 	//HitBox
-	Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_RUSH_ENEMY, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 32, ELEMENT_ENEMY, OBJ_RUSH_ENEMY, 1);
 }
 
 //アクション
@@ -49,12 +49,7 @@ void CObjRushEnemy::Action()
 {
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
-	//自由落下運動
-	m_vy += 9.8 / (16.0f);
 	
-
-
 	//アニメーションーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 	m_ani_time++;//フレーム動作感覚タイムを進める
 	if (m_ani_time > m_ani_max_time)//フレーム動作感覚タイムが最大まで行ったら
@@ -72,7 +67,7 @@ void CObjRushEnemy::Action()
 
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + block->GetScroll(), m_py+24);
+	hit->SetPos(m_px + block->GetScroll(), m_py+32);
 
 	float c = m_px + block->GetScroll();
 
@@ -106,6 +101,12 @@ void CObjRushEnemy::Action()
 		m_pos = 0.0f;
 	}
 
+	
+	if (hit->CheckElementHit(ELEMENT_NULL)==false)
+	{
+		//自由落下運動
+		m_vy += 9.8 / (16.0f);
+	}
 	m_vx += -(m_vx * 0.16f);
 	//位置の更新
 	m_px += m_vx;
@@ -146,6 +147,19 @@ void CObjRushEnemy::Hit()
 {
 	//HitBox情報取得
 	CHitBox* hit = Hits::GetHitBox(this);
+	//スイッチの情報取得
+	CObjswitch* swch = (CObjswitch*)Objs::GetObj(OBJ_SWITCH);
+	//スイッチを踏んでいる時の処理--------------------------------------------------------------------------------
+	if (hit->CheckObjNameHit(OBJ_SWITCH) != nullptr)
+	{
+		//スイッチのフラグをオンにする
+		swch->SetSwitchFlag(true);
+	}
+	else
+	{//スイッチのフラグをオフにする
+		swch->SetSwitchFlag(false);
+	}
+	//---------------------------------------------------------------------------------------------------------------
 
 	//金塊に当たっている時
 	if (hit->CheckObjNameHit(OBJ_GOLD) != nullptr)

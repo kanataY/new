@@ -14,6 +14,7 @@ public:
 	void Init();	//イニシャライズ
 	void Action();	//アクション
 	void Draw();	//ドロー
+	bool GetSwitchFlag() { return switch_on_flag; }
 	void SetSwitchFlag(bool ssf) { switch_on_flag = ssf; }
 private:
 	float m_px;//位置
