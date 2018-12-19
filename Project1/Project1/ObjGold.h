@@ -28,8 +28,8 @@ private:
 	float m_vx;
 	int   m_gold_vy;   //金塊が落ちれるかどうか
 	bool  m_gold_flag; //フラグ
-	bool m_hero_flag;
-
+	bool  m_hero_flag;
+	int  m_switch_time;//金塊がスイッチをつぶすのを防ぐためのやつ
 	//blockとの衝突状態確認用
 	bool m_hit_up;
 	bool m_hit_down;
