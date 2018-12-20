@@ -5,7 +5,6 @@
 #include "GameL\HitBoxManager.h"
 #include "GameL\DrawFont.h"
 #include "GameL\UserData.h"
-#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjGold.h"
@@ -128,15 +127,12 @@ void CObjGold::Hit()
 		//スイッチのフラグをオンにする
 		swch->SetSwitchFlag(true);
 		m_switch_time++;//当たってからの時間を計る
-		//計測から3F後に-0.5だけ上げる(自分が納得できる絵になるのがこの数値だった)
-		if (m_switch_time >= 3)
-		{
-			m_vy = -0.5f;
-		}
+		
 		//計測から5F後に金塊の動きを止める
-		if (m_switch_time >=5)
+		if (m_switch_time >=8)
 		{
-			m_gold_vy = 1;
+			m_vy = 0.0f;
+			m_gold_vy = 1;	
 		}
 	}
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)

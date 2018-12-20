@@ -100,8 +100,6 @@ void CObjGolem::Action()
 		m_vx += m_speed;
 		m_pos = 0.0f;
 	}
-
-
 	if (hit->CheckElementHit(ELEMENT_NULL) == false)
 	{
 		//自由落下運動
@@ -147,26 +145,13 @@ void CObjGolem::Hit()
 {
 	//HitBox情報取得
 	CHitBox* hit = Hits::GetHitBox(this);
-	//スイッチの情報取得
-	CObjswitch* swch = (CObjswitch*)Objs::GetObj(OBJ_SWITCH);
-	//スイッチを踏んでいる時の処理--------------------------------------------------------------------------------
-	if (hit->CheckObjNameHit(OBJ_SWITCH) != nullptr)
-	{
-		//スイッチのフラグをオンにする
-		swch->SetSwitchFlag(true);
-	}
-	else
-	{//スイッチのフラグをオフにする
-		swch->SetSwitchFlag(false);
-	}
-	//---------------------------------------------------------------------------------------------------------------
-
+	
 	//金塊に当たっている時
 	if (hit->CheckObjNameHit(OBJ_GOLD) != nullptr)
 	{
 		//どの角度で当たっているかを確認
 		HIT_DATA** hit_data;                        //当たったときの細やかな情報を入れるための構造体
-		hit_data = hit->SearchObjNameHit(OBJ_GOLD);  //hit_dataにHitBoxとの情報を入れる
+		hit_data = hit->SearchObjNameHit(OBJ_GOLD); //hit_dataにHitBoxとの情報を入れる
 
 		for (int i = 0; i < hit->GetCount(); i++)
 		{
