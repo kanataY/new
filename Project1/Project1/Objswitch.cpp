@@ -3,7 +3,6 @@
 #include "GameL\HitBoxManager.h"
 #include "GameHead.h"
 #include "Objthorn.h"
-#include "GameL\Audio.h"
 //使用するネームスペース
 using namespace GameL;
 
@@ -19,7 +18,7 @@ void CObjswitch::Init()
 {
 	switch_on_flag = false;
 	//当たり判定用HitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 25, ELEMENT_NULL, OBJ_SWITCH, 1);
+	Hits::SetHitBox(this, m_px, m_py, 64, 18, ELEMENT_NULL, OBJ_SWITCH, 1);
 }
 //アクション
 void CObjswitch::Action()
@@ -29,15 +28,9 @@ void CObjswitch::Action()
 
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
-	//スイッチが押されている時と押されていない時でヒットボックスの高さを変える
-	if (switch_on_flag == false)
-	{
-		hit->SetPos(m_px + block->GetScroll(), m_py + 9.0f);//押されてない
-	}
-	else
-	{
-		hit->SetPos(m_px + block->GetScroll(), m_py + 18.0f);//押されている
-	}
+	
+	hit->SetPos(m_px + block->GetScroll(), m_py + 12.0f);//押されている
+
 }
 //ドロー
 void CObjswitch::Draw()
