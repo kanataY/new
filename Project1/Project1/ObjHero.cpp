@@ -26,8 +26,10 @@ void CObjHero::Init()
 	m_py = 400.0f;	//位置
 	m_vx = 0.0f;
 	m_vy = 0.0f;	//移動ベクトル
+	m_ppx = 0;
+	m_ppy = 0;
 	m_gold_time = 100;
-	
+	con = 0;
 	m_speed = 0.8f;
 	m_pos = 0.0f;//右向き
 	m_gold_flag = false;
@@ -105,10 +107,9 @@ void CObjHero::Action()
 	}
 	//お金を置くーーーーーーーーーーーーー
 	m_gold_time++;//金塊の間隔を増やす
-	int a = (m_px / 64) + 2;
 
-	float m_ppx = (m_px - block->GetScroll()) / 64; //主人公の位置からマップの位置を取ってくる
-	float m_ppy = m_py / 64;
+	m_ppx = (m_px - block->GetScroll()) / 64; //主人公の位置からマップの位置を取ってくる
+	m_ppy = m_py / 64;
 
 	if(m_pos == 0.0f) //右向きの時は調整する。
 		m_ppx += 0.8f;		//四捨五入する準備、調整する
@@ -125,7 +126,6 @@ void CObjHero::Action()
 			//金塊は一度に一回だけ,置いた後間隔が空いてから二個目を置ける   空中ではおけないように
 			if (m_gold_flag == false && m_gold_spawn == false && m_gold_time > 50 && m_vy == 0.0f)
 			{
-				//block->SetMap((m_px + 64.0f) / 64.0f, m_py / 64.0f, 2);
 				//金塊を生成
 				//左向き
 				if (m_pos == 1)
@@ -304,20 +304,22 @@ void CObjHero::HitBox()
 
 				if (m_hit_down == true)		//地面or金塊の上にいるとき
 				{
-					if (r2 > 160 && r2 < 200)
+					if (r2 > 160 && r2 < 200 && m_pos == 1.0f)
 					{
 						//左
-						m_hit_left = true;
+						m_hit_left = true;  
 						m_gold_Y = true;	//金塊側で主人公のｖｙを開放する
-						m_py -= 16.0f;		//登れるようにする
+						//m_py -= 24.0f;		//登れるようにする
+						con++;
 					}
 
-					else if (r2 < 45 && r2>0 || r2 > 330)
+					else if (r2 < 45 && r2>0 || r2 > 330 && m_pos == 0.0f)
 					{
 						//右
 						m_hit_right = true;
 						m_gold_Y = true;	//金塊側で主人公のｖｙを開放する
-						m_py -= 16.0f;		//登れるようにする
+						//m_py -= 20.0f;		//登れるようにする
+						con++;
 					}
 					else
 						m_gold_Y = false;
@@ -326,9 +328,22 @@ void CObjHero::HitBox()
 		}
 	}
 	else
+	{
 		m_gold_M = false;
+		con = 0;
+	}
 	
-	
+	if (con == 1) {
+		m_py -= 24.0f; con = 0;
+	}
+	else if (con > 1)
+	{
+		m_gold_Y = true;
+		m_vx = 0.0f;
+		m_px -= 1.0f;
+	}
+
+		
 
 	//ヒットボックスに触れていない時
 	if (hit->CheckObjNameHit(OBJ_GOLD) == nullptr)

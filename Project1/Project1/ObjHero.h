@@ -32,8 +32,10 @@ private:
 	float m_py;
 	float m_vx;			//移動ベクトル
 	float m_vy;
+	float m_ppx, m_ppy; //マップ情報を入れる変数
 	float m_speed;      //主人公の移動量のスピード管理
 	int   m_gold_time;  //金塊の置く間隔
+	int con;
 	
 	//制御系---------
 	bool m_gold_flag;  //金塊を出しすぎないようにするため

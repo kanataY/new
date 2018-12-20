@@ -50,7 +50,7 @@ void CObjGold::Action()
 	Hit();
 	//金塊が落ちれる時自由落下をつける
 	if (m_gold_vy == 0)
-		m_vy += 9.8 / (50.0f);
+		m_vy += 9.8 / (250.0f);
 	else
 		m_vy = 0.0f;//その場にとどめておく（金塊にかなさる）
 
@@ -105,7 +105,7 @@ void CObjGold::Hit()
 	CHitBox* hit = Hits::GetHitBox(this);
 
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-
+	CObjGold* gold = (CObjGold*)Objs::GetObj(OBJ_GOLD);
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
@@ -133,7 +133,7 @@ void CObjGold::Hit()
 				float r2 = hit_data[i]->r;
 
 				//主人公が上に乗っかている場合主人公の移動量を0にする。
-				if (r2 >= 40 && r2 < 135)
+				if (r2 >= 20&& r2 < 150)
 				{
 					//上
 					//主人公が金塊の左右に当たった時、主人公がブロックを登ろうとしてるときに解除
