@@ -40,7 +40,6 @@ void CObjBlock::Action()
 	//背景関連ーーーーーーーーーーーーーーーーーーーーーーーー
 	//ランナーの位置を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-
 	float hx = hero->GetX();
 	float hy = hero->GetY();
 
@@ -101,6 +100,14 @@ void CObjBlock::Action()
 		{
 			;
 		}
+		//列の中から１を探す
+		if (m_map[i][ex] == 4)
+		{
+			//コインを出す
+			CObjthorn* thorn = new CObjthorn(ex*64, i*64);
+			Objs::InsertObj(thorn, OBJ_THORN, 16);
+			m_map[i][ex] = 0;
+		}
 	}
 }
 	
@@ -150,13 +157,7 @@ void CObjBlock::Draw()
 			}
 			if (m_map[i][j] == 4)
 			{
-				RECT_F src;
-				src.m_top = 0.0f;
-				src.m_left = 0.0f;
-				src.m_right = src.m_left + 16.0f;
-				src.m_bottom = src.m_top + 16.0f;
-				
-				Draw::Draw(10, &src, &dst, c, 0.0f);
+				;
 			}
 			
 		}

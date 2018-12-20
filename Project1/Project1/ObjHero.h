@@ -19,6 +19,7 @@ public:
 	float GetVY() { return m_vy; }						//m_vx,m_vyの値を渡す
 	float GetVX() { return m_vx; }
 	int   GetPos() { return m_pos; }					//posの値渡す
+	bool Gety() { return m_gold_M; }
 
 	void  SetX(float x) { m_px = x; }					//m_px,m_pyの値をほかのcppでもいじれるようにする
 	void  SetY(float y) { m_py = y; }
@@ -26,7 +27,8 @@ public:
 	bool  SetG() { return m_gold_Y; }
 	void  SetVY(float y) { m_vy = y; }
 	void Sety(bool b) { m_gold_M = b; }
-	bool Gety() { return m_gold_M; }
+	void SetBT(int bt) { m_block_type = bt; }//踏んでるものの情報を受け取る
+	
 private:
 	float m_px;			//位置
 	float m_py;
