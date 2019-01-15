@@ -100,13 +100,21 @@ void CObjBlock::Action()
 		{
 			;
 		}
+		//列の中から3を探す
+		if (m_map[i][ex] == 3)
+		{
+			//ゴールを出す
+			CObjGoal* goal = new CObjGoal(ex * 64, i * 64);
+			Objs::InsertObj(goal, OBJ_GOAL, 16);
+			m_map[i][ex] = 0;
+		}
 		//列の中から１を探す
 		if (m_map[i][ex] == 4)
 		{
 			//コインを出す
 			CObjthorn* thorn = new CObjthorn(ex*64, i*64);
 			Objs::InsertObj(thorn, OBJ_THORN, 16);
-			m_map[i][ex] = 0;
+			m_map[i][ex] = 999;							//針を出した後に金塊の当たり判定を残すために999を利用
 		}
 	}
 }
