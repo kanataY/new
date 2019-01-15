@@ -130,12 +130,12 @@ void CObjHero::Action()
 				//¶Œü‚«
 				if (m_pos == 1)
 				{
-					CObjGold* kane = new CObjGold(m_px - 67.0f - block->GetScroll(), m_py);
+					CObjGold* kane = new CObjGold(m_px - 75.0f - block->GetScroll(), m_py);
 					Objs::InsertObj(kane, OBJ_GOLD, 16);
 				}
 				else//‰EŒü‚«
 				{
-					CObjGold* kane = new CObjGold(m_px + 67.0f - block->GetScroll(), m_py);
+					CObjGold* kane = new CObjGold(m_px + 75.0f - block->GetScroll(), m_py);
 					Objs::InsertObj(kane, OBJ_GOLD, 16);
 				}
 				m_gold_flag = true;
@@ -309,7 +309,7 @@ void CObjHero::HitBox()
 
 				if (m_hit_down == true)		//’n–Êor‹à‰ò‚Ìã‚É‚¢‚é‚Æ‚«
 				{
-					if (r2 > 160 && r2 < 200 && m_pos == 1.0f)
+					if (/*r2 > 150 &&*/ r2 < 200 && m_pos == 1.0f)
 					{
 						//¶
 						m_hit_left = true;  

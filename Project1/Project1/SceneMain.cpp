@@ -61,7 +61,7 @@ void CSceneMain::InitScene()
 	//Objs::InsertObj(boo, OBJ_RUSH_ENEMY, 13);
 
 	////ジャンプ敵オブジェクト作成
-	//CObjJumpEnemy* jump = new CObjJumpEnemy(400, 500);
+	//CObjJumpEnemy* jump = new CObjJumpEnemy(400, 500);z
 	//Objs::InsertObj(jump, OBJ_JUMP_ENEMY, 13);
 
 	//ゴーレムオブジェクト作成
