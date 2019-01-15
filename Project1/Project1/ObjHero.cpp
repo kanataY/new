@@ -47,6 +47,7 @@ void CObjHero::Init()
 	//blockとの衝突状態確認用
 	m_hit_up = false;
 	m_hit_down = false;
+	m_hit_down_gold = false;
 	m_hit_left = false;
 	m_hit_right = false;
 
@@ -130,12 +131,12 @@ void CObjHero::Action()
 				//左向き
 				if (m_pos == 1)
 				{
-					CObjGold* kane = new CObjGold(m_px - 67.0f - block->GetScroll(), m_py);
+					CObjGold* kane = new CObjGold(m_px - 75.0f - block->GetScroll(), m_py);
 					Objs::InsertObj(kane, OBJ_GOLD, 16);
 				}
 				else//右向き
 				{
-					CObjGold* kane = new CObjGold(m_px + 64.0f - block->GetScroll(), m_py);
+					CObjGold* kane = new CObjGold(m_px + 75.0f - block->GetScroll(), m_py);
 					Objs::InsertObj(kane, OBJ_GOLD, 16);
 				}
 				m_gold_flag = true;
@@ -274,6 +275,9 @@ void CObjHero::HitBox()
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
 
+	//hero_Hit
+	CObjhero_hitbox* hero_hit = (CObjhero_hitbox*)Objs::GetObj(HERO_HITBOX);
+
 	CObjGold* gold = (CObjGold*)Objs::GetObj(OBJ_GOLD);
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -291,15 +295,15 @@ void CObjHero::HitBox()
 			{
 				float r2 = hit_data[i]->r;
 
-				if (r2 >= 210 && r2 < 340)
+				if (r2 >= 200 && r2 < 340)
 				{
 					CObjBlock* b = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
 					//また、地面に当たっている判定にする
 					m_vy = 0.0f;
-					m_hit_down = true;
+					m_hit_down_gold = true;
 
-					if (r2 >= 310 && r2 < 340)//金塊の左端にいるときは金塊を置けなくする
+					if (r2 >= 310 && r2 < 340 && m_pos == 1.0f)//金塊の左端にいるときは金塊を置けなくする
 					{
 						m_gold_spawn = true;
 					}
@@ -307,27 +311,35 @@ void CObjHero::HitBox()
 						m_gold_spawn = false;
 				}
 
-				if (m_hit_down == true)		//地面or金塊の上にいるとき
+				if (m_hit_down == true || m_hit_down_gold == true)		//地面or金塊の上にいるとき
 				{
 					if (r2 > 160 && r2 < 200 && m_pos == 1.0f)
 					{
 						//左
 						m_hit_left = true;  
 						m_gold_Y = true;	//金塊側で主人公のｖｙを開放する
-						//m_py -= 24.0f;		//登れるようにする
+						if (m_hit_down_gold == true)
+							m_py -= 12.0f;
+						else
+							m_py -= 36.0f;		//登れるようにする
 						con++;
 					}
-
-					else if (r2 < 45 && r2>0 || r2 > 330 && m_pos == 0.0f)
+					else if (/*r2 < 0 && r2>0 ||*/ r2 > 340 && m_pos == 0.0f)
 					{
 						//右
 						m_hit_right = true;
 						m_gold_Y = true;	//金塊側で主人公のｖｙを開放する
-						//m_py -= 20.0f;		//登れるようにする
+						if (m_hit_down_gold == true)
+							m_py -= 12.0f;
+						else
+							m_py -= 24.0f;		//登れるようにする
 						con++;
 					}
 					else
+					{
 						m_gold_Y = false;
+						con = 0;
+					}
 				}
 			}
 		}
@@ -338,15 +350,24 @@ void CObjHero::HitBox()
 		con = 0;
 	}
 	
-	if (con == 1) {
+	//どうするか悩み中…
+	/*if (con == 1) {
 		m_py -= 24.0f; con = 0;
 	}
-	else if (con > 1)
+	else if (con > 1 && m_pos == 1.0f)
 	{
 		m_gold_Y = true;
 		m_vx = 0.0f;
-		m_px -= 1.0f;
+		m_px += 0.5f;
+		m_vy = 0.0f;
 	}
+	else if (con > 1 && m_pos == 0.0f)
+	{
+		m_gold_Y = true;
+		m_vx = 0.0f;
+		m_px -= 0.5f;
+		m_vy = 0.0f;
+	}*/
 
 		
 

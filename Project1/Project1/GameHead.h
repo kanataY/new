@@ -23,6 +23,7 @@ enum OBJ_NAME
 	//補正
 	CORRECTION,				//補正
 	GOLEM_JUDGMENT,			//ゴーレムの判定
+	HERO_HITBOX,			//主人公のヒットボックス二個目
 
 	//シーン
 	OBJ_TITLE,				//タイトル
@@ -91,6 +92,7 @@ struct UserData
 #include "ObjOperation.h"		//操作説明
 //補助系
 #include "Correction.h"			//補正
+#include "hero_hitbox.h"		//主人公のヒットボックス二個目
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

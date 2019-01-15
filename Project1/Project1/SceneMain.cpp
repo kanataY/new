@@ -57,8 +57,8 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(he, OBJ_HERO, 13);
 
 	//ゴーレムオブジェクト作成
-	CObjGolem* golem = new CObjGolem(450,100);
-	Objs::InsertObj(golem, OBJ_GOLEM, 13);
+	//CObjGolem* golem = new CObjGolem(450,100);
+	//Objs::InsertObj(golem, OBJ_GOLEM, 13);
 
 	CObjGolemJudgment* golemj = new CObjGolemJudgment(450, 100);
 	Objs::InsertObj(golemj, GOLEM_JUDGMENT, 13);
@@ -70,6 +70,10 @@ void CSceneMain::InitScene()
 	//背景（ブロック）オブジェクト作成
 	CObjBlock* block = new CObjBlock(map);
 	Objs::InsertObj(block, OBJ_BLOCK, 10);
+
+	//主人公のヒットボックス二個目（必要）
+	CObjhero_hitbox* hero_hit = new CObjhero_hitbox();
+	Objs::InsertObj(hero_hit, HERO_HITBOX, 10);
 
 	//補正オブジェクト作成
 	//CObjCorrection* cor = new CObjCorrection();
