@@ -28,10 +28,10 @@ void CObjGolem::Init()
 	m_speed = 0.5f;
 	m_ani_time = 0;
 	m_ani_frame = 0;  //Ã~ƒtƒŒ[ƒ€‚ğ‰Šú‚É‚·‚é
-	m_ani_max_time = 12; //ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔŠu•
+	m_ani_max_time = 15; //ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔŠu•
 
 	m_move = true;
-	m_pos = 1.0f;//¶Œü‚«
+	m_pos = 0.0f;//¶Œü‚«
 				 //block‚Æ‚ÌÕ“Ëó‘ÔŠm”F—p
 	m_hit_up = false;
 	m_hit_down = false;
@@ -40,8 +40,9 @@ void CObjGolem::Init()
 
 	m_block_type = 0; //“¥‚ñ‚Å‚¢‚éblock‚Ìí—Ş‚ğŠm”F—p
 
-					  //HitBox
-	Hits::SetHitBox(this, m_px, m_py, 64, 16, ELEMENT_ENEMY, OBJ_GOLEM, 1);
+	m_del = false;//€‚Ê‚Æ‚«‚Ìƒtƒ‰ƒO
+	//HitBox
+	Hits::SetHitBox(this, m_px, m_py, 40, 64, ELEMENT_ENEMY, OBJ_GOLEM, 1);
 }
 
 //ƒAƒNƒVƒ‡ƒ“
@@ -57,22 +58,25 @@ void CObjGolem::Action()
 		m_ani_frame++;//ƒtƒŒ[ƒ€‚ği‚ß‚é
 		m_ani_time = 0;
 	}
-	if (m_ani_frame == 6)//ƒtƒŒ[ƒ€‚ªÅŒã‚Ü‚Åi‚ñ‚¾‚ç–ß‚·
+	if (m_ani_frame == 8)//ƒtƒŒ[ƒ€‚ªÅŒã‚Ü‚Åi‚ñ‚¾‚ç–ß‚·
 	{
 		m_ani_frame = 0;
 	}
 	//ƒAƒjƒ[ƒVƒ‡ƒ“I—¹|||||||||||||||||||||||||||||||||||||||||||||
 
+	
 
 
 	//HitBox‚ÌˆÊ’u‚Ì•ÏX
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px+31 + block->GetScroll(), m_py-28);
-
+	if (m_pos == 1.0)
+	hit->SetPos(m_px+15 + block->GetScroll(), m_py);
+	else
+		hit->SetPos(m_px+10 + block->GetScroll(), m_py);
 	float c = m_px + block->GetScroll();
 
 	block->BlockHit(&c, &m_py, true,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx-32, &m_vy,
+		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type, false,false,0,false,false
 	);
 
@@ -90,14 +94,14 @@ void CObjGolem::Action()
 	}
 
 	//ˆÚ“®•ûŒü
-	if (m_move == true)
-	{
-		m_vx -= m_speed;
-		m_pos = 1.0f;
-	}
 	if (m_move == false)
 	{
 		m_vx += m_speed;
+		m_pos = 1.0f;
+	}
+	if (m_move == true)
+	{
+		m_vx -= m_speed;
 		m_pos = 0.0f;
 	}
 	if (hit->CheckElementHit(ELEMENT_NULL) == false)
@@ -109,6 +113,14 @@ void CObjGolem::Action()
 	//ˆÊ’u‚ÌXV
 	m_px += m_vx;
 	m_py += m_vy;
+
+	//€–Sˆ—
+	if (m_del == true)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+		return;//Á–Åˆ—‚ÍA‚±‚±‚ÅƒAƒNƒVƒ‡ƒ“ƒƒ]ƒbƒh‚ğI—¹‚³‚¹‚é
+	}
 }
 
 //ƒhƒ[
@@ -127,7 +139,7 @@ void CObjGolem::Draw()
 	src.m_top = 0.0f;
 	src.m_left = 0.0f + m_ani_frame * 64;
 	src.m_right = 64.0f + m_ani_frame * 64;
-	src.m_bottom = 384.0f;
+	src.m_bottom = 512.0f;
 
 	//•\¦ˆÊ’u‚Ìİ’è
 	dst.m_top = 0.0f + m_py;

@@ -22,6 +22,7 @@ enum OBJ_NAME
 
 	//補正
 	CORRECTION,				//補正
+	GOLEM_JUDGMENT,			//ゴーレムの判定
 
 	//シーン
 	OBJ_TITLE,				//タイトル
@@ -42,6 +43,7 @@ enum HIT_ELEMENTS
 	ELEMENT_HERO,
 	ELEMENT_ENEMY,
 	ELEMENT_ITEM,
+	ELEMENT_JUDGMENT,//ゴーレムのダメージ判定
 };
 //------------------------------------------------
 //ゲーム内で使用されるグローバル変数・定数・列挙--
@@ -76,6 +78,7 @@ struct UserData
 #include "ObjRushEnemy.h"		//突進する敵
 #include "ObjJumpEnemy.h"		//ジャンプする敵
 #include "ObjGolem.h"			//ゴーレム
+#include "GolemJudgment.h"      //ゴーレムの判定
 //ギミック
 #include "Objthorn.h"			//針
 #include "Objswitch.h"			//スイッチ

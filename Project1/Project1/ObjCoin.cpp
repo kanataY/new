@@ -73,14 +73,17 @@ void CObjCoin::Action()
 	}
 
 	//当たり判定を行うオブジェクト情報郡
-	int data_base[2] =
+	int data_base[5] =
 	{
+		OBJ_GOLD,
 		OBJ_JUMP_ENEMY,
 		OBJ_RUSH_ENEMY,
+		OBJ_GOLEM,
+		GOLEM_JUDGMENT,
 	};
 
 	//オブジェクト情報郡と当たり判定行い。当たっていれば削除
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		if (hit->CheckObjNameHit(data_base[i]) != nullptr||m_hit_left==true||m_hit_right==true)
 		{

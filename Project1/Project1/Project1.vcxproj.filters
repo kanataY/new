@@ -156,6 +156,9 @@
     <ClInclude Include="Objswitch.h">
       <Filter>ソース ファイル\GameMain\gimmick</Filter>
     </ClInclude>
+    <ClInclude Include="GolemJudgment.h">
+      <Filter>ソース ファイル\GameMain\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -262,6 +265,9 @@
     </ClCompile>
     <ClCompile Include="Objswitch.cpp">
       <Filter>ソース ファイル\GameMain\gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="GolemJudgment.cpp">
+      <Filter>ソース ファイル\GameMain\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
