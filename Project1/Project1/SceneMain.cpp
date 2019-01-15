@@ -65,8 +65,8 @@ void CSceneMain::InitScene()
 	//Objs::InsertObj(jump, OBJ_JUMP_ENEMY, 13);
 
 	//ゴーレムオブジェクト作成
-	CObjGolem* golem = new CObjGolem(450,100);
-	Objs::InsertObj(golem, OBJ_GOLEM, 13);
+	//CObjGolem* golem = new CObjGolem(450,100);
+	//Objs::InsertObj(golem, OBJ_GOLEM, 13);
 
 	//スイッチオブジェクト作成
 	CObjswitch* swi = new CObjswitch(300, 480);
@@ -75,6 +75,10 @@ void CSceneMain::InitScene()
 	//背景（ブロック）オブジェクト作成
 	CObjBlock* block = new CObjBlock(map);
 	Objs::InsertObj(block, OBJ_BLOCK, 10);
+
+	//主人公のヒットボックス二個目（必要）
+	CObjhero_hitbox* hero_hit = new CObjhero_hitbox();
+	Objs::InsertObj(hero_hit, HERO_HITBOX, 10);
 
 	//補正オブジェクト作成
 	//CObjCorrection* cor = new CObjCorrection();

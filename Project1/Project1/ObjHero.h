@@ -55,6 +55,7 @@ private:
 	//blockとの衝突状態確認用
 	bool m_hit_up;
 	bool m_hit_down;
+	bool m_hit_down_gold; //金塊の上に乗っかている時用
 	bool m_hit_left;
 	bool m_hit_right;
 

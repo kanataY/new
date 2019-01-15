@@ -134,6 +134,7 @@
     <ClInclude Include="GameL\SetWindow.h" />
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
+    <ClInclude Include="hero_hitbox.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjBlock.h" />
     <ClInclude Include="ObjCoin.h" />
@@ -172,6 +173,7 @@
     <ClCompile Include="GameL\SetWindow.cpp" />
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
+    <ClCompile Include="hero_hitbox.cpp" />
     <ClCompile Include="ObjBlock.cpp" />
     <ClCompile Include="ObjCoin.cpp" />
     <ClCompile Include="ObjGameClear.cpp" />

@@ -110,6 +110,8 @@ void CObjGold::Hit()
 	CObjswitch* swch=(CObjswitch*)Objs::GetObj(OBJ_SWITCH);
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	//hero_Hit
+	CObjhero_hitbox* hero_hit = (CObjhero_hitbox*)Objs::GetObj(HERO_HITBOX);
 
 	if (m_gold_vy == 0 && m_hit_down == false)
 	{
@@ -152,7 +154,7 @@ void CObjGold::Hit()
 				{
 					//上
 					//主人公が金塊の左右に当たった時、主人公がブロックを登ろうとしてるときに解除
-					if (hero->SetG() == false && hero->Gety() == false)
+					if (hero->SetG() == false && hero->Gety() == false /*&& hero_hit->HitCheck() == true*/ && hero_hit->GetY() > m_py)
 						hero->SetY(m_py - 30.0f);//主人公を金塊の上に貼り付けにする。
 				}
 			}
