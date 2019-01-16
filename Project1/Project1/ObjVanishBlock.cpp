@@ -80,4 +80,5 @@ void CObjVanishBlock::Hit()
 	else
 	{
 		m_swich_flag = false;//‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Í•`‰æ‚ğÁ‚³‚È‚¢‚æ‚¤‚É‚·‚é
+	}
 }
