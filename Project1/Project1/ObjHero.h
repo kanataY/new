@@ -47,6 +47,7 @@ private:
 	bool m_coinshot_flag;//コインを出しすぎないようにするため
 	bool m_gold_Y;
 	bool m_gold_M;
+	
 
 	//-アニメーション
 	int m_ani_time; //アニメーションフレーム動作感覚

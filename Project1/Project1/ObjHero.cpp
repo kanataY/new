@@ -94,9 +94,11 @@ void CObjHero::Action()
 		m_vx += m_speed;
 		m_pos = 0.0f;
 	}
-	if (Input::GetVKey(VK_LEFT) == true)  //左移動
+	if (Input::GetVKey(VK_LEFT) == true && hit->CheckObjNameHit(OBJ_GOLEM) == nullptr)  //左移動
 	{
 		m_ani_time++;//フレーム動作感覚タイムを進める
+		if (hit->CheckObjNameHit(OBJ_GOLEM) != nullptr)
+			m_speed = 0.1f;
 		m_vx += -m_speed;
 		m_pos = 1.0f;
 	}
@@ -204,10 +206,17 @@ void CObjHero::Action()
 		if (golem != nullptr)
 		{
 			float golem_x= golem->GetX();
-			if (golem->GetPos() == 0.0&&m_px <= golem_x+25)
+			//ゴーレムが右側にいるときの反射
+			if (golem->GetPos() == 0.0&&m_px <= golem_x + block->GetScroll())
 				m_vx += -0.7f ;
-			if (golem->GetPos() == 1.0&&m_px <= golem_x+25)
+			if (golem->GetPos() == 1.0&&m_px <= golem_x + block->GetScroll())
 				m_vx += -m_speed;
+			//ゴーレムが左側にいるときの反射
+			if (golem->GetPos() == 0.0&&m_px >= golem_x + block->GetScroll())
+				m_vx += m_speed;
+			if (golem->GetPos() == 1.0&&m_px >= golem_x + block->GetScroll())
+				m_vx += 0.7;
+
 		}
 	}
 	//ブロックにのぼれるようにする
