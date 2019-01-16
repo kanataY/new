@@ -63,6 +63,7 @@ void CObjHero::Action()
 	//ƒuƒƒbƒNî•ñ‚ðŽ‚Á‚Ä‚­‚é
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CObjCoin* coin = ( CObjCoin*)Objs::GetObj(OBJ_COIN);
+	CObjGolem* golem = (CObjGolem*)Objs::GetObj(OBJ_GOLEM);
 	//•â³‚Ìî•ñ‚ðŽ‚Á‚Ä‚­‚é
 	//CObjCorrection* cor = (CObjCorrection*)Objs::GetObj(CORRECTION);
 
@@ -80,8 +81,7 @@ void CObjHero::Action()
 	}
 	//ƒAƒjƒ[ƒVƒ‡ƒ“I—¹|||||||||||||||||||||||||||||||||||||||||||||
 
-		//|||||||||||||||||||||||||||||
-
+	//ˆÚ“®ˆ—|||||||||||||||||||||||||||||
 	if (Input::GetVKey(VK_RIGHT) == true)  //‰EˆÚ“®
 	{
 		m_ani_time++;//ƒtƒŒ[ƒ€“®ìŠ´Šoƒ^ƒCƒ€‚ði‚ß‚é
@@ -106,6 +106,8 @@ void CObjHero::Action()
 	{
 		m_ani_frame = 1;
 	}
+	
+	//--------------------------------------------------------------------------------------
 	//‚¨‹à‚ð’u‚­[[[[[[[[[[[[[
 	m_gold_time++;//‹à‰ò‚ÌŠÔŠu‚ð‘‚â‚·
 
@@ -181,12 +183,8 @@ void CObjHero::Action()
 	m_vx += -(m_vx * 0.15f);
 	m_vy += -(m_vy * 0.15f);
 
-	//ˆÚ“®I—¹---------------------------------------------------
-
-
 	//Ž©—R—Ž‰º‰^“®
 	m_vy += 9.8 / (8.0f);
-
 	//ƒWƒƒƒ“ƒvI—¹[[[[[[[[[[[[[[[[[[[[[
 
 	//HitBox‚ÌˆÊ’u‚Ì•ÏX
@@ -195,8 +193,19 @@ void CObjHero::Action()
 
 	//“–‚½‚è”»’èŠÖ˜A
 	HitBox();
-
-	//ˆÚ“®I—¹---------------------------------------------------
+	//ƒS[ƒŒƒ€‚É“–‚½‚Á‚½Žž
+	if (hit->CheckObjNameHit(OBJ_GOLEM) != nullptr)
+	{
+		//ƒS[ƒŒƒ€‚ª‘¶Ý‚µ‚Ä‚¢‚éŽž
+		if (golem != nullptr)
+		{
+			float golem_x= golem->GetX();
+			if (golem->GetPos() == 0.0&&m_px < golem_x)
+				m_vx += -m_speed * 2;
+			if (golem->GetPos() == 1.0&&m_px < golem_x)
+				m_vx += -m_speed*2;
+		}
+	}
 	//ƒuƒƒbƒN‚É‚Ì‚Ú‚ê‚é‚æ‚¤‚É‚·‚é
 	float b = m_py + 32.0f;
 

@@ -57,8 +57,8 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(he, OBJ_HERO, 13);
 
 	//ゴーレムオブジェクト作成
-	//CObjGolem* golem = new CObjGolem(450,100);
-	//Objs::InsertObj(golem, OBJ_GOLEM, 13);
+	CObjGolem* golem = new CObjGolem(450,100);
+	Objs::InsertObj(golem, OBJ_GOLEM, 13);
 
 	CObjGolemJudgment* golemj = new CObjGolemJudgment(450, 100);
 	Objs::InsertObj(golemj, GOLEM_JUDGMENT, 13);
