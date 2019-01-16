@@ -179,7 +179,7 @@ void CObjHero::Action()
 
 	//ñÄéC
 	m_vx += -(m_vx * 0.15f);
-	m_vy += -(m_vy * 0.15f);
+//	m_vy += -(m_vy * 0.15f);
 
 	//à⁄ìÆèIóπ---------------------------------------------------
 
@@ -209,7 +209,7 @@ void CObjHero::Action()
 
 	block->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type, false, false, 0,false,true
+		&m_block_type, false, false, 0,false,false
 	);
 
 	//Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|
