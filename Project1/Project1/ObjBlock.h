@@ -22,6 +22,7 @@ public:
 
 	int  GetMap(int x, int y);//マップ情報の取得
 	int  GetMapRecord(int x, int y);//マップ情報の取得(記録版)
+	int  GetSwichTime() { return m_swich_time; }
 	void  SetMap(int x, int y, int m) { m_map[y][x] = m; }
 	bool  GetGold() { return m_gold_flag; }
 
@@ -47,6 +48,7 @@ private:
 	float m_py;
 	float m_bx1;     //背景の動く値
 	float m_bx2;     //背景の動く値2
+	int   m_swich_time; //スイッチが押されている時間
 
 	bool m_gold_flag; //壁上るときに金塊の判定を消す
 
