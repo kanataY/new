@@ -63,6 +63,7 @@ void CObjHero::Action()
 	//ƒuƒƒbƒNî•ñ‚ğ‚Á‚Ä‚­‚é
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CObjCoin* coin = ( CObjCoin*)Objs::GetObj(OBJ_COIN);
+	CObjGolem* golem = (CObjGolem*)Objs::GetObj(OBJ_GOLEM);
 	//•â³‚Ìî•ñ‚ğ‚Á‚Ä‚­‚é
 	//CObjCorrection* cor = (CObjCorrection*)Objs::GetObj(CORRECTION);
 
@@ -80,17 +81,24 @@ void CObjHero::Action()
 	}
 	//ƒAƒjƒ[ƒVƒ‡ƒ“I—¹|||||||||||||||||||||||||||||||||||||||||||||
 
-		//|||||||||||||||||||||||||||||
+	//HitBox‚ÌˆÊ’u‚Ì•ÏX
+	CHitBox* hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px + 15.0f, m_py + 15.0f);
 
-	if (Input::GetVKey(VK_RIGHT) == true)  //‰EˆÚ“®
+	//ˆÚ“®ˆ—|||||||||||||||||||||||||||||
+	if (Input::GetVKey(VK_RIGHT) == true&&hit->CheckObjNameHit(OBJ_GOLEM)==nullptr)  //‰EˆÚ“®
 	{
 		m_ani_time++;//ƒtƒŒ[ƒ€“®ìŠ´Šoƒ^ƒCƒ€‚ği‚ß‚é
+		if (hit->CheckObjNameHit(OBJ_GOLEM) != nullptr)
+			m_speed = 0.1f;
 		m_vx += m_speed;
 		m_pos = 0.0f;
 	}
-	if (Input::GetVKey(VK_LEFT) == true)  //¶ˆÚ“®
+	if (Input::GetVKey(VK_LEFT) == true && hit->CheckObjNameHit(OBJ_GOLEM) == nullptr)  //¶ˆÚ“®
 	{
 		m_ani_time++;//ƒtƒŒ[ƒ€“®ìŠ´Šoƒ^ƒCƒ€‚ği‚ß‚é
+		if (hit->CheckObjNameHit(OBJ_GOLEM) != nullptr)
+			m_speed = 0.1f;
 		m_vx += -m_speed;
 		m_pos = 1.0f;
 	}
@@ -106,6 +114,8 @@ void CObjHero::Action()
 	{
 		m_ani_frame = 1;
 	}
+	
+	//--------------------------------------------------------------------------------------
 	//‚¨‹à‚ğ’u‚­[[[[[[[[[[[[[
 	m_gold_time++;//‹à‰ò‚ÌŠÔŠu‚ğ‘‚â‚·
 
@@ -181,22 +191,34 @@ void CObjHero::Action()
 	m_vx += -(m_vx * 0.15f);
 //	m_vy += -(m_vy * 0.15f);
 
-	//ˆÚ“®I—¹---------------------------------------------------
-
-
 	//©—R—‰º‰^“®
 	m_vy += 9.8 / (8.0f);
-
 	//ƒWƒƒƒ“ƒvI—¹[[[[[[[[[[[[[[[[[[[[[
 
-	//HitBox‚ÌˆÊ’u‚Ì•ÏX
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + 15.0f, m_py + 15.0f);
+	
 
 	//“–‚½‚è”»’èŠÖ˜A
 	HitBox();
+	//ƒS[ƒŒƒ€‚É“–‚½‚Á‚½
+	if (hit->CheckObjNameHit(OBJ_GOLEM) != nullptr)
+	{
+		//ƒS[ƒŒƒ€‚ª‘¶İ‚µ‚Ä‚¢‚é
+		if (golem != nullptr)
+		{
+			float golem_x= golem->GetX();
+			//ƒS[ƒŒƒ€‚ª‰E‘¤‚É‚¢‚é‚Æ‚«‚Ì”½Ë
+			if (golem->GetPos() == 0.0&&m_px <= golem_x + block->GetScroll())
+				m_vx += -0.7f ;
+			if (golem->GetPos() == 1.0&&m_px <= golem_x + block->GetScroll())
+				m_vx += -m_speed;
+			//ƒS[ƒŒƒ€‚ª¶‘¤‚É‚¢‚é‚Æ‚«‚Ì”½Ë
+			if (golem->GetPos() == 0.0&&m_px >= golem_x + block->GetScroll())
+				m_vx += m_speed;
+			if (golem->GetPos() == 1.0&&m_px >= golem_x + block->GetScroll())
+				m_vx += 0.7;
 
-	//ˆÚ“®I—¹---------------------------------------------------
+		}
+	}
 	//ƒuƒƒbƒN‚É‚Ì‚Ú‚ê‚é‚æ‚¤‚É‚·‚é
 	float b = m_py + 32.0f;
 

@@ -20,6 +20,8 @@ public:
 	float GetVX() { return m_vx; }
 	int   GetPos() { return m_pos; }					//posの値渡す
 	bool Gety() { return m_gold_M; }
+	bool GetHitLeft() { return m_hit_left; }			//左が壁に当たってるかの情報渡す
+	bool GetHitRight() { return m_hit_right; }			//右が壁に当たってるかの情報渡す
 
 	void  SetX(float x) { m_px = x; }					//m_px,m_pyの値をほかのcppでもいじれるようにする
 	void  SetY(float y) { m_py = y; }
@@ -45,6 +47,7 @@ private:
 	bool m_coinshot_flag;//コインを出しすぎないようにするため
 	bool m_gold_Y;
 	bool m_gold_M;
+	
 
 	//-アニメーション
 	int m_ani_time; //アニメーションフレーム動作感覚

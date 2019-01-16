@@ -50,7 +50,8 @@ void CObjGolem::Action()
 {
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
+	//主人公の情報を持ってくる
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	//アニメーションーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 	m_ani_time++;//フレーム動作感覚タイムを進める
 	if (m_ani_time > m_ani_max_time)//フレーム動作感覚タイムが最大まで行ったら
@@ -82,13 +83,13 @@ void CObjGolem::Action()
 
 	Hit(); //当たり判定
 
-		   //左側が壁に当たると反転
-	if (m_hit_left == true)
+    //左側が壁に当たると反転
+	if (m_hit_left == true || hit->CheckObjNameHit(OBJ_HERO) != nullptr && hero->GetHitLeft() == true)
 	{
 		m_move = true;
 	}
 	//右側が壁に当たると反転
-	if (m_hit_right == true)
+	if (m_hit_right == true || hit->CheckObjNameHit(OBJ_HERO) != nullptr && hero->GetHitRight() == true)
 	{
 		m_move = false;
 	}
