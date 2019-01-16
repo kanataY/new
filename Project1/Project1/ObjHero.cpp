@@ -81,10 +81,16 @@ void CObjHero::Action()
 	}
 	//ƒAƒjƒ[ƒVƒ‡ƒ“I—¹|||||||||||||||||||||||||||||||||||||||||||||
 
+	//HitBox‚ÌˆÊ’u‚Ì•ÏX
+	CHitBox* hit = Hits::GetHitBox(this);
+	hit->SetPos(m_px + 15.0f, m_py + 15.0f);
+
 	//ˆÚ“®ˆ—|||||||||||||||||||||||||||||
-	if (Input::GetVKey(VK_RIGHT) == true)  //‰EˆÚ“®
+	if (Input::GetVKey(VK_RIGHT) == true&&hit->CheckObjNameHit(OBJ_GOLEM)==nullptr)  //‰EˆÚ“®
 	{
 		m_ani_time++;//ƒtƒŒ[ƒ€“®ìŠ´Šoƒ^ƒCƒ€‚ði‚ß‚é
+		if (hit->CheckObjNameHit(OBJ_GOLEM) != nullptr)
+			m_speed = 0.1f;
 		m_vx += m_speed;
 		m_pos = 0.0f;
 	}
@@ -187,9 +193,7 @@ void CObjHero::Action()
 	m_vy += 9.8 / (8.0f);
 	//ƒWƒƒƒ“ƒvI—¹[[[[[[[[[[[[[[[[[[[[[
 
-	//HitBox‚ÌˆÊ’u‚Ì•ÏX
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + 15.0f, m_py + 15.0f);
+	
 
 	//“–‚½‚è”»’èŠÖ˜A
 	HitBox();
@@ -200,10 +204,10 @@ void CObjHero::Action()
 		if (golem != nullptr)
 		{
 			float golem_x= golem->GetX();
-			if (golem->GetPos() == 0.0&&m_px < golem_x)
-				m_vx += -m_speed * 2;
-			if (golem->GetPos() == 1.0&&m_px < golem_x)
-				m_vx += -m_speed*2;
+			if (golem->GetPos() == 0.0&&m_px <= golem_x+25)
+				m_vx += -0.7f ;
+			if (golem->GetPos() == 1.0&&m_px <= golem_x+25)
+				m_vx += -m_speed;
 		}
 	}
 	//ƒuƒƒbƒN‚É‚Ì‚Ú‚ê‚é‚æ‚¤‚É‚·‚é

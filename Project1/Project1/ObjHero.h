@@ -20,6 +20,8 @@ public:
 	float GetVX() { return m_vx; }
 	int   GetPos() { return m_pos; }					//pos‚Ì’l“n‚·
 	bool Gety() { return m_gold_M; }
+	bool GetHitLeft() { return m_hit_left; }			//¶‚ª•Ç‚É“–‚½‚Á‚Ä‚é‚©‚Ìî•ñ“n‚·
+	bool GetHitRight() { return m_hit_right; }			//‰E‚ª•Ç‚É“–‚½‚Á‚Ä‚é‚©‚Ìî•ñ“n‚·
 
 	void  SetX(float x) { m_px = x; }					//m_px,m_py‚Ì’l‚ğ‚Ù‚©‚Ìcpp‚Å‚à‚¢‚¶‚ê‚é‚æ‚¤‚É‚·‚é
 	void  SetY(float y) { m_py = y; }
