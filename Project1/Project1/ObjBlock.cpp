@@ -27,6 +27,8 @@ void CObjBlock::Init()
 	m_py = 0.0f;	//位置
 	m_bx1 = 0.0f;
 	m_bx2 = 800.0f;
+	m_swich_time = 0;
+
 	m_gold_flag = false;
 
 	m_scroll = 0.0f;
@@ -107,13 +109,41 @@ void CObjBlock::Action()
 			Objs::InsertObj(goal, OBJ_GOAL, 16);
 			m_map[i][ex] = 0;
 		}
-		//列の中から１を探す
+		//列の中から4を探す
 		if (m_map[i][ex] == 4)
 		{
 			//針を出す
 			CObjthorn* thorn = new CObjthorn(ex*64, i*64);
 			Objs::InsertObj(thorn, OBJ_THORN, 16);
 			m_map[i][ex] = 999;							//針を出した後に金塊の当たり判定を残すために999を利用
+		}
+
+		//列の中から5を探す
+		if (m_map[i][ex] == 5)
+		{
+			//スイッチオブジェクト作成
+			CObjswitch* swi = new CObjswitch(ex * 64, i * 64 + 32.0f);
+			Objs::InsertObj(swi, OBJ_SWITCH, 13);
+			m_map[i][ex] = 0;	
+		}
+
+
+		//列の中から6を探す
+		if (m_map[i][ex] == 6)
+		{
+			//消えるブロックを出す
+			CObjVanishBlock* vanish = new CObjVanishBlock(ex * 64, i * 64);
+			Objs::InsertObj(vanish, OBJ_VANISHBLOCK, 16);
+			m_map[i][ex] = 998;							//消えるブロックを出した後に消えるブロックの当たり判定を残すために998を利用
+		}
+
+		//列の中から7を探す
+		if (m_map[i][ex] == 7)
+		{
+			//消えるブロックを出す
+			CObjRushEnemy* rush = new CObjRushEnemy(ex * 64, i * 64);
+			Objs::InsertObj(rush, OBJ_RUSH_ENEMY, 16);
+			m_map[i][ex] = 0;							
 		}
 	}
 }
@@ -265,7 +295,35 @@ void CObjBlock::BlockHit(
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3)
+			//消えるブロックの判定を消すーーーーーーーーーーーーーーーーーーーー
+			//スイッチの情報を持ってくる
+			CObjswitch* swi = (CObjswitch*)Objs::GetObj(OBJ_SWITCH);
+
+			if (swi->GetSwitchFlag() == true)//スイッチが押されてる場合は判定を消す
+			{
+				m_swich_time++;//スイッチが押されてからしばらくしたら通れるようにする
+
+				if (m_swich_time > 160000)
+				{
+					//列の中から998を探す
+					if (m_map[i][j] == 998)
+					{
+						m_map[i][j] = 997;	//通れるようにする
+					}
+				}
+			}
+
+			if (swi->GetSwitchFlag() == false)//スイッチが押されてない場合は判定を消さない
+			{
+				//列の中から997を探す
+				if (m_map[i][j] == 997)
+				{
+					m_map[i][j] = 998;	//通れなくする。
+				}
+				m_swich_time = 0;
+			}
+			//－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3 && m_map[i][j] != 997)
 			{
 				//要素番号を座標に変更
 				float bx = j*64.0f;

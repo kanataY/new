@@ -156,6 +156,9 @@
     <ClInclude Include="ObjGoal.h">
       <Filter>ソース ファイル\GameMain\gimmick</Filter>
     </ClInclude>
+    <ClInclude Include="ObjVanishBlock.h">
+      <Filter>ソース ファイル\GameMain\gimmick</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -264,6 +267,9 @@
       <Filter>ソース ファイル\GameMain\Hero</Filter>
     </ClCompile>
     <ClCompile Include="ObjGoal.cpp">
+      <Filter>ソース ファイル\GameMain\gimmick</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjVanishBlock.cpp">
       <Filter>ソース ファイル\GameMain\gimmick</Filter>
     </ClCompile>
   </ItemGroup>

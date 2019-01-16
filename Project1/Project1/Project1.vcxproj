@@ -152,6 +152,7 @@
     <ClInclude Include="Objswitch.h" />
     <ClInclude Include="Objthorn.h" />
     <ClInclude Include="ObjTitle.h" />
+    <ClInclude Include="ObjVanishBlock.h" />
     <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneMain.h" />
     <ClInclude Include="SceneMenu.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="Objswitch.cpp" />
     <ClCompile Include="Objthorn.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
+    <ClCompile Include="ObjVanishBlock.cpp" />
     <ClCompile Include="SceneGameClear.cpp" />
     <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="SceneMenu.cpp" />

@@ -172,6 +172,7 @@ void CObjRushEnemy::Hit()
 		{
 			if (hit_data[i] != NULL)
 			{
+
 				float r2 = hit_data[i]->r;
 
 				//è„Ç…èÊÇÍÇÈÇÊÇ§Ç…Ç∑ÇÈ
@@ -188,7 +189,7 @@ void CObjRushEnemy::Hit()
 
 				}
 
-				if (r2 < 45 && r2>0 || r2 > 330)
+				if (r2 <= 45 && r2>=0 || r2 > 330)
 				{
 					//âE
 					m_hit_left = true;
