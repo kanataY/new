@@ -19,6 +19,7 @@ enum OBJ_NAME
 	//ギミック
 	OBJ_THORN,				//針
 	OBJ_SWITCH,				//スイッチ
+	OBJ_GOAL,				//ゴール
 
 	//補正
 	CORRECTION,				//補正
@@ -83,6 +84,7 @@ struct UserData
 //ギミック
 #include "Objthorn.h"			//針
 #include "Objswitch.h"			//スイッチ
+#include "ObjGoal.h"			//ゴール
 //シーン
 #include "ObjTitle.h"			//タイトル
 #include "ObjGameOver.h"		//ゲームオーバー
