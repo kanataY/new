@@ -46,7 +46,7 @@ void CSceneMain::InitScene()
 	//“GŠÖ˜A----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\enemy\\boo.png", 5, TEX_SIZE_128);
 	Draw::LoadImageW(L"Image\\enemy\\jumpenemy.png", 6, TEX_SIZE_128);
-	Draw::LoadImageW(L"Image\\enemy\\Golem1.png", 11, TEX_SIZE_512);
+	Draw::LoadImageW(L"Image\\enemy\\Golem2.png", 11, TEX_SIZE_512);
 	//ƒMƒ~ƒbƒN----------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\gimmick\\Chest.png", 8, TEX_SIZE_128);
 	Draw::LoadImageW(L"Image\\gimmick\\switch.png", 9, TEX_SIZE_128);
