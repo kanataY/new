@@ -236,8 +236,8 @@ void CObjHero::Action()
 
 	//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-	//ƒvƒŒƒCƒ„[Ž€–Sˆ—------------------------------------------------------------------------------
-	if (hit->CheckObjNameHit(OBJ_THORN)!=nullptr)
+	//ƒvƒŒƒCƒ„[ƒŠƒXƒ^[ƒgˆ—------------------------------------------------------------------------------
+	if (hit->CheckObjNameHit(OBJ_THORN)!=nullptr|| Input::GetVKey('R') == true)
 	{
 		Scene::SetScene(new CSceneMain());
 	}

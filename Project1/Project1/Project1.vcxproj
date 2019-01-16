@@ -140,7 +140,6 @@
     <ClInclude Include="ObjBlock.h" />
     <ClInclude Include="ObjCoin.h" />
     <ClInclude Include="ObjGameClear.h" />
-    <ClInclude Include="ObjGameOver.h" />
     <ClInclude Include="ObjGoal.h" />
     <ClInclude Include="ObjGold.h" />
     <ClInclude Include="ObjGolem.h" />
@@ -154,7 +153,6 @@
     <ClInclude Include="Objthorn.h" />
     <ClInclude Include="ObjTitle.h" />
     <ClInclude Include="SceneGameClear.h" />
-    <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneMain.h" />
     <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="SceneOperation.h" />
@@ -180,7 +178,6 @@
     <ClCompile Include="ObjBlock.cpp" />
     <ClCompile Include="ObjCoin.cpp" />
     <ClCompile Include="ObjGameClear.cpp" />
-    <ClCompile Include="ObjGameOver.cpp" />
     <ClCompile Include="ObjGoal.cpp" />
     <ClCompile Include="ObjGold.cpp" />
     <ClCompile Include="ObjGolem.cpp" />
@@ -194,7 +191,6 @@
     <ClCompile Include="Objthorn.cpp" />
     <ClCompile Include="ObjTitle.cpp" />
     <ClCompile Include="SceneGameClear.cpp" />
-    <ClCompile Include="SceneGameOver.cpp" />
     <ClCompile Include="SceneMain.cpp" />
     <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="SceneOperation.cpp" />
