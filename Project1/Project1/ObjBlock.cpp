@@ -81,7 +81,6 @@ void CObjBlock::Action()
 			m_bx2 = 800.0f;
 	}
 
-
 	//マップ関連ーーーーーーーーーー
 	float line = 0.0f;
 
@@ -111,7 +110,7 @@ void CObjBlock::Action()
 		//列の中から１を探す
 		if (m_map[i][ex] == 4)
 		{
-			//コインを出す
+			//針を出す
 			CObjthorn* thorn = new CObjthorn(ex*64, i*64);
 			Objs::InsertObj(thorn, OBJ_THORN, 16);
 			m_map[i][ex] = 999;							//針を出した後に金塊の当たり判定を残すために999を利用
@@ -272,11 +271,14 @@ void CObjBlock::BlockHit(
 				float bx = j*64.0f;
 				float by = i*64.0f;
 
+				if (i == 8 && j == 1)
+					int a = 0;
+
 				//スクロールの影響
 				float scroll = scroll_on ? m_scroll : 0;
 
 				//主人公とブロックの当たり判定
-				if ((*x + (-scroll) + m_cx > bx) && (*x + (-scroll) < bx + m_cx) && (*y + m_cy > by) && (*y < by + m_cy))
+				if ((*x + (-scroll) + m_cx > bx) && (*x + (-scroll) < bx + m_cx) && (*y + m_cy >= by) && (*y <= by + m_cy))
 				{
 					//上下左右判定
 
@@ -361,7 +363,6 @@ void CObjBlock::BlockHit(
 								if (*vy < 0)
 								{
 									*vy = 0.0f;
-
 								}
 							}
 						}
