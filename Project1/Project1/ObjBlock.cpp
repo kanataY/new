@@ -298,6 +298,7 @@ void CObjBlock::BlockHit(
 			//消えるブロックの判定を消すーーーーーーーーーーーーーーーーーーーー
 			//スイッチの情報を持ってくる
 			CObjswitch* swi = (CObjswitch*)Objs::GetObj(OBJ_SWITCH);
+			//スイッチが存在している時のみ判定
 			if (swi != nullptr)
 			{
 				if (swi->GetSwitchFlag() == true)//スイッチが押されてる場合は判定を消す
