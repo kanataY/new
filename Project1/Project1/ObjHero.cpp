@@ -227,7 +227,6 @@ void CObjHero::Action()
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 			&m_block_type, false, true, &m_py,&m_gold_M,true
 		);
-	
 
 	block->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
@@ -372,27 +371,6 @@ void CObjHero::HitBox()
 		con = 0;
 	}
 	
-	//どうするか悩み中…
-	/*if (con == 1) {
-		m_py -= 24.0f; con = 0;
-	}
-	else if (con > 1 && m_pos == 1.0f)
-	{
-		m_gold_Y = true;
-		m_vx = 0.0f;
-		m_px += 0.5f;
-		m_vy = 0.0f;
-	}
-	else if (con > 1 && m_pos == 0.0f)
-	{
-		m_gold_Y = true;
-		m_vx = 0.0f;
-		m_px -= 0.5f;
-		m_vy = 0.0f;
-	}*/
-
-		
-
 	//ヒットボックスに触れていない時
 	if (hit->CheckObjNameHit(OBJ_GOLD) == nullptr)
 	{

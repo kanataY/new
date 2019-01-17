@@ -134,16 +134,35 @@ void CObjBlock::Action()
 			//Á‚¦‚éƒuƒƒbƒN‚ğo‚·
 			CObjVanishBlock* vanish = new CObjVanishBlock(ex * 64, i * 64);
 			Objs::InsertObj(vanish, OBJ_VANISHBLOCK, 16);
-			m_map[i][ex] = 998;							//Á‚¦‚éƒuƒƒbƒN‚ğo‚µ‚½Œã‚ÉÁ‚¦‚éƒuƒƒbƒN‚Ì“–‚½‚è”»’è‚ğc‚·‚½‚ß‚É998‚ğ—˜—p
+			if (((UserData*)Save::GetData())->m_stage_count == 3)	//ƒXƒe[ƒW‚R‚È‚çÅ‰‚Í•`‰æ‚µ‚È‚¢‚Ì‚Å”»’è‚à•Ï‚¦‚é
+			{
+				m_map[i][ex] = 97;	
+			}
+			m_map[i][ex] = 98;							//Á‚¦‚éƒuƒƒbƒN‚ğo‚µ‚½Œã‚ÉÁ‚¦‚éƒuƒƒbƒN‚Ì“–‚½‚è”»’è‚ğc‚·‚½‚ß‚É98‚ğ—˜—p
 		}
 
 		//—ñ‚Ì’†‚©‚ç7‚ğ’T‚·
 		if (m_map[i][ex] == 7)
 		{
-			//Á‚¦‚éƒuƒƒbƒN‚ğo‚·
+			//“Ëi‚·‚é“G‚ğo‚·
 			CObjRushEnemy* rush = new CObjRushEnemy(ex * 64, i * 64);
 			Objs::InsertObj(rush, OBJ_RUSH_ENEMY, 16);
-			m_map[i][ex] = 0;							
+			m_map[i][ex] = 0;			
+			m_map_Record[i][ex] = 0; //‹L˜^—p‚àÁ‚·
+		}
+
+		//—ñ‚Ì’†‚©‚ç8‚ğ’T‚·
+		if (m_map[i][ex] == 8)
+		{
+			//ƒS[ƒŒƒ€•ƒS[ƒŒƒ€‚Ì–Ú‚Ì”»’è‚ğo‚·
+			CObjGolem* golem = new CObjGolem(ex * 64, i * 64);
+			Objs::InsertObj(golem, OBJ_GOLEM, 13);
+
+			CObjGolemJudgment* golemj = new CObjGolemJudgment(ex * 64, i * 64);
+			Objs::InsertObj(golemj, GOLEM_JUDGMENT, 13);
+
+			m_map[i][ex] = 0;
+			m_map_Record[i][ex] = 0; //‹L˜^—p‚àÁ‚·
 		}
 	}
 }
@@ -306,24 +325,46 @@ void CObjBlock::BlockHit(
 				if (m_swich_time > 160000)
 				{
 					//—ñ‚Ì’†‚©‚ç998‚ğ’T‚·
-					if (m_map[i][j] == 998)
+					if (((UserData*)Save::GetData())->m_stage_count == 3)	//ƒXƒe[ƒW‚R‚È‚çÅ‰‚Í•`‰æ‚µ‚È‚¢‚Ì‚Å”»’è‚à•Ï‚¦‚é
 					{
-						m_map[i][j] = 997;	//’Ê‚ê‚é‚æ‚¤‚É‚·‚é
+						if (m_map[i][j] == 97)
+						{
+							m_map[i][j] = 98;	//’Ê‚ê‚é‚æ‚¤‚É‚·‚é
+						}
+					}
+					else
+					{
+						if (m_map[i][j] == 98)
+						{
+							m_map[i][j] = 97;	//’Ê‚ê‚é‚æ‚¤‚É‚·‚é
+						}
 					}
 				}
 			}
 
 			if (swi->GetSwitchFlag() == false)//ƒXƒCƒbƒ`‚ª‰Ÿ‚³‚ê‚Ä‚È‚¢ê‡‚Í”»’è‚ğÁ‚³‚È‚¢
 			{
-				//—ñ‚Ì’†‚©‚ç997‚ğ’T‚·
-				if (m_map[i][j] == 997)
+				//—ñ‚Ì’†‚©‚ç998‚ğ’T‚·
+				if (((UserData*)Save::GetData())->m_stage_count == 3)	//ƒXƒe[ƒW‚R‚È‚çÅ‰‚Í•`‰æ‚µ‚È‚¢‚Ì‚Å”»’è‚à•Ï‚¦‚é
 				{
-					m_map[i][j] = 998;	//’Ê‚ê‚È‚­‚·‚éB
+					//—ñ‚Ì’†‚©‚ç997‚ğ’T‚·
+					if (m_map[i][j] == 98)
+					{
+						m_map[i][j] = 97;	//’Ê‚ê‚È‚­‚·‚éB
+					}
+				}
+				else
+				{
+					//—ñ‚Ì’†‚©‚ç997‚ğ’T‚·
+					if (m_map[i][j] == 97)
+					{
+						m_map[i][j] = 98;	//’Ê‚ê‚È‚­‚·‚éB
+					}
 				}
 				m_swich_time = 0;
 			}
 			//||||||||||||||||||||||||||||
-			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3 && m_map[i][j] != 997)
+			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3 && m_map[i][j] != 97)
 			{
 				//—v‘f”Ô†‚ğÀ•W‚É•ÏX
 				float bx = j*64.0f;
