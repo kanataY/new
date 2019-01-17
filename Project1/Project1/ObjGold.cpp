@@ -47,7 +47,6 @@ void CObjGold::Action()
 {
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	CObjswitch* swch = (CObjswitch*)Objs::GetObj(OBJ_SWITCH);
 	Hit();
 	//金塊が落ちれる時自由落下をつける
 	if (m_gold_vy == 0)
@@ -123,20 +122,24 @@ void CObjGold::Hit()
 			m_gold_vy = 1;
 		}
 	}
-	//金塊の下側にスイッチが当たっている時
-	if (hit->CheckObjNameHit(OBJ_SWITCH) != nullptr&& m_hit_down == false)
+	if (swch != nullptr)
 	{
-		//スイッチのフラグをオンにする
-		swch->SetSwitchFlag(true);
-		m_switch_time++;//当たってからの時間を計る
-		
-		//計測から5F後に金塊の動きを止める
-		if (m_switch_time >=8)
+		//金塊の下側にスイッチが当たっている時
+		if (hit->CheckObjNameHit(OBJ_SWITCH) != nullptr&& m_hit_down == false)
 		{
-			m_vy = 0.0f;
-			m_gold_vy = 1;	
+			//スイッチのフラグをオンにする
+			swch->SetSwitchFlag(true);
+			m_switch_time++;//当たってからの時間を計る
+
+			//計測から5F後に金塊の動きを止める
+			if (m_switch_time >= 8)
+			{
+				m_vy = 0.0f;
+				m_gold_vy = 1;
+			}
 		}
 	}
+
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
 		//どの角度で当たっているかを確認

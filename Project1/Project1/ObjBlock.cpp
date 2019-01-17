@@ -298,29 +298,31 @@ void CObjBlock::BlockHit(
 			//Á‚¦‚éƒuƒƒbƒN‚Ì”»’è‚ðÁ‚·[[[[[[[[[[[[[[[[[[[[
 			//ƒXƒCƒbƒ`‚Ìî•ñ‚ðŽ‚Á‚Ä‚­‚é
 			CObjswitch* swi = (CObjswitch*)Objs::GetObj(OBJ_SWITCH);
-
-			if (swi->GetSwitchFlag() == true)//ƒXƒCƒbƒ`‚ª‰Ÿ‚³‚ê‚Ä‚éê‡‚Í”»’è‚ðÁ‚·
+			if (swi != nullptr)
 			{
-				m_swich_time++;//ƒXƒCƒbƒ`‚ª‰Ÿ‚³‚ê‚Ä‚©‚ç‚µ‚Î‚ç‚­‚µ‚½‚ç’Ê‚ê‚é‚æ‚¤‚É‚·‚é
-
-				if (m_swich_time > 160000)
+				if (swi->GetSwitchFlag() == true)//ƒXƒCƒbƒ`‚ª‰Ÿ‚³‚ê‚Ä‚éê‡‚Í”»’è‚ðÁ‚·
 				{
-					//—ñ‚Ì’†‚©‚ç998‚ð’T‚·
-					if (m_map[i][j] == 998)
+					m_swich_time++;//ƒXƒCƒbƒ`‚ª‰Ÿ‚³‚ê‚Ä‚©‚ç‚µ‚Î‚ç‚­‚µ‚½‚ç’Ê‚ê‚é‚æ‚¤‚É‚·‚é
+
+					if (m_swich_time > 160000)
 					{
-						m_map[i][j] = 997;	//’Ê‚ê‚é‚æ‚¤‚É‚·‚é
+						//—ñ‚Ì’†‚©‚ç998‚ð’T‚·
+						if (m_map[i][j] == 998)
+						{
+							m_map[i][j] = 997;	//’Ê‚ê‚é‚æ‚¤‚É‚·‚é
+						}
 					}
 				}
-			}
 
-			if (swi->GetSwitchFlag() == false)//ƒXƒCƒbƒ`‚ª‰Ÿ‚³‚ê‚Ä‚È‚¢ê‡‚Í”»’è‚ðÁ‚³‚È‚¢
-			{
-				//—ñ‚Ì’†‚©‚ç997‚ð’T‚·
-				if (m_map[i][j] == 997)
+				if (swi->GetSwitchFlag() == false)//ƒXƒCƒbƒ`‚ª‰Ÿ‚³‚ê‚Ä‚È‚¢ê‡‚Í”»’è‚ðÁ‚³‚È‚¢
 				{
-					m_map[i][j] = 998;	//’Ê‚ê‚È‚­‚·‚éB
+					//—ñ‚Ì’†‚©‚ç997‚ð’T‚·
+					if (m_map[i][j] == 997)
+					{
+						m_map[i][j] = 998;	//’Ê‚ê‚È‚­‚·‚éB
+					}
+					m_swich_time = 0;
 				}
-				m_swich_time = 0;
 			}
 			//||||||||||||||||||||||||||||
 			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3 && m_map[i][j] != 997)

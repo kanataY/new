@@ -150,14 +150,17 @@ void CObjRushEnemy::Hit()
 	//スイッチの情報取得
 	CObjswitch* swch = (CObjswitch*)Objs::GetObj(OBJ_SWITCH);
 	//スイッチを踏んでいる時の処理--------------------------------------------------------------------------------
-	if (hit->CheckObjNameHit(OBJ_SWITCH) != nullptr)
+	if (swch != nullptr)
 	{
-		//スイッチのフラグをオンにする
-		swch->SetSwitchFlag(true);
-	}
-	else
-	{//スイッチのフラグをオフにする
-		swch->SetSwitchFlag(false);
+		if (hit->CheckObjNameHit(OBJ_SWITCH) != nullptr)
+		{
+			//スイッチのフラグをオンにする
+			swch->SetSwitchFlag(true);
+		}
+		else
+		{//スイッチのフラグをオフにする
+			swch->SetSwitchFlag(false);
+		}
 	}
 	//---------------------------------------------------------------------------------------------------------------
 
