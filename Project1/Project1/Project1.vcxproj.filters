@@ -22,9 +22,6 @@
     <Filter Include="ソース ファイル\GameScene\Gameclear">
       <UniqueIdentifier>{88a59995-3b98-4be4-a23d-fd5504d01ed5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\GameScene\Gameover">
-      <UniqueIdentifier>{a7f2cbe2-efef-4fc9-ab76-ad4252b44f16}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\GameScene\Menu">
       <UniqueIdentifier>{9302bf29-dcd0-4328-b472-51aa1d5498ba}</UniqueIdentifier>
     </Filter>
@@ -101,12 +98,6 @@
     </ClInclude>
     <ClInclude Include="SceneGameClear.h">
       <Filter>ソース ファイル\GameScene\Gameclear</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjGameOver.h">
-      <Filter>ソース ファイル\GameScene\Gameover</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneGameOver.h">
-      <Filter>ソース ファイル\GameScene\Gameover</Filter>
     </ClInclude>
     <ClInclude Include="ObjMenu.h">
       <Filter>ソース ファイル\GameScene\Menu</Filter>
@@ -217,12 +208,6 @@
     </ClCompile>
     <ClCompile Include="SceneGameClear.cpp">
       <Filter>ソース ファイル\GameScene\Gameclear</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjGameOver.cpp">
-      <Filter>ソース ファイル\GameScene\Gameover</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneGameOver.cpp">
-      <Filter>ソース ファイル\GameScene\Gameover</Filter>
     </ClCompile>
     <ClCompile Include="ObjMenu.cpp">
       <Filter>ソース ファイル\GameScene\Menu</Filter>

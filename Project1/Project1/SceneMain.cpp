@@ -63,9 +63,9 @@ void CSceneMain::InitScene()
 	//CObjGolemJudgment* golemj = new CObjGolemJudgment(450, 100);
 	//Objs::InsertObj(golemj, GOLEM_JUDGMENT, 13);
 
-	//スイッチオブジェクト作成
-	CObjswitch* swi = new CObjswitch(300, 480);
-	Objs::InsertObj(swi, OBJ_SWITCH, 13);
+	////スイッチオブジェクト作成
+	//CObjswitch* swi = new CObjswitch(300, 480);
+	//Objs::InsertObj(swi, OBJ_SWITCH, 13);
 
 	//背景（ブロック）オブジェクト作成
 	CObjBlock* block = new CObjBlock(map);

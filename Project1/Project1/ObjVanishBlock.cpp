@@ -88,21 +88,24 @@ void CObjVanishBlock::Hit()
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	if (swi->GetSwitchFlag() == true) //スイッチが押されていた場合
+	if (swi != nullptr)
 	{
-		if (block->GetSwichTime() > 160000)//スイッチが押されてからしばらくしたら描画を消す
+		if (swi->GetSwitchFlag() == true) //スイッチが押されていた場合
 		{
-			m_swich_flag = true;
-			if (((UserData*)Save::GetData())->m_stage_count == 3)  //ステージ３なら描画変化
+			if (block->GetSwichTime() > 160000)//スイッチが押されてからしばらくしたら描画を消す
 			{
-				m_hit_draw    =  64.0f;
-				m_draw_right  = 256.0f;  //横の描画幅を変える
-				m_draw_bottom =  64.0f;  //縦
+				m_swich_flag = true;
+				if (((UserData*)Save::GetData())->m_stage_count == 3)  //ステージ３なら描画変化
+				{
+					m_hit_draw = 64.0f;
+					m_draw_right = 256.0f;  //横の描画幅を変える
+					m_draw_bottom = 64.0f;  //縦
+				}
 			}
 		}
-	}
-	else
-	{
-		m_swich_flag = false;//押されていない場合は描画を消さないようにする
+		else
+		{
+			m_swich_flag = false;//押されていない場合は描画を消さないようにする
+		}
 	}
 }
