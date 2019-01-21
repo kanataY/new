@@ -68,7 +68,7 @@ void CObjGameClear::Action()
 		{
 			//ランキングに反映したスコアを初期化する
 			((UserData*)Save::GetData())->m_point = 0;
-			Scene::SetScene(new CSceneMenu());
+			Scene::SetScene(new CSceneTitle());
 		}
 
 		//ランキング画面へ

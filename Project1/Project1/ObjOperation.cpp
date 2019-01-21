@@ -71,7 +71,7 @@ void CObjOperation::Action()
 					m_enter_control = true;
 
 					//シーンをメニューに切り替える
-					Scene::SetScene(new CSceneMenu());
+					Scene::SetScene(new CSceneTitle());
 				}
 			}
 		}
@@ -112,7 +112,7 @@ void CObjOperation::Action()
 					m_zkey_control = true;
 
 					//シーンをメニューに切り替える
-					Scene::SetScene(new CSceneMenu());
+					Scene::SetScene(new CSceneTitle());
 				}
 			}
 		}
