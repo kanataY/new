@@ -144,7 +144,6 @@
     <ClInclude Include="ObjGold.h" />
     <ClInclude Include="ObjGolem.h" />
     <ClInclude Include="ObjJumpEnemy.h" />
-    <ClInclude Include="ObjMenu.h" />
     <ClInclude Include="ObjOperation.h" />
     <ClInclude Include="ObjRanking.h" />
     <ClInclude Include="ObjHero.h" />
@@ -155,7 +154,6 @@
     <ClInclude Include="ObjVanishBlock.h" />
     <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneMain.h" />
-    <ClInclude Include="SceneMenu.h" />
     <ClInclude Include="SceneOperation.h" />
     <ClInclude Include="SceneRanking.h" />
     <ClInclude Include="SceneTitle.h" />
@@ -183,7 +181,6 @@
     <ClCompile Include="ObjGold.cpp" />
     <ClCompile Include="ObjGolem.cpp" />
     <ClCompile Include="ObjJumpEnemy.cpp" />
-    <ClCompile Include="ObjMenu.cpp" />
     <ClCompile Include="ObjOperation.cpp" />
     <ClCompile Include="ObjRanking.cpp" />
     <ClCompile Include="ObjHero.cpp" />
@@ -194,7 +191,6 @@
     <ClCompile Include="ObjVanishBlock.cpp" />
     <ClCompile Include="SceneGameClear.cpp" />
     <ClCompile Include="SceneMain.cpp" />
-    <ClCompile Include="SceneMenu.cpp" />
     <ClCompile Include="SceneOperation.cpp" />
     <ClCompile Include="SceneRanking.cpp" />
     <ClCompile Include="SceneTitle.cpp" />
