@@ -31,9 +31,14 @@ CSceneGameClear::~CSceneGameClear()
 void CSceneGameClear::InitScene()
 {
 	
-	Audio::LoadAudio(1, L"BGM&SE\\BGMClear_.wav", BACK_MUSIC);
+	/*Audio::LoadAudio(1, L"BGM&SE\\BGMClear_.wav", BACK_MUSIC);*/
 	
+	Draw::LoadImageW(L"image\\clear\\clear.png", 0, TEX_SIZE_1024);
+	Draw::LoadImageW(L"image\\clear\\clear1.png", 1, TEX_SIZE_1024);
+	Draw::LoadImageW(L"image\\clear\\clear2.png", 2, TEX_SIZE_1024);
+	Draw::LoadImageW(L"image\\clear\\clear3.png", 3, TEX_SIZE_1024);
 
+	Draw::LoadImageW(L"image\\clear\\congratulation.png", 5, TEX_SIZE_512);
 	//クリアオブジェクト作成
 	CObjGameClear* obj = new CObjGameClear();		//クリアオブジェクト作成
 	Objs::InsertObj(obj, OBJ_GAME_CLEAR, 10);	//クリアオブジェクト登録
