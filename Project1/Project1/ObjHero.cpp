@@ -225,12 +225,12 @@ void CObjHero::Action()
 	if(m_vy == 0.0f)
 		block->BlockHit(&m_px, &b, true,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-			&m_block_type, false, true, &m_py,&m_gold_M,true
+			&m_block_type, false, true, &m_py,&m_gold_M,false
 		);
 
 	block->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type, false, false, 0,false,false
+		&m_block_type, false, false, 0,false,true
 	);
 
 	//Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|

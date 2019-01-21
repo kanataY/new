@@ -165,6 +165,63 @@ void CObjBlock::Action()
 			m_map_Record[i][ex] = 0; //記録用も消す
 		}
 	}
+
+	//消えるブロックの判定を消すーーーーーーーーーーーーーーーーーーーー
+
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 100; j++)
+		{
+			//スイッチの情報を持ってくる
+			CObjswitch* swi = (CObjswitch*)Objs::GetObj(OBJ_SWITCH);
+
+			if (swi->GetSwitchFlag() == true)//スイッチが押されてる場合は判定を消す
+			{
+				m_swich_time++;//スイッチが押されてからしばらくしたら通れるようにする
+
+				if (m_swich_time > 160000)
+				{
+					//列の中から998を探す
+					if (((UserData*)Save::GetData())->m_stage_count == 3)	//ステージ３なら最初は描画しないので判定も変える
+					{
+						if (m_map[i][j] == 97)
+						{
+							m_map[i][j] = 98;	//通れるようにする
+						}
+					}
+					else
+					{
+						if (m_map[i][j] == 98)
+						{
+							m_map[i][j] = 97;	//通れるようにする
+						}
+					}
+				}
+			}
+
+			if (swi->GetSwitchFlag() == false)//スイッチが押されてない場合は判定を消さない
+			{
+				//列の中から998を探す
+				if (((UserData*)Save::GetData())->m_stage_count == 3)	//ステージ３なら最初は描画しないので判定も変える
+				{
+					//列の中から997を探す
+					if (m_map[i][j] == 98)
+					{
+						m_map[i][j] = 97;	//通れなくする。
+					}
+				}
+				else
+				{
+					//列の中から997を探す
+					if (m_map[i][j] == 97)
+					{
+						m_map[i][j] = 98;	//通れなくする。
+					}
+				}
+				m_swich_time = 0;
+			}
+		}
+	}
 }
 	
 
@@ -314,66 +371,12 @@ void CObjBlock::BlockHit(
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			//消えるブロックの判定を消すーーーーーーーーーーーーーーーーーーーー
-			//スイッチの情報を持ってくる
-			CObjswitch* swi = (CObjswitch*)Objs::GetObj(OBJ_SWITCH);
-			//スイッチが存在している時のみ判定
-			if (swi != nullptr)
-			{
-				if (swi->GetSwitchFlag() == true)//スイッチが押されてる場合は判定を消す
-				{
-					m_swich_time++;//スイッチが押されてからしばらくしたら通れるようにする
-
-				if (m_swich_time > 160000)
-				{
-					//列の中から998を探す
-					if (((UserData*)Save::GetData())->m_stage_count == 3)	//ステージ３なら最初は描画しないので判定も変える
-					{
-						if (m_map[i][j] == 97)
-						{
-							m_map[i][j] = 98;	//通れるようにする
-						}
-					}
-					else
-					{
-						if (m_map[i][j] == 98)
-						{
-							m_map[i][j] = 97;	//通れるようにする
-						}
-					}
-				}
-			}
-
-			if (swi->GetSwitchFlag() == false)//スイッチが押されてない場合は判定を消さない
-			{
-				//列の中から998を探す
-				if (((UserData*)Save::GetData())->m_stage_count == 3)	//ステージ３なら最初は描画しないので判定も変える
-				{
-					//列の中から997を探す
-					if (m_map[i][j] == 98)
-					{
-						m_map[i][j] = 97;	//通れなくする。
-					}
-				}
-				else
-				{
-					//列の中から997を探す
-					if (m_map[i][j] == 97)
-					{
-						m_map[i][j] = 98;	//通れなくする。
-					}
-				}
-				m_swich_time = 0;
-			}
 			//－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3 && m_map[i][j] != 97)
 			{
 				//要素番号を座標に変更
 				float bx = j*64.0f;
 				float by = i*64.0f;
-
-				if (i == 8 && j == 1)
-					int a = 0;
 
 				//スクロールの影響
 				float scroll = scroll_on ? m_scroll : 0;
