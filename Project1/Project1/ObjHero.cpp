@@ -225,13 +225,12 @@ void CObjHero::Action()
 	if(m_vy == 0.0f)
 		block->BlockHit(&m_px, &b, true,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-			&m_block_type, false, true, &m_py,&m_gold_M,true
+			&m_block_type, false, true, &m_py,&m_gold_M,false
 		);
-	
 
 	block->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type, false, false, 0,false,false
+		&m_block_type, false, false, 0,false,true
 	);
 
 	//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -372,27 +371,6 @@ void CObjHero::HitBox()
 		con = 0;
 	}
 	
-	//‚Ç‚¤‚·‚é‚©”Y‚Ý’†c
-	/*if (con == 1) {
-		m_py -= 24.0f; con = 0;
-	}
-	else if (con > 1 && m_pos == 1.0f)
-	{
-		m_gold_Y = true;
-		m_vx = 0.0f;
-		m_px += 0.5f;
-		m_vy = 0.0f;
-	}
-	else if (con > 1 && m_pos == 0.0f)
-	{
-		m_gold_Y = true;
-		m_vx = 0.0f;
-		m_px -= 0.5f;
-		m_vy = 0.0f;
-	}*/
-
-		
-
 	//ƒqƒbƒgƒ{ƒbƒNƒX‚ÉG‚ê‚Ä‚¢‚È‚¢Žž
 	if (hit->CheckObjNameHit(OBJ_GOLD) == nullptr)
 	{
