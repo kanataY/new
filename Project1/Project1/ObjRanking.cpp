@@ -28,7 +28,7 @@ void CObjRanking::Action()
 	//Zキーが押されたらシーンメニューへ
 	if (Input::GetVKey('Z') == true)
 	{
-		Scene::SetScene(new CSceneMenu());
+		Scene::SetScene(new CSceneTitle());
 	}
 }
 
