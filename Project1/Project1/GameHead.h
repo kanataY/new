@@ -89,9 +89,7 @@ struct UserData
 #include "ObjVanishBlock.h"		//消えるブロック
 //シーン
 #include "ObjTitle.h"			//タイトル
-#include "ObjGameOver.h"		//ゲームオーバー
 #include "ObjRanking.h"			//ランキング
-#include "ObjMenu.h"			//メニュー
 #include "ObjGameClear.h"		//クリア
 #include "ObjOperation.h"		//操作説明
 //補助系
@@ -102,8 +100,6 @@ struct UserData
 //ゲームシーンクラスヘッダ------------------------
 #include "SceneMain.h"			//シーンタイトル
 #include "SceneTitle.h"			//シーンメイン
-#include "SceneGameOver.h"		//シーンゲームオーバー
-#include "SceneMenu.h"			//シーンメニュー
 #include "SceneRanking.h"		//シーンランキング
 #include "SceneGameClear.h"		//シーンクリア
 #include "SceneOperation.h"		//シーン操作説明
