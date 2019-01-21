@@ -174,51 +174,54 @@ void CObjBlock::Action()
 		{
 			//スイッチの情報を持ってくる
 			CObjswitch* swi = (CObjswitch*)Objs::GetObj(OBJ_SWITCH);
-
-			if (swi->GetSwitchFlag() == true)//スイッチが押されてる場合は判定を消す
+			if (swi != nullptr)
 			{
-				m_swich_time++;//スイッチが押されてからしばらくしたら通れるようにする
 
-				if (m_swich_time > 50000)
+				if (swi->GetSwitchFlag() == true)//スイッチが押されてる場合は判定を消す
+				{
+					m_swich_time++;//スイッチが押されてからしばらくしたら通れるようにする
+
+					if (m_swich_time > 50000)
+					{
+						//列の中から998を探す
+						if (((UserData*)Save::GetData())->m_stage_count == 3)	//ステージ３なら最初は描画しないので判定も変える
+						{
+							if (m_map[i][j] == 97)
+							{
+								m_map[i][j] = 98;	//通れるようにする
+							}
+						}
+						else
+						{
+							if (m_map[i][j] == 98)
+							{
+								m_map[i][j] = 97;	//通れるようにする
+							}
+						}
+					}
+				}
+
+				if (swi->GetSwitchFlag() == false)//スイッチが押されてない場合は判定を消さない
 				{
 					//列の中から998を探す
 					if (((UserData*)Save::GetData())->m_stage_count == 3)	//ステージ３なら最初は描画しないので判定も変える
 					{
-						if (m_map[i][j] == 97)
+						//列の中から997を探す
+						if (m_map[i][j] == 98)
 						{
-							m_map[i][j] = 98;	//通れるようにする
+							m_map[i][j] = 97;	//通れなくする。
 						}
 					}
 					else
 					{
-						if (m_map[i][j] == 98)
+						//列の中から997を探す
+						if (m_map[i][j] == 97)
 						{
-							m_map[i][j] = 97;	//通れるようにする
+							m_map[i][j] = 98;	//通れなくする。
 						}
 					}
+					m_swich_time = 0;
 				}
-			}
-
-			if (swi->GetSwitchFlag() == false)//スイッチが押されてない場合は判定を消さない
-			{
-				//列の中から998を探す
-				if (((UserData*)Save::GetData())->m_stage_count == 3)	//ステージ３なら最初は描画しないので判定も変える
-				{
-					//列の中から997を探す
-					if (m_map[i][j] == 98)
-					{
-						m_map[i][j] = 97;	//通れなくする。
-					}
-				}
-				else
-				{
-					//列の中から997を探す
-					if (m_map[i][j] == 97)
-					{
-						m_map[i][j] = 98;	//通れなくする。
-					}
-				}
-				m_swich_time = 0;
 			}
 		}
 	}

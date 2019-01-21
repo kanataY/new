@@ -62,8 +62,8 @@ void CObjHero::Action()
 {
 	//ƒuƒƒbƒNî•ñ‚ðŽ‚Á‚Ä‚­‚é
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	CObjCoin* coin = ( CObjCoin*)Objs::GetObj(OBJ_COIN);
-	CObjGolem* golem = (CObjGolem*)Objs::GetObj(OBJ_GOLEM);
+	CObjCoin* coin = ( CObjCoin*)Objs::GetObj(OBJ_COIN);    //ƒRƒCƒ“î•ñ
+	CObjGolem* golem = (CObjGolem*)Objs::GetObj(OBJ_GOLEM);	//ƒS[ƒŒƒ€î•ñ
 	//•â³‚Ìî•ñ‚ðŽ‚Á‚Ä‚­‚é
 	//CObjCorrection* cor = (CObjCorrection*)Objs::GetObj(CORRECTION);
 
@@ -131,8 +131,8 @@ void CObjHero::Action()
 
 	if (block->GetMapRecord(m_ppx + 1, m_ppy) == 0 && m_pos == 0.0f ||
 		block->GetMapRecord(m_ppx - 1, m_ppy) == 0 && m_pos == 1.0f ||
-		block->GetMapRecord(m_ppx + 1, m_ppy) == 97 && m_pos == 0.0f ||
-		block->GetMapRecord(m_ppx - 1, m_ppy) == 97 && m_pos == 1.0f)//¡‚¢‚éˆÊ’u‚Ì‰E‘¤A¶‘¤‚ªƒuƒƒbƒN‚¾‚Á‚½‚ç‹à‰ò‚ð’u‚¯‚È‚¢‚æ‚¤‚É‚·‚é
+		block->GetMap(m_ppx + 1, m_ppy) == 97 && m_pos == 0.0f ||
+		block->GetMap(m_ppx - 1, m_ppy) == 97 && m_pos == 1.0f)//¡‚¢‚éˆÊ’u‚Ì‰E‘¤A¶‘¤‚ªƒuƒƒbƒN‚¾‚Á‚½‚ç‹à‰ò‚ð’u‚¯‚È‚¢‚æ‚¤‚É‚·‚é
 	{
 		if (Input::GetVKey('C') == true)  //‹à‰ò‚ð’u‚­
 		{
@@ -197,30 +197,6 @@ void CObjHero::Action()
 	m_vy += 9.8 / (8.0f);
 	//ƒWƒƒƒ“ƒvI—¹[[[[[[[[[[[[[[[[[[[[[
 
-	
-
-	//“–‚½‚è”»’èŠÖ˜A
-	HitBox();
-	//ƒS[ƒŒƒ€‚É“–‚½‚Á‚½Žž
-	if (hit->CheckObjNameHit(OBJ_GOLEM) != nullptr)
-	{
-		//ƒS[ƒŒƒ€‚ª‘¶Ý‚µ‚Ä‚¢‚éŽž
-		if (golem != nullptr)
-		{
-			float golem_x= golem->GetX();
-			//ƒS[ƒŒƒ€‚ª‰E‘¤‚É‚¢‚é‚Æ‚«‚Ì”½ŽË
-			if (golem->GetPos() == 0.0&&m_px <= golem_x + block->GetScroll())
-				m_vx += -0.7f ;
-			if (golem->GetPos() == 1.0&&m_px <= golem_x + block->GetScroll())
-				m_vx += -m_speed;
-			//ƒS[ƒŒƒ€‚ª¶‘¤‚É‚¢‚é‚Æ‚«‚Ì”½ŽË
-			if (golem->GetPos() == 0.0&&m_px >= golem_x + block->GetScroll())
-				m_vx += m_speed;
-			if (golem->GetPos() == 1.0&&m_px >= golem_x + block->GetScroll())
-				m_vx += 0.7;
-
-		}
-	}
 	//ƒuƒƒbƒN‚É‚Ì‚Ú‚ê‚é‚æ‚¤‚É‚·‚é
 	float b = m_py + 32.0f;
 
@@ -234,6 +210,9 @@ void CObjHero::Action()
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type, false, false, 0,false,true
 	);
+
+	//“–‚½‚è”»’èŠÖ˜A
+	HitBox();
 
 	//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -336,7 +315,7 @@ void CObjHero::HitBox()
 
 				if (m_hit_down == true || m_hit_down_gold == true)		//’n–Êor‹à‰ò‚Ìã‚É‚¢‚é‚Æ‚«
 				{
-					if (r2 > 160 && r2 < 200 && m_pos == 1.0f)
+					if (r2 > 160 && r2 < 200 && m_pos == 1.0f && m_vy == 0.0f)
 					{
 						//¶
 						m_hit_left = true;  
@@ -346,22 +325,23 @@ void CObjHero::HitBox()
 						else
 							m_py -= 36.0f;		//“o‚ê‚é‚æ‚¤‚É‚·‚é
 						con++;
+						break;
 					}
-					else if (/*r2 < 0 && r2>0 ||*/ r2 > 340 && m_pos == 0.0f)
+					else if (/*r2 < 0 && r2>0 ||*/ r2 > 340 && m_pos == 0.0f && m_vy == 0.0f)
 					{
 						//‰E
 						m_hit_right = true;
-						m_gold_Y = true;	//‹à‰ò‘¤‚ÅŽålŒö‚Ì‚–‚™‚ðŠJ•ú‚·‚é
+						m_gold_Y    = true;	//‹à‰ò‘¤‚ÅŽålŒö‚Ì‚–‚™‚ðŠJ•ú‚·‚é
 						if (m_hit_down_gold == true)
-							m_py -= 12.0f;
+						  	 m_py -= 12.0f;
 						else
-							m_py -= 24.0f;		//“o‚ê‚é‚æ‚¤‚É‚·‚é
+							 m_py -= 36.0f;		//“o‚ê‚é‚æ‚¤‚É‚·‚é
 						con++;
+						break;
 					}
 					else
 					{
 						m_gold_Y = false;
-						con = 0;
 					}
 				}
 			}
@@ -378,6 +358,30 @@ void CObjHero::HitBox()
 	{
 		//‹à‰ò‚©‚ç~‚è‚Ä‚¢‚é‚Ì‚Å‹à‰ò‚ð’u‚¯‚é‚æ‚¤‚É‚·‚éB
 		m_gold_spawn = false;
+	}
+
+	//ƒS[ƒŒƒ€î•ñ
+	CObjGolem* golem = (CObjGolem*)Objs::GetObj(OBJ_GOLEM);
+
+	//ƒS[ƒŒƒ€‚É“–‚½‚Á‚½Žž
+	if (hit->CheckObjNameHit(OBJ_GOLEM) != nullptr)
+	{
+		//ƒS[ƒŒƒ€‚ª‘¶Ý‚µ‚Ä‚¢‚éŽž
+		if (golem != nullptr)
+		{
+			float golem_x = golem->GetX();
+			//ƒS[ƒŒƒ€‚ª‰E‘¤‚É‚¢‚é‚Æ‚«‚Ì”½ŽË
+			if (golem->GetPos() == 0.0&&m_px <= golem_x + block->GetScroll())
+				m_vx += -0.7f;
+			if (golem->GetPos() == 1.0&&m_px <= golem_x + block->GetScroll())
+				m_vx += -m_speed;
+			//ƒS[ƒŒƒ€‚ª¶‘¤‚É‚¢‚é‚Æ‚«‚Ì”½ŽË
+			if (golem->GetPos() == 0.0&&m_px >= golem_x + block->GetScroll())
+				m_vx += m_speed;
+			if (golem->GetPos() == 1.0&&m_px >= golem_x + block->GetScroll())
+				m_vx += 0.7;
+
+		}
 	}
 
 }

@@ -143,7 +143,7 @@ void CObjGold::Hit()
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
 		//どの角度で当たっているかを確認
-		HIT_DATA** hit_data;                        //当たったときの細やかな情報を入れるための構造体
+		HIT_DATA** hit_data;                         //当たったときの細やかな情報を入れるための構造体
 		hit_data = hit->SearchObjNameHit(OBJ_HERO);  //hit_dataにHitBoxとの情報を入れる
 
 		for (int i = 0; i < hit->GetCount(); i++)
@@ -153,7 +153,7 @@ void CObjGold::Hit()
 				float r2 = hit_data[i]->r;
 
 				//主人公が上に乗っかている場合主人公の移動量を0にする。
-				if (r2 >= 20&& r2 < 150 /*&& hero->GetY() < m_py */)
+				if (r2 >= 20&& r2 < 160 /*&& hero->GetY() < m_py */)
 				{
 					//上
 					//主人公が金塊の左右に当たった時、主人公がブロックを登ろうとしてるときに解除
