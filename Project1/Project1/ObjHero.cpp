@@ -130,7 +130,9 @@ void CObjHero::Action()
 	m_ppy = (int)m_ppy;
 
 	if (block->GetMapRecord(m_ppx + 1, m_ppy) == 0 && m_pos == 0.0f ||
-		block->GetMapRecord(m_ppx - 1, m_ppy) == 0 && m_pos == 1.0f)//今いる位置の右側、左側がブロックだったら金塊を置けないようにする
+		block->GetMapRecord(m_ppx - 1, m_ppy) == 0 && m_pos == 1.0f ||
+		block->GetMapRecord(m_ppx + 1, m_ppy) == 97 && m_pos == 0.0f ||
+		block->GetMapRecord(m_ppx - 1, m_ppy) == 97 && m_pos == 1.0f)//今いる位置の右側、左側がブロックだったら金塊を置けないようにする
 	{
 		if (Input::GetVKey('C') == true)  //金塊を置く
 		{

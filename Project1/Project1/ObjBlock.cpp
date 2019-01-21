@@ -179,7 +179,7 @@ void CObjBlock::Action()
 			{
 				m_swich_time++;//スイッチが押されてからしばらくしたら通れるようにする
 
-				if (m_swich_time > 160000)
+				if (m_swich_time > 50000)
 				{
 					//列の中から998を探す
 					if (((UserData*)Save::GetData())->m_stage_count == 3)	//ステージ３なら最初は描画しないので判定も変える

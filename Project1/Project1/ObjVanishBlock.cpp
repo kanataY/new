@@ -92,7 +92,7 @@ void CObjVanishBlock::Hit()
 	{
 		if (swi->GetSwitchFlag() == true) //スイッチが押されていた場合
 		{
-			if (block->GetSwichTime() > 160000)//スイッチが押されてからしばらくしたら描画を消す
+			if (block->GetSwichTime() > 50000)//スイッチが押されてからしばらくしたら描画を消す
 			{
 				m_swich_flag = true;
 				if (((UserData*)Save::GetData())->m_stage_count == 3)  //ステージ３なら描画変化
