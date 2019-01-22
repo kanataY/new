@@ -199,12 +199,7 @@ void CObjHero::Action()
 
 	//ÉuÉçÉbÉNÇ…ÇÃÇ⁄ÇÍÇÈÇÊÇ§Ç…Ç∑ÇÈ
 	float b = m_py + 32.0f;
-
-	if(m_vy == 0.0f)
-		block->BlockHit(&m_px, &b, true,
-			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-			&m_block_type, false, true, &m_py,&m_gold_M,false
-		);
+	
 
 	block->BlockHit(&m_px, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
@@ -214,6 +209,12 @@ void CObjHero::Action()
 	//ìñÇΩÇËîªíËä÷òA
 	HitBox();
 
+	if (m_vy == 0.0f) // ãÛíÜÇ…Ç¢ÇÈÇ∆Ç´Ç…è„ÇÍÇ»Ç≠Ç∑ÇÈÅB
+		block->BlockHit(&m_px, &b, true,
+			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+			&m_block_type, false, true, &m_py, &m_gold_M, true
+		);
+	
 	//Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|
 
 	//ÉvÉåÉCÉÑÅ[ÉäÉXÉ^Å[Égèàóù------------------------------------------------------------------------------

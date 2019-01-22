@@ -365,7 +365,13 @@ void CObjBlock::BlockHit(
 	}
 	else
 	{
-		 m_cx = 50.0f;
+		//主人公なら壁との判定もやる
+		if (hero == true)
+		{
+			m_cx = 52.0f; //ブロックに上がれるように
+		}
+		else
+			m_cx = 50.0f;
 		 m_cy = 64.0f;
 	}
 
@@ -410,9 +416,8 @@ void CObjBlock::BlockHit(
 						//主人公なら壁との判定もやる
 						if (hero == true)
 						{
-
 							//左上半分なら上げる
-							if (r >= 155 && r < 190)
+							if (r >= 155 && r < 183)
 							{
 								if (m_map[i - 1][j] == 0)	//当たっているブロックの一つ前が空白なら
 								{
