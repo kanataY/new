@@ -58,13 +58,6 @@ void CSceneMain::InitScene()
 	CObjHero* he = new CObjHero();
 	Objs::InsertObj(he, OBJ_HERO, 13);
 
-	//ゴーレムオブジェクト作成
-	CObjGolem* golem = new CObjGolem(450,100);
-	Objs::InsertObj(golem, OBJ_GOLEM, 13);
-
-	CObjGolemJudgment* golemj = new CObjGolemJudgment(450, 100);
-	Objs::InsertObj(golemj, GOLEM_JUDGMENT, 13);
-
 	////スイッチオブジェクト作成
 	//CObjswitch* swi = new CObjswitch(300, 480);
 	//Objs::InsertObj(swi, OBJ_SWITCH, 13);
