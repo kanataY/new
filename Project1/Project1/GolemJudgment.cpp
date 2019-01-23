@@ -53,7 +53,7 @@ void CObjGolemJudgment::Action()
 		m_py = golem->GetY();
 	}
 	//ƒS[ƒŒƒ€€–Sˆ—
-	if (hit->CheckObjNameHit(OBJ_COIN) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_COIN) != nullptr || m_py > 1500)
 	{
 		hit->SetInvincibility(true); //“–‚½‚è”»’è–³Œø
 		this->SetStatus(false);

@@ -20,20 +20,20 @@ void CObjVanishBlock::Init()
 {
 	if (((UserData*)Save::GetData())->m_stage_count == 3)	//ステージ３なら最初は描画しない
 	{
-		m_hit_draw = 0.0f;
 		m_draw_right = 0.0f;
 		m_draw_bottom = 0.0f;
+
+		//当たり判定用HitBoxを作成
+		Hits::SetHitBox(this, m_px, m_py - 64.0f, 256, 32, ELEMENT_ITEM, OBJ_VANISHBLOCK, 1);
 	}
 	else
 	{
-		m_hit_draw = 64.0f;
 		m_draw_right = 64.0f;
 		m_draw_bottom = 576.0f;
 	}
 	m_swich_flag = false;
 
-	//当たり判定用HitBoxを作成
-	//Hits::SetHitBox(this, m_px, m_py, 64, 64, ELEMENT_ENEMY, OBJ_GOAL, 1);
+	
 }
 //アクション
 void CObjVanishBlock::Action()
@@ -41,9 +41,16 @@ void CObjVanishBlock::Action()
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 
-	//HitBoxの位置の変更
-	//CHitBox* hit = Hits::GetHitBox(this);
-	//hit->SetPos(m_px + block->GetScroll(), m_py);
+	if (((UserData*)Save::GetData())->m_stage_count == 3)	//ステージ３
+	{
+		//スイッチが押されてない時だけ当たり判定をつける
+		if (m_swich_flag == false)
+		{
+			//HitBoxの位置の変更
+			CHitBox* hit = Hits::GetHitBox(this);
+			hit->SetPos(m_px + block->GetScroll(), m_py - 64.0f);
+		}
+	}
 
 	Hit();
 }
@@ -59,8 +66,8 @@ void CObjVanishBlock::Draw()
 	//切り取り位置の設定
 	src.m_top    =        0.f;
 	src.m_left   =       0.0f;
-	src.m_right  = m_hit_draw;
-	src.m_bottom = m_hit_draw;
+	src.m_right  = 64.0f;
+	src.m_bottom = 64.0f;
 
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -78,6 +85,20 @@ void CObjVanishBlock::Draw()
 	}
 	else if (m_swich_flag == false)
 		Draw::Draw(1, &src, &dst, c, 0.0);
+
+	if (((UserData*)Save::GetData())->m_stage_count == 3)
+	{
+		if (m_swich_flag == false)//スイッチが押されてない時だけ描画する
+		{
+			//表示位置の設定
+			dst.m_top = 0.0f + m_py - 64.0f;
+			dst.m_left = 0.0f + m_px + block->GetScroll();
+			dst.m_right = 256.0f + m_px + block->GetScroll();
+			dst.m_bottom = 32.0f + m_py - 64.0f;
+
+			Draw::Draw(1, &src, &dst, c, 0.0);
+		}
+	}
 }
 
 //ヒット関連
@@ -97,9 +118,9 @@ void CObjVanishBlock::Hit()
 				m_swich_flag = true;
 				if (((UserData*)Save::GetData())->m_stage_count == 3)  //ステージ３なら描画変化
 				{
-					m_hit_draw = 64.0f;
 					m_draw_right = 256.0f;  //横の描画幅を変える
 					m_draw_bottom = 64.0f;  //縦
+					Hits::DeleteHitBox(this);
 				}
 			}
 		}

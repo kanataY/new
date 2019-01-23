@@ -2,6 +2,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\HitBoxManager.h"
 #include "GameHead.h"
+#include "GameL\UserData.h"
 
 #include "ObjGoal.h"
 #include "GameL\Audio.h"
@@ -71,5 +72,9 @@ void CObjGoal::Hit()
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
 		m_hit_draw = 128.0f; // 主人公に当たった
+
+							 //ステージを１進める
+		((UserData*)Save::GetData())->m_stage_count +=1;
+		Scene::SetScene(new CSceneMain());
 	}
 }

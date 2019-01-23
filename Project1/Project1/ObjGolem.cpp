@@ -117,7 +117,7 @@ void CObjGolem::Action()
 	m_py += m_vy;
 
 	//€–Sˆ—
-	if (m_del == true)
+	if (m_del == true )
 	{
 		m_ani_time_del++;
 	}

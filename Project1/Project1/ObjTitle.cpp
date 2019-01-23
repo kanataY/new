@@ -56,7 +56,7 @@ void CObjTitle::Action()
 	m_scene_start_control++;
 
 	//\šƒL[‚Ìã‚©‰º‚ğ‰Ÿ‚µ‚½‚Æ‚«
-	if (Input::GetVKey(VK_LEFT) == true || Input::GetVKey(VK_RIGHT) == true)
+	if ((Input::GetVKey(VK_LEFT) == true || Input::GetVKey(VK_RIGHT) == true) && m_ani_frame == 4)
 	{
 		//ƒL[‚ÌƒRƒ“ƒgƒ[ƒ‹‚ªfalse‚È‚ç
 		if (m_key_control == false)
@@ -137,6 +137,7 @@ void CObjTitle::Action()
 	if (m_ani_frame == 10)//ƒtƒŒ[ƒ€‚ªÅŒã‚Ü‚Åi‚ñ‚¾‚ç–ß‚·
 	{
 		//ƒV[ƒ“‚ğƒƒjƒ…[‚Ö
+		((UserData*)Save::GetData())->m_stage_count = 1; //ƒƒCƒ“‚É•Ï‚¦‚é
 		Scene::SetScene(new CSceneMain());
 	}
 	//ƒAƒjƒ[ƒVƒ‡ƒ“I—¹|||||||||||||||||||||||||||||||||||||||||||||
