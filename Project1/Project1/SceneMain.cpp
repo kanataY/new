@@ -43,10 +43,12 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Image\\hero\\hero1.png", 3, TEX_SIZE_256);
 	Draw::LoadImageW(L"Image\\item\\gold.png", 4, TEX_SIZE_64);
 	Draw::LoadImageW(L"Image\\item\\100yen.png", 7, TEX_SIZE_32);
+	Draw::LoadImageW(L"Image\\item\\goldbar.png", 13, TEX_SIZE_128);
 	//敵関連----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\enemy\\boo.png", 5, TEX_SIZE_128);
 	Draw::LoadImageW(L"Image\\enemy\\jumpenemy.png", 6, TEX_SIZE_128);
-	Draw::LoadImageW(L"Image\\enemy\\Gole.png", 11, TEX_SIZE_512);
+	Draw::LoadImageW(L"Image\\enemy\\gold.png", 11, TEX_SIZE_512);
+	Draw::LoadImageW(L"Image\\enemy\\goldel2.png", 12, TEX_SIZE_384);
 	//ギミック----------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\gimmick\\Chest.png", 8, TEX_SIZE_128);
 	Draw::LoadImageW(L"Image\\gimmick\\switch.png", 9, TEX_SIZE_128);
@@ -56,12 +58,12 @@ void CSceneMain::InitScene()
 	CObjHero* he = new CObjHero();
 	Objs::InsertObj(he, OBJ_HERO, 13);
 
-	////ゴーレムオブジェクト作成
-	//CObjGolem* golem = new CObjGolem(450,100);
-	//Objs::InsertObj(golem, OBJ_GOLEM, 13);
+	//ゴーレムオブジェクト作成
+	CObjGolem* golem = new CObjGolem(450,100);
+	Objs::InsertObj(golem, OBJ_GOLEM, 13);
 
-	//CObjGolemJudgment* golemj = new CObjGolemJudgment(450, 100);
-	//Objs::InsertObj(golemj, GOLEM_JUDGMENT, 13);
+	CObjGolemJudgment* golemj = new CObjGolemJudgment(450, 100);
+	Objs::InsertObj(golemj, GOLEM_JUDGMENT, 13);
 
 	////スイッチオブジェクト作成
 	//CObjswitch* swi = new CObjswitch(300, 480);

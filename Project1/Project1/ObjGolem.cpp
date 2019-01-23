@@ -30,6 +30,10 @@ void CObjGolem::Init()
 	m_ani_frame = 0;  //ÃŽ~ƒtƒŒ[ƒ€‚ð‰Šú‚É‚·‚é
 	m_ani_max_time = 15; //ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔŠu•
 
+	m_ani_time_del = 0;
+	m_ani_frame_del = 0;  //ÃŽ~ƒtƒŒ[ƒ€‚ð‰Šú‚É‚·‚é
+	m_ani_max_time_del = 15; //ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔŠu•
+
 	m_move = true;
 	m_pos = 0.0f;//¶Œü‚«
 				 //block‚Æ‚ÌÕ“Ëó‘ÔŠm”F—p
@@ -65,9 +69,6 @@ void CObjGolem::Action()
 	}
 	//ƒAƒjƒ[ƒVƒ‡ƒ“I—¹|||||||||||||||||||||||||||||||||||||||||||||
 
-	
-
-
 	//HitBox‚ÌˆÊ’u‚Ì•ÏX
 	CHitBox* hit = Hits::GetHitBox(this);
 	if (m_pos == 1.0)
@@ -95,12 +96,12 @@ void CObjGolem::Action()
 	}
 
 	//ˆÚ“®•ûŒü
-	if (m_move == false)
+	if (m_move == false&&m_del==false)
 	{
 		m_vx += m_speed;
 		m_pos = 1.0f;
 	}
-	if (m_move == true)
+	if (m_move == true && m_del == false)
 	{
 		m_vx -= m_speed;
 		m_pos = 0.0f;
@@ -118,6 +119,16 @@ void CObjGolem::Action()
 	//Ž€–Sˆ—
 	if (m_del == true)
 	{
+		m_ani_time_del++;
+	}
+	if (m_ani_time_del > m_ani_max_time_del)//ƒtƒŒ[ƒ€“®ìŠ´Šoƒ^ƒCƒ€‚ªÅ‘å‚Ü‚Ås‚Á‚½‚ç
+	{
+		m_ani_frame_del++;//ƒtƒŒ[ƒ€‚ði‚ß‚é
+		m_ani_time_del = 0;
+	}
+	if (m_ani_frame_del == 5)//ƒtƒŒ[ƒ€‚ªÅŒã‚Ü‚Åi‚ñ‚¾‚ç–ß‚·
+	{
+		m_ani_frame = 0;
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 		return;//Á–Åˆ—‚ÍA‚±‚±‚ÅƒAƒNƒVƒ‡ƒ“ƒƒ]ƒbƒh‚ðI—¹‚³‚¹‚é
@@ -135,21 +146,40 @@ void CObjGolem::Draw()
 
 	RECT_F src; //•`‰æŒ³Ø‚èŽæ‚èˆÊ’u
 	RECT_F dst; //•`‰ææ•\Ž¦ˆÊ’u
+	if (m_del == false)
+	{
+		//Ø‚èŽæ‚èˆÊ’u‚ÌÝ’è
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + m_ani_frame * 64;
+		src.m_right = 64.0f + m_ani_frame * 64;
+		src.m_bottom = 512.0f;
 
-				//Ø‚èŽæ‚èˆÊ’u‚ÌÝ’è
-	src.m_top = 0.0f;
-	src.m_left = 0.0f + m_ani_frame * 64;
-	src.m_right = 64.0f + m_ani_frame * 64;
-	src.m_bottom = 512.0f;
+		//•\Ž¦ˆÊ’u‚ÌÝ’è
+		dst.m_top = 0.0f + m_py;
+		dst.m_left = (64.0f*m_pos) + m_px + block->GetScroll();
+		dst.m_right = (64.0f - 64.0f*m_pos) + m_px + block->GetScroll();
+		dst.m_bottom = 64.0f + m_py;
 
-	//•\Ž¦ˆÊ’u‚ÌÝ’è
-	dst.m_top = 0.0f + m_py;
-	dst.m_left = (64.0f*m_pos) + m_px + block->GetScroll();
-	dst.m_right = (64.0f - 64.0f*m_pos) + m_px + block->GetScroll();
-	dst.m_bottom = 64.0f + m_py;
-
+		Draw::Draw(11, &src, &dst, c, 0.0f);
+	}
 	//•`‰æ
-	Draw::Draw(11, &src, &dst, c, 0.0f);
+	if (m_del == true)
+	{
+		//Ø‚èŽæ‚èˆÊ’u‚ÌÝ’è
+		src.m_top = 0.0f;
+		src.m_left = 0.0f + m_ani_frame * 64;
+		src.m_right = 64.0f + m_ani_frame * 64;
+		src.m_bottom = 384.0f;
+
+		//•\Ž¦ˆÊ’u‚ÌÝ’è
+		dst.m_top = 0.0f + m_py;
+		dst.m_left = (64.0f*m_pos) + m_px + block->GetScroll();
+		dst.m_right = (64.0f - 64.0f*m_pos) + m_px + block->GetScroll();
+		dst.m_bottom = 64.0f + m_py;
+		Draw::Draw(12, &src, &dst, c, 0.0f);
+	}
+		
+
 
 }
 
