@@ -150,6 +150,9 @@
     <ClInclude Include="ObjGold.h">
       <Filter>ソース ファイル\GameMain\Hero</Filter>
     </ClInclude>
+    <ClInclude Include="ObjDropGold.h">
+      <Filter>ソース ファイル\GameMain</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -256,6 +259,9 @@
     </ClCompile>
     <ClCompile Include="ObjGold.cpp">
       <Filter>ソース ファイル\GameMain\Hero</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjDropGold.cpp">
+      <Filter>ソース ファイル\GameMain</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -16,7 +16,6 @@ CObjhero_hitbox::CObjhero_hitbox()
 //イニシャライズ
 void CObjhero_hitbox::Init()
 {
-
 	//当たり判定用HitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 37, 20, ELEMENT_NULL, HERO_HITBOX, 1);
 }

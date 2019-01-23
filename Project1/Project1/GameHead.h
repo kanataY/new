@@ -27,6 +27,9 @@ enum OBJ_NAME
 	GOLEM_JUDGMENT,			//ゴーレムの判定
 	HERO_HITBOX,			//主人公のヒットボックス二個目
 
+	//アイテム
+	OBJ_DROP_GOLD,			//落ちる金塊
+
 	//シーン
 	OBJ_TITLE,				//タイトル
 	OBJ_GAME_OVER,			//ゲームオーバー
@@ -95,6 +98,8 @@ struct UserData
 //補助系
 #include "Correction.h"			//補正
 #include "hero_hitbox.h"		//主人公のヒットボックス二個目
+//アイテム
+#include "ObjDropGold.h"        //敵から落ちる金塊
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -108,5 +113,5 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneGameClear
+#define SET_GAME_START CSceneTitle
 //-----------------------------------------------
