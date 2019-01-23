@@ -15,6 +15,7 @@ enum OBJ_NAME
 	OBJ_RUSH_ENEMY,			//突進する敵
 	OBJ_JUMP_ENEMY,			//ジャンプする敵
 	OBJ_GOLEM,				//ゴーレム
+	GOLEM_JUDGMENT,			//ゴーレムの判定
 
 	//ギミック
 	OBJ_THORN,				//針
@@ -24,8 +25,10 @@ enum OBJ_NAME
 
 	//補正
 	CORRECTION,				//補正
-	GOLEM_JUDGMENT,			//ゴーレムの判定
 	HERO_HITBOX,			//主人公のヒットボックス二個目
+
+	//アイテム
+	OBJ_DROP_GOLD,			//落ちる金塊
 
 	//シーン
 	OBJ_TITLE,				//タイトル
@@ -95,6 +98,8 @@ struct UserData
 //補助系
 #include "Correction.h"			//補正
 #include "hero_hitbox.h"		//主人公のヒットボックス二個目
+//アイテム
+#include "ObjDropGold.h"        //敵から落ちる金塊
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -108,5 +113,5 @@ struct UserData
 
 //シーンスタートクラス---------------------------
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneGameClear
+#define SET_GAME_START CSceneTitle
 //-----------------------------------------------

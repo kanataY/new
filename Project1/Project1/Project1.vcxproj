@@ -139,6 +139,7 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="ObjBlock.h" />
     <ClInclude Include="ObjCoin.h" />
+    <ClInclude Include="ObjDropGold.h" />
     <ClInclude Include="ObjGameClear.h" />
     <ClInclude Include="ObjGoal.h" />
     <ClInclude Include="ObjGold.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="hero_hitbox.cpp" />
     <ClCompile Include="ObjBlock.cpp" />
     <ClCompile Include="ObjCoin.cpp" />
+    <ClCompile Include="ObjDropGold.cpp" />
     <ClCompile Include="ObjGameClear.cpp" />
     <ClCompile Include="ObjGoal.cpp" />
     <ClCompile Include="ObjGold.cpp" />
