@@ -73,8 +73,11 @@ void CObjGoal::Hit()
 	{
 		m_hit_draw = 128.0f; // 主人公に当たった
 
-							 //ステージを１進める
+		//ステージを１進める
 		((UserData*)Save::GetData())->m_stage_count +=1;
-		Scene::SetScene(new CSceneMain());
+		if (((UserData*)Save::GetData())->m_stage_count < 5)
+			Scene::SetScene(new CSceneMain());
+		else
+			Scene::SetScene(new CSceneGameClear());
 	}
 }
