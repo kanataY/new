@@ -111,6 +111,13 @@ void CObjRushEnemy::Action()
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
+
+	if(m_py > 1500) //下に落ちたら死ぬ
+	{
+	this->SetStatus(false);
+	Hits::DeleteHitBox(this);
+	return;//消滅処理は、ここでアクションメゾッドを終了させる
+	}
 }
 
 //ドロー
@@ -158,7 +165,7 @@ void CObjRushEnemy::Hit()
 			swch->SetSwitchFlag(true);
 		}
 		else
-		{//スイッチのフラグをオフにする
+		{	//スイッチのフラグをオフにする
 			swch->SetSwitchFlag(false);
 		}
 	}

@@ -23,7 +23,12 @@ CObjHero::CObjHero()
 void CObjHero::Init()
 {
 	m_px = 250.0f;
-	m_py = 400.0f;	//ˆÊ’u
+	if (((UserData*)Save::GetData())->m_stage_count == 4)  //ƒXƒe[ƒW4
+	{
+		m_py = 200.0f;	//ˆÊ’u
+	}
+	else
+		m_py = 400.0f;	//ˆÊ’u
 	m_vx = 0.0f;
 	m_vy = 0.0f;	//ˆÚ“®ƒxƒNƒgƒ‹
 	m_ppx = 0;
@@ -126,6 +131,7 @@ void CObjHero::Action()
 		m_ppx += 0.8f;		//ŽlŽÌŒÜ“ü‚·‚é€”õA’²®‚·‚é
 
 	m_ppy += 0.5f;
+
 	m_ppx = (int)m_ppx;	//intŒ^‚É•ÏX‚µ‚ÄŽlŽÌŒÜ“ü‚·‚é
 	m_ppy = (int)m_ppy;
 
@@ -191,7 +197,6 @@ void CObjHero::Action()
 
 	//–€ŽC
 	m_vx += -(m_vx * 0.15f);
-//	m_vy += -(m_vy * 0.15f);
 
 	//Ž©—R—Ž‰º‰^“®
 	m_vy += 9.8 / (8.0f);
@@ -218,7 +223,7 @@ void CObjHero::Action()
 	//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 	//ƒvƒŒƒCƒ„[ƒŠƒXƒ^[ƒgˆ—------------------------------------------------------------------------------
-	if (hit->CheckObjNameHit(OBJ_THORN)!=nullptr|| Input::GetVKey('R') == true)
+	if (hit->CheckObjNameHit(OBJ_THORN)!=nullptr|| Input::GetVKey('R') == true || m_py > 3000)
 	{
 		Scene::SetScene(new CSceneMain());
 	}
@@ -385,4 +390,10 @@ void CObjHero::HitBox()
 		}
 	}
 
+	//Á‚¦‚éƒuƒƒbƒNi”¼ƒuƒƒbƒNƒo[ƒWƒ‡ƒ“S3j‚É“–‚½‚Á‚½Žž
+	if (hit->CheckObjNameHit(OBJ_VANISHBLOCK) != nullptr)
+	{
+		m_vx = 0.0f; //’Ê‚ê‚È‚­‚·‚é
+		m_px -= 1.0f;//êŠ‚ÍŒˆ‚Ü‚Á‚Ä‚¢‚Ä¶‚É‚µ‚©“–‚½‚ç‚È‚¢‚Ì‚Å‚±‚ê‚ðŽg‚Á‚Ä‚é
+	}
 }

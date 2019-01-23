@@ -137,6 +137,7 @@ void CObjTitle::Action()
 	if (m_ani_frame == 10)//ƒtƒŒ[ƒ€‚ªÅŒã‚Ü‚Åi‚ñ‚¾‚ç–ß‚·
 	{
 		//ƒV[ƒ“‚ğƒƒjƒ…[‚Ö
+		((UserData*)Save::GetData())->m_stage_count = 1; //ƒƒCƒ“‚É•Ï‚¦‚é
 		Scene::SetScene(new CSceneMain());
 	}
 	//ƒAƒjƒ[ƒVƒ‡ƒ“I—¹|||||||||||||||||||||||||||||||||||||||||||||

@@ -116,7 +116,7 @@ void CObjGolem::Action()
 	m_py += m_vy;
 
 	//Ž€–Sˆ—
-	if (m_del == true)
+	if (m_del == true )
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);

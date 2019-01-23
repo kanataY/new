@@ -164,6 +164,17 @@ void CObjBlock::Action()
 			m_map[i][ex] = 0;
 			m_map_Record[i][ex] = 0; //記録用も消す
 		}
+
+		//列の中から9を探す
+		if (m_map[i][ex] == 9)
+		{
+			///ジャンプオブジェクト作成
+			CObjJumpEnemy* junp = new CObjJumpEnemy(ex * 64, i * 64);
+			Objs::InsertObj(junp, OBJ_JUMP_ENEMY, 13);
+
+			m_map[i][ex] = 0;
+			m_map_Record[i][ex] = 0; //記録用も消す
+		}
 	}
 
 	//消えるブロックの判定を消すーーーーーーーーーーーーーーーーーーーー
