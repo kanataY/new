@@ -56,7 +56,7 @@ void CObjTitle::Action()
 	m_scene_start_control++;
 
 	//十字キーの上か下を押したとき
-	if (Input::GetVKey(VK_LEFT) == true || Input::GetVKey(VK_RIGHT) == true)
+	if ((Input::GetVKey(VK_LEFT) == true || Input::GetVKey(VK_RIGHT) == true) && m_ani_frame == 4)
 	{
 		//キーのコントロールがfalseなら
 		if (m_key_control == false)
