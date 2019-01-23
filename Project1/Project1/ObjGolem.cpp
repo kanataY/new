@@ -126,9 +126,9 @@ void CObjGolem::Action()
 		m_ani_frame_del++;//フレームを進める
 		m_ani_time_del = 0;
 	}
-	if (m_ani_frame_del == 5)//フレームが最後まで進んだら戻す
+	if (m_ani_frame_del == 4)//フレームが最後まで進んだら戻す
 	{
-		m_ani_frame = 0;
+		
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 		return;//消滅処理は、ここでアクションメゾッドを終了させる
