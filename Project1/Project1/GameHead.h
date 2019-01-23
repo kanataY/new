@@ -15,6 +15,7 @@ enum OBJ_NAME
 	OBJ_RUSH_ENEMY,			//突進する敵
 	OBJ_JUMP_ENEMY,			//ジャンプする敵
 	OBJ_GOLEM,				//ゴーレム
+	GOLEM_JUDGMENT,			//ゴーレムの判定
 
 	//ギミック
 	OBJ_THORN,				//針
@@ -24,7 +25,6 @@ enum OBJ_NAME
 
 	//補正
 	CORRECTION,				//補正
-	GOLEM_JUDGMENT,			//ゴーレムの判定
 	HERO_HITBOX,			//主人公のヒットボックス二個目
 
 	//アイテム
