@@ -45,6 +45,8 @@ void CSceneTitle::InitScene()
 	Draw::LoadImageW(L"Image\\Title\\start2.png", 11, TEX_SIZE_256);
 	Draw::LoadImageW(L"Image\\Title\\end.png", 12, TEX_SIZE_256);
 	Draw::LoadImageW(L"Image\\Title\\end2.png", 13, TEX_SIZE_256);
+
+	Draw::LoadImageW(L"Image\\Title\\title.png", 14, TEX_SIZE_512);
 	//音楽情報の読み込み
 
 	////バックミュージックスタート
