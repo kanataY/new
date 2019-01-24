@@ -223,7 +223,7 @@ void CObjHero::Action()
 	//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 	//ƒvƒŒƒCƒ„[ƒŠƒXƒ^[ƒgˆ—------------------------------------------------------------------------------
-	if (hit->CheckObjNameHit(OBJ_THORN)!=nullptr|| Input::GetVKey('R') == true || m_py > 3000)
+	if (hit->CheckObjNameHit(OBJ_JUMP_ENEMY) != nullptr||hit->CheckObjNameHit(OBJ_THORN)!=nullptr|| Input::GetVKey('R') == true || m_py > 3000)
 	{
 		Scene::SetScene(new CSceneMain());
 	}
