@@ -125,6 +125,9 @@ void CSceneMain::MapCreate(int map[][MAP_X])
 	case 4:
 		p = Save::ExternalDataOpen(L"Stage04.csv", &size);//外部データ読み込み
 		break;
+	case 5:
+		p = Save::ExternalDataOpen(L"Stage05.csv", &size);//外部データ読み込み
+		break;
 	default:
 		MessageBox(0, L"ステージ番号が正しくありません。", NULL, MB_OK);
 		break;

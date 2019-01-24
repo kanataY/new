@@ -209,6 +209,19 @@ void CObjBlock::Action()
 								m_map[i][j] = 97;	//’Ê‚ê‚é‚æ‚¤‚É‚·‚é
 							}
 						}
+
+						if (((UserData*)Save::GetData())->m_stage_count == 5)	//ƒXƒe[ƒW‚R‚È‚çÅ‰‚Í•`‰æ‚µ‚È‚¢‚Ì‚Å”»’è‚à•Ï‚¦‚é
+						{
+							if (m_map[i][j] == 10)
+							{
+								///ƒWƒƒƒ“ƒvƒIƒuƒWƒFƒNƒgì¬
+								CObjJumpEnemy* junp = new CObjJumpEnemy(j * 64, i * 64);
+								Objs::InsertObj(junp, OBJ_JUMP_ENEMY, 13);
+
+								m_map[i][j] = 0;
+								m_map_Record[i][j] = 0; //‹L˜^—p‚àÁ‚·
+							}
+						}
 					}
 				}
 
@@ -395,7 +408,7 @@ void CObjBlock::BlockHit(
 		for (int j = 0; j < 100; j++)
 		{
 			//||||||||||||||||||||||||||||
-			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3 && m_map[i][j] != 97)
+			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3 && m_map[i][j] != 10 && m_map[i][j] != 97)
 			{
 				//—v‘f”Ô†‚ğÀ•W‚É•ÏX
 				float bx = j*64.0f;

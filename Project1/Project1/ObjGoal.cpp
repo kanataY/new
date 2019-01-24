@@ -75,7 +75,7 @@ void CObjGoal::Hit()
 
 		//ステージを１進める
 		((UserData*)Save::GetData())->m_stage_count +=1;
-		if (((UserData*)Save::GetData())->m_stage_count < 5)
+		if (((UserData*)Save::GetData())->m_stage_count < 6)
 			Scene::SetScene(new CSceneMain());
 		else
 			Scene::SetScene(new CSceneGameClear());
