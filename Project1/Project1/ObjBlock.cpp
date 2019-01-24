@@ -209,6 +209,19 @@ void CObjBlock::Action()
 								m_map[i][j] = 97;	//通れるようにする
 							}
 						}
+
+						if (((UserData*)Save::GetData())->m_stage_count == 5)	//ステージ３なら最初は描画しないので判定も変える
+						{
+							if (m_map[i][j] == 10)
+							{
+								///ジャンプオブジェクト作成
+								CObjJumpEnemy* junp = new CObjJumpEnemy(j * 64, i * 64);
+								Objs::InsertObj(junp, OBJ_JUMP_ENEMY, 13);
+
+								m_map[i][j] = 0;
+								m_map_Record[i][j] = 0; //記録用も消す
+							}
+						}
 					}
 				}
 
@@ -395,7 +408,7 @@ void CObjBlock::BlockHit(
 		for (int j = 0; j < 100; j++)
 		{
 			//－－－－－－－－－－－－－－－－－－－－－－－－－－－－
-			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3 && m_map[i][j] != 97)
+			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3 && m_map[i][j] != 10 && m_map[i][j] != 97)
 			{
 				//要素番号を座標に変更
 				float bx = j*64.0f;
@@ -565,7 +578,7 @@ void CObjBlock::Block32Hit(
 					//lenがある一定の長さより短い場合判定に入る
 					if (len < 88.0f)
 					{
-
+						*left = true;
 
 						//角度で上下左右判定
 						if (r < 45 && r >= 0 && r >= 315)
@@ -573,37 +586,38 @@ void CObjBlock::Block32Hit(
 							//右
 
 							*right = true;//左の部分が衝突している
-							*x = bx +32.0f+ (scroll);//ブロックの位置ー主人公の幅
-							*vx = -(*vx) * 0.1f;//-VX*反発係数
+						//	*x = bx +32.0f+ (scroll);//ブロックの位置ー主人公の幅
+						//	*vx = -(*vx) * 0.1f;//-VX*反発係数
 
 						}
 						if (r >= 45 && r < 135)
 						{
 							//上
 							*down = true;//主人公の下の部分が衝突している
-							*y = by - 32.0f;//ブロックの位置ー主人公の幅
-
+						//	*y = by - 32.0f;//ブロックの位置ー主人公の幅
+							*left = true;
 											//種類を渡すのスタートとg-流のみ変更する
-							*vy = 0.0f;
+						//	*vy = 0.0f;
 						}
 
 						if (r >= 135 && r < 225)
 						{
 							//左
 							*left = true;//主人公の右の部分が衝突している
-							*x = bx - 32.0f + (scroll);//ブロックの位置ー主人公の幅
-							*vx = -(*vx) * 0.1f;//-VX*反発係数
+						//	*x = bx - 32.0f + (scroll);//ブロックの位置ー主人公の幅
+						//	*vx = -(*vx) * 0.1f;//-VX*反発係数
 
 						}
 						if (r >= 225 && r < 315)
 						{
 							//下
 							*up = true;  //主人公の上の部分が衝突している
-							*y = by + 32.0f;//ブロックの位置＋主人公の幅
-							if (*vy < 0)
-							{
-								*vy = 0.0f;
-							}
+						//	*y = by + 32.0f;//ブロックの位置＋主人公の幅
+						//	if (*vy < 0)
+						//	{
+						//		*vy = 0.0f;
+						//	}
+							*left = true;
 						}
 
 					}

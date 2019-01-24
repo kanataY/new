@@ -55,18 +55,30 @@ void CObjCoin::Action()
 		m_vx += 0.3f;
 	else
 		m_vx -= 0.3f;
-	m_px += m_vx;
-	m_py += m_vy;
-	block->Block32Hit(&m_px, &m_py, true,
+
+	float m_ppx = 0.0f;
+
+	if(hero->GetPos() == 0.0f)
+		m_ppx = m_px;
+	else
+		m_ppx = m_px - 32.0f;
+
+	block->Block32Hit(&m_ppx, &m_py, true,
 		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
 		&m_block_type, 0
 	);
+
+	m_px += m_vx;
+	m_py += m_vy;
+
+	
+
 	//弾丸のHitBox更新用ポインター取得
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px, m_py);    //HitBoxの位置を弾丸の位置に更新
 								//領域外に出たら弾丸を破棄する
 
-	if (m_px + block->GetScroll() < -32.0f ||m_px + block->GetScroll()>800.0f)
+	if (m_px - block->GetScroll() < -32.0f - block->GetScroll() ||m_px - block->GetScroll()>800.0f - block->GetScroll())
 	{
 		this->SetStatus(false);   //自身に削除命令を出す。
 		Hits::DeleteHitBox(this); //弾丸が所有するHitBoxに削除する。
