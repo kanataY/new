@@ -96,6 +96,10 @@ void CObjCoin::Action()
 //ドロー
 void CObjCoin::Draw()
 {
+
+	//ブロック情報を持ってくる
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+
 	//描画カラー情報　R=RED　G=Green　B=Blue　A=alpha(透過情報)
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
