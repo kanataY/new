@@ -120,7 +120,8 @@ void CObjJumpEnemy::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
-	if(m_py > 1500) //下に落ちたら死ぬ
+	//削除条件　コインに当たる、下に落ちる
+	if(m_py > 1500 || hit->CheckObjNameHit(OBJ_COIN) != nullptr) //下に落ちたら死ぬ
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
