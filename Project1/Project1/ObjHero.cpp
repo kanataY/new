@@ -49,6 +49,8 @@ void CObjHero::Init()
 
 	m_ani_change = 2;//アニメーションを2に
 
+	m_gold_restriction = 0;
+	m_gold_restriction_max = 0;
 	//blockとの衝突状態確認用
 	m_hit_up = false;
 	m_hit_down = false;
@@ -124,6 +126,26 @@ void CObjHero::Action()
 	//お金を置くーーーーーーーーーーーーー
 	m_gold_time++;//金塊の間隔を増やす
 
+	//ステージの番号によっておける金塊の数を設定
+	switch (((UserData*)Save::GetData())->m_stage_count)
+	{
+	case 1://ステージ1
+		m_gold_restriction_max = 7;
+		break;
+	case 2://ステージ2
+		m_gold_restriction_max = 9;
+		break;
+	case 3://ステージ3
+		m_gold_restriction_max = 12;
+		break;
+	case 4://ステージ4
+		m_gold_restriction_max = 8;
+		break;
+	case 5://ステージ4
+		m_gold_restriction_max = 15;
+		break;
+	}
+
 	m_ppx = (m_px - block->GetScroll()) / 64; //主人公の位置からマップの位置を取ってくる
 	m_ppy = m_py / 64;
 
@@ -142,8 +164,8 @@ void CObjHero::Action()
 	{
 		if (Input::GetVKey('C') == true)  //金塊を置く
 		{
-			//金塊は一度に一回だけ,置いた後間隔が空いてから二個目を置ける   空中ではおけないように
-			if (m_gold_flag == false && m_gold_spawn == false && m_gold_time > 50 && m_vy == 0.0f)
+			//金塊は一度に一回だけ,置いた後間隔が空いてから二個目を置ける   空中ではおけないように   金塊の個数がしていされた数をこえていなければ
+			if (m_gold_flag == false && m_gold_spawn == false && m_gold_time > 50 && m_vy == 0.0f&&m_gold_restriction<m_gold_restriction_max)
 			{
 				//金塊を生成
 				//左向き
@@ -159,6 +181,7 @@ void CObjHero::Action()
 				}
 				m_gold_flag = true;
 				m_gold_time = 0;//間隔をあける
+				m_gold_restriction++;
 			}
 		}
 		else

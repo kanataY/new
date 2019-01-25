@@ -40,7 +40,8 @@ private:
 	float m_speed;      //主人公の移動量のスピード管理
 	int   m_gold_time;  //金塊の置く間隔
 	int con;
-	
+	int m_gold_restriction;//金塊の個数制限
+	int m_gold_restriction_max;//金塊の個数MAX
 	//制御系---------
 	bool m_gold_flag;  //金塊を出しすぎないようにするため
 	bool m_gold_spawn; //金塊を出せる位置を決める

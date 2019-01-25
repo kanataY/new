@@ -70,10 +70,11 @@ void CSceneMain::InitScene()
 	CObjhero_hitbox* hero_hit = new CObjhero_hitbox();
 	Objs::InsertObj(hero_hit, HERO_HITBOX, 10);
 
-	//補正オブジェクト作成
-	//CObjCorrection* cor = new CObjCorrection();
-	//Objs::InsertObj(cor, CORRECTION, 13);
-
+	//背景（ブロック）オブジェクト作成
+	CObjGolem* gol = new CObjGolem(400,300);
+	Objs::InsertObj(gol, OBJ_GOLEM, 13);
+	CObjGolemJudgment* go = new CObjGolemJudgment(400, 300);
+	Objs::InsertObj(go, GOLEM_JUDGMENT,13);
 
 	//音楽読み込み
 	//Audio::LoadAudio(0, L"BGM&SE\\BGMGameMain_.wav", BACK_MUSIC);

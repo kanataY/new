@@ -32,7 +32,7 @@ void CObjGolem::Init()
 
 	m_ani_time_del = 0;
 	m_ani_frame_del = 0;  //静止フレームを初期にする
-	m_ani_max_time_del = 15; //アニメーション間隔幅
+	m_ani_max_time_del = 10; //アニメーション間隔幅
 
 	m_move = true;
 	m_pos = 0.0f;//左向き
@@ -106,18 +106,21 @@ void CObjGolem::Action()
 		m_vx -= m_speed;
 		m_pos = 0.0f;
 	}
-	if (hit->CheckElementHit(ELEMENT_NULL) == false)
-	{
+	
 		//自由落下運動
 		m_vy += 9.8 / (16.0f);
-	}
+	
 	m_vx += -(m_vx * 0.16f);
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
 
 	//死亡処理
-	if (m_del == true )
+	if (m_ani_frame_del > 2)
+	{
+		m_ani_max_time_del = 15;
+	}
+	if (m_del == true &&m_ani_frame_del<6 )
 	{
 		m_ani_time_del++;
 	}
@@ -126,9 +129,12 @@ void CObjGolem::Action()
 		m_ani_frame_del++;//フレームを進める
 		m_ani_time_del = 0;
 	}
-	if (m_ani_frame_del == 4)//フレームが最後まで進んだら戻す
+	if (m_ani_frame_del == 5)//フレームが最後まで進んだら戻す
 	{
-		
+		//ドロップアイテム召喚
+		CObjDropGold* drop = new CObjDropGold(m_px, m_py+40);
+		Objs::InsertObj(drop, OBJ_DROP_GOLD, 16);
+
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 		return;//消滅処理は、ここでアクションメゾッドを終了させる
@@ -167,8 +173,8 @@ void CObjGolem::Draw()
 	{
 		//切り取り位置の設定
 		src.m_top = 0.0f;
-		src.m_left = 0.0f + m_ani_frame * 64;
-		src.m_right = 64.0f + m_ani_frame * 64;
+		src.m_left = 0.0f + m_ani_frame_del * 64;
+		src.m_right = 64.0f + m_ani_frame_del * 64;
 		src.m_bottom = 384.0f;
 
 		//表示位置の設定
