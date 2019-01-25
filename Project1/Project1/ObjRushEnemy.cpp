@@ -156,17 +156,23 @@ void CObjRushEnemy::Hit()
 	CHitBox* hit = Hits::GetHitBox(this);
 	//スイッチの情報取得
 	CObjswitch* swch = (CObjswitch*)Objs::GetObj(OBJ_SWITCH);
+	//ゴールドの情報取得
+	CObjGold* gold = (CObjGold*)Objs::GetObj(OBJ_GOLD);
+
 	//スイッチを踏んでいる時の処理--------------------------------------------------------------------------------
 	if (swch != nullptr)
 	{
-		if (hit->CheckObjNameHit(OBJ_SWITCH) != nullptr)
+		if (gold->GetGoldSwitch() == false) //ゴールドがスイッチを踏んでいない時だけ反応する
 		{
-			//スイッチのフラグをオンにする
-			swch->SetSwitchFlag(true);
-		}
-		else
-		{	//スイッチのフラグをオフにする
-			swch->SetSwitchFlag(false);
+			if (hit->CheckObjNameHit(OBJ_SWITCH) != nullptr)
+			{
+				//スイッチのフラグをオンにする
+				swch->SetSwitchFlag(true);
+			}
+			else
+			{	//スイッチのフラグをオフにする
+				swch->SetSwitchFlag(false);
+			}
 		}
 	}
 	//---------------------------------------------------------------------------------------------------------------

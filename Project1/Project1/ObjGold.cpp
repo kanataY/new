@@ -28,6 +28,7 @@ void CObjGold::Init()
 	m_gold_vy = 0;
 	m_gold_flag = false;
 	m_hero_flag = false;
+	m_switch_gold_flag = false;
 
 	m_switch_time = 0;
 	//blockとの衝突状態確認用
@@ -129,14 +130,22 @@ void CObjGold::Hit()
 			m_gold_vy = 1;
 		}
 	}
+
 	if (swch != nullptr)
 	{
 		//金塊の下側にスイッチが当たっている時
-		if (hit->CheckObjNameHit(OBJ_SWITCH) != nullptr&& m_hit_down == false)
+		if (hit->CheckObjNameHit(OBJ_SWITCH) != nullptr)
+		{
+			int a = 0;
+		}
+
+		//金塊の下側にスイッチが当たっている時
+		if (hit->CheckObjNameHit(OBJ_SWITCH) != nullptr/*&& m_hit_down == false*/ && m_vy != 0.0f)
 		{
 			//スイッチのフラグをオンにする
 			swch->SetSwitchFlag(true);
 			m_switch_time++;//当たってからの時間を計る
+			m_switch_gold_flag = true;//スイッチを踏んでいる（突進する敵がfalseにしないようにする）
 
 			//計測から5F後に金塊の動きを止める
 			if (m_switch_time >= 8)
