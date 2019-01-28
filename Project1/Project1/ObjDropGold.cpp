@@ -26,10 +26,17 @@ void CObjDropGold::Action()
 {
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_px + block->GetScroll(), m_py);
+
+	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+		return;//消滅処理は、ここでアクションメゾッドを終了させる
+	}
 }
 //ドロー
 void CObjDropGold::Draw()

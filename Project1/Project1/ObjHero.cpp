@@ -34,6 +34,7 @@ void CObjHero::Init()
 	m_ppx = 0;
 	m_ppy = 0;
 	m_gold_time = 100;
+	m_coin_time = 100;
 	con = 0;
 	m_speed = 0.8f;
 	m_pos = 0.0f;//右向き
@@ -49,8 +50,10 @@ void CObjHero::Init()
 
 	m_ani_change = 2;//アニメーションを2に
 
-	m_gold_restriction = 0;
+	m_gold_restriction = 0; //金塊の個数制限
 	m_gold_restriction_max = 0;
+	m_coin_restriction=0;//コインの個数制限
+
 	//blockとの衝突状態確認用
 	m_hit_up = false;
 	m_hit_down = false;
@@ -59,7 +62,7 @@ void CObjHero::Init()
 	m_hit_right = false;
 
 	m_block_type = 0; //踏んでいるblockの種類を確認用
-
+	m_drop_gold = false;//ゴールド拾った時用
 	//HitBox
 	Hits::SetHitBox(this, m_px, m_py, 37, 50, ELEMENT_HERO, OBJ_HERO, 1);
 }
@@ -125,25 +128,38 @@ void CObjHero::Action()
 	//--------------------------------------------------------------------------------------
 	//お金を置くーーーーーーーーーーーーー
 	m_gold_time++;//金塊の間隔を増やす
-
+	m_coin_time++;
 	//ステージの番号によっておける金塊の数を設定
-	switch (((UserData*)Save::GetData())->m_stage_count)
+	if (m_drop_gold == false)//一度設定した後上書きする用
 	{
-	case 1://ステージ1
-		m_gold_restriction_max = 7;
-		break;
-	case 2://ステージ2
-		m_gold_restriction_max = 9;
-		break;
-	case 3://ステージ3
-		m_gold_restriction_max = 12;
-		break;
-	case 4://ステージ4
-		m_gold_restriction_max = 8;
-		break;
-	case 5://ステージ4
-		m_gold_restriction_max = 15;
-		break;
+		switch (((UserData*)Save::GetData())->m_stage_count)
+		{
+		case 1://ステージ1
+			m_gold_restriction_max = 7;
+			m_drop_gold = true;
+			break;
+		case 2://ステージ2
+			m_gold_restriction_max = 9;
+			m_drop_gold = true;
+			break;
+		case 3://ステージ3
+			m_gold_restriction_max = 12;
+			m_drop_gold = true;
+			break;
+		case 4://ステージ4
+			m_gold_restriction_max = 8;
+			m_drop_gold = true;
+			break;
+		case 5://ステージ4
+			m_gold_restriction_max = 15;
+			m_drop_gold = true;
+			break;
+		}
+	}
+	//金塊に触れたら上限を三個増やす
+	if (hit->CheckObjNameHit(OBJ_DROP_GOLD) != nullptr)
+	{
+		m_gold_restriction_max += 3;
 	}
 
 	m_ppx = (m_px - block->GetScroll()) / 64; //主人公の位置からマップの位置を取ってくる
@@ -164,8 +180,8 @@ void CObjHero::Action()
 	{
 		if (Input::GetVKey('C') == true)  //金塊を置く
 		{
-			//金塊は一度に一回だけ,置いた後間隔が空いてから二個目を置ける   空中ではおけないように   金塊の個数がしていされた数をこえていなければ
-			if (m_gold_flag == false && m_gold_spawn == false && m_gold_time > 50 && m_vy == 0.0f&&m_gold_restriction<m_gold_restriction_max)
+			//金塊は一度に一回だけ,置いた後間隔が空いてから二個目を置ける   空中ではおけないように   金塊の個数が指定された数をこえていなければ
+			if (m_gold_flag == false && m_gold_spawn == false && m_gold_time > 50 && m_vy == 0.0f&&m_gold_restriction < m_gold_restriction_max)
 			{
 				//金塊を生成
 				//左向き
@@ -192,7 +208,7 @@ void CObjHero::Action()
 	if (Input::GetVKey('V') == true)//Vで射出(仮)
 	{
 		//コインを出すフラグがオフでコインが存在しない時
-		if (m_coinshot_flag == false&&coin==nullptr)
+		if (m_coinshot_flag == false&& m_coin_time > 50 && coin==nullptr&&m_coin_restriction<10)
 		{
 			//向きによって出す場所を変える
 			if (m_pos == 1)//左向き
@@ -210,13 +226,17 @@ void CObjHero::Action()
 				coin->SetHeroPos(0);//コインに主人公の向きを送る
 			}
 			Audio::Start(10); //コインを投げる音を出す。
+			//コインを出すフラグをオンにする
+			m_coinshot_flag = true;
+			m_coin_restriction++;
+			m_coin_time = 0;//間隔をあける
 		}
-		//コインを出すフラグをオンにする
-		m_coinshot_flag = true;
 	}
 	else//発射ボタンが押されてない時コイン発射フラグはオフにする
 		m_coinshot_flag = false;
 	//－－－－－－－－－－－－－－－－－－－--------------------------------------------
+	//スコア----------------------------------------------------------------------------
+
 
 
 	//摩擦
@@ -269,8 +289,6 @@ void CObjHero::Draw()
 
 	RECT_F src; //描画元切り取り位置
 	RECT_F dst; //描画先表示位置
-	RECT_F src2; //描画元切り取り位置
-	RECT_F dst2; //描画先表示位置
 
 	 //切り取り位置の設定
 	src.m_top = 0.0f;
@@ -287,18 +305,56 @@ void CObjHero::Draw()
 	//描画
 	Draw::Draw(3, &src, &dst, c, 0.0f);
 	
-	//残りの数字を描画する
+	//残りの数字を描画する-------------------------------------------------
 	static wchar_t  c_siro[8];
 	static float cl_siro[4] = { 0.0f,0.0f,0.0f,1.0f };
-	//swprintf_s(c_siro, L"X %d", m_remaining);
+	//金塊残数
+	swprintf_s(c_siro, L"X %d", m_gold_restriction_max-m_gold_restriction);
 	CDrawFont::StrDraw(c_siro, 735, 16, 32, cl_siro);
+	//コイン残数
+	swprintf_s(c_siro, L"X %d", 10 - m_coin_restriction);
+	CDrawFont::StrDraw(c_siro, 735, 64, 32, cl_siro);
 
+	//金塊画像描画----------------------------------------------------------------------------------------------------
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 128.0f;
+	src.m_bottom = 128.0f;
+	//表示位置の設定
+	dst.m_top = 15.0f;
+	dst.m_left = 695.0f;
+	dst.m_right = dst.m_left + 32.0f;
+	dst.m_bottom = dst.m_top+32.0f;
+	//13番目に登録したグラフィックをsrc・dst・c・の情報を元に描画
+	Draw::Draw(13, &src, &dst, c, 0.0);
+	//--------------------------------------------------------------------------
+	//コインの画像描画----------------------------------------------------------------------------------------------------
+	//切り取り位置の設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 32.0f;
+	src.m_bottom = 33.0f;
+
+	//表示位置の設定
+	dst.m_top = 65.0f;
+	dst.m_left = 695.0f;
+	dst.m_right = dst.m_left + 32.0f;
+	dst.m_bottom = dst.m_top + 32.0f;
+	//7番目に登録したグラフィックをsrc・dst・c・の情報を元に描画
+	Draw::Draw(7, &src, &dst, c, 0.0);
 	//---------------------------------------------------------------------------------
 	//得点の描画ーーーーーーーーーーーーーーーーーーーーーーーーーーー
 	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 	wchar_t str[128];
 	swprintf_s(str, L"得点：%d点", ((UserData*)Save::GetData())->m_point);
 	Font::StrDraw(str, 350, 16, 32, cc);
+	//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
+
+	//リスタート文字の描画ーーーーーーーーーーーーーーーーーーーーーーーーーー
+	
+	wchar_t str2[128];
+	swprintf_s(str2, L"Rでリスタート");
+	Font::StrDraw(str2, 20, 16, 32, cc);
 	//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 }
 

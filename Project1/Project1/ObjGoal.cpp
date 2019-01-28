@@ -45,7 +45,7 @@ void CObjGoal::Draw()
 	RECT_F dst; //•`‰ææ•\¦ˆÊ’u
 
 	//Ø‚èæ‚èˆÊ’u‚Ìİ’è
-	src.m_top = 0.f;
+	src.m_top = 0.0f;
 	src.m_left = m_hit_draw -64.0f;
 	src.m_right = m_hit_draw;
 	src.m_bottom = 128.0f;
