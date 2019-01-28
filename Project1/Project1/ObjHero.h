@@ -23,6 +23,7 @@ public:
 	bool GetHitLeft() { return m_hit_left; }			//左が壁に当たってるかの情報渡す
 	bool GetHitRight() { return m_hit_right; }			//右が壁に当たってるかの情報渡す
 
+	void  SetGold(int gold) { m_gold_restriction_max; }     //金塊の上限を上げる奴
 	void  SetX(float x) { m_px = x; }					//m_px,m_pyの値をほかのcppでもいじれるようにする
 	void  SetY(float y) { m_py = y; }
 	void  SetVX(float x) { m_vx = x; }					//m_vx,m_vyの値をほかのcppでもいじれるようにする
@@ -39,17 +40,18 @@ private:
 	float m_ppx, m_ppy; //マップ情報を入れる変数
 	float m_speed;      //主人公の移動量のスピード管理
 	int   m_gold_time;  //金塊の置く間隔
+	int   m_coin_time;  //コイン発射感覚
 	int con;
 	int m_gold_restriction;//金塊の個数制限
 	int m_gold_restriction_max;//金塊の個数MAX
+	int m_coin_restriction;//コインの個数制限
 	//制御系---------
 	bool m_gold_flag;  //金塊を出しすぎないようにするため
 	bool m_gold_spawn; //金塊を出せる位置を決める
 	bool m_coinshot_flag;//コインを出しすぎないようにするため
 	bool m_gold_Y;
 	bool m_gold_M;
-	
-
+	bool m_drop_gold = false;
 	//-アニメーション
 	int m_ani_time; //アニメーションフレーム動作感覚
 	int m_ani_frame;//描画フレーム

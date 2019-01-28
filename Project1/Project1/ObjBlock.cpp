@@ -4,6 +4,7 @@
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\UserData.h"
+#include "GameL\DrawFont.h"
 
 #include "GameHead.h"
 #include "ObjBlock.h"
