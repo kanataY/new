@@ -19,6 +19,7 @@ public:
 	bool  GetD() { return m_hit_down; }
 	bool  GetGoldFlag() { return m_gold_flag; }         //
 	bool GetGoldHero() { return m_hero_flag; }
+	bool  GetGoldSwitch() { return m_switch_gold_flag; } //ゴールドがスイッチを踏んだかどうかを渡す
 	void  Hit();
 
 private:
@@ -27,9 +28,13 @@ private:
 	float m_vy; //移動量
 	float m_vx;
 	int   m_gold_vy;   //金塊が落ちれるかどうか
+	int  m_switch_time;//金塊がスイッチをつぶすのを防ぐためのやつ
+
 	bool  m_gold_flag; //フラグ
 	bool  m_hero_flag;
-	int  m_switch_time;//金塊がスイッチをつぶすのを防ぐためのやつ
+	bool  m_switch_gold_flag; //ゴールドがスイッチ押したときに使う変数
+
+
 	//blockとの衝突状態確認用
 	bool m_hit_up;
 	bool m_hit_down;

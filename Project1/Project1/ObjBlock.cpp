@@ -409,7 +409,7 @@ void CObjBlock::BlockHit(
 		for (int j = 0; j < 100; j++)
 		{
 			//||||||||||||||||||||||||||||
-			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3 && m_map[i][j] != 10 && m_map[i][j] != 97)
+			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3 && m_map[i][j] != 5 && m_map[i][j] != 10 && m_map[i][j] != 97)
 			{
 				//—v‘f”Ô†‚ğÀ•W‚É•ÏX
 				float bx = j*64.0f;
@@ -547,7 +547,7 @@ void CObjBlock::Block32Hit(
 	{
 		for (int j = 0; j < 100; j++)
 		{
-			if (m_map[i][j] > 0 && m_map[i][j] != 2 && m_map[i][j] != 3)
+			if (m_map[i][j]>0 && m_map[i][j] != 2 && m_map[i][j] != 3 && m_map[i][j] != 5 && m_map[i][j] != 10 && m_map[i][j] != 97)
 			{
 				//—v‘f”Ô†‚ğÀ•W‚É•ÏX
 				float bx = j*64.0f;
