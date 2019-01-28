@@ -77,25 +77,31 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(go, GOLEM_JUDGMENT,13);
 
 	//音楽読み込み
-	//Audio::LoadAudio(0, L"BGM&SE\\BGMGameMain_.wav", BACK_MUSIC);
+	Audio::LoadAudio(0, L"BGM&SE\\main2.wav", BACK_MUSIC);
 
-	//Audio::LoadAudio(1, L"BGM&SE\\dashu_.wav", EFFECT); // 走る音
-	//Audio::LoadAudio(2, L"BGM&SE\\Fier2__.wav", EFFECT); // 燃える音
-	//Audio::LoadAudio(3, L"BGM&SE\\jump_.wav", EFFECT);  // ジャンプ
-	//Audio::LoadAudio(4, L"BGM&SE\\rakka_.wav", EFFECT); // 落ちる音
-	//Audio::LoadAudio(5, L"BGM&SE\\water_.wav", EFFECT); // 水に落ちた音
-	//Audio::LoadAudio(6, L"BGM&SE\\track_.wav", EFFECT); // トラック
-	//Audio::LoadAudio(7, L"BGM&SE\\gool.wav", EFFECT); // チェックポイントの歓声
-	//Audio::LoadAudio(8, L"BGM&SE\\gool2.wav", EFFECT); // チェックポイントの歓声2
-	//Audio::LoadAudio(9, L"BGM&SE\\himei.wav", EFFECT); // オカマの悲鳴
-	//Audio::LoadAudio(10, L"BGM&SE\\kiss.wav", EFFECT); // オカマのキス
+	//SE
+	//主人公
+	Audio::LoadAudio(1, L"BGM&SE\\gold.wav", EFFECT);		//ゴールド置いた音
+	Audio::LoadAudio(2, L"BGM&SE\\gold_get.wav", EFFECT);	// ゴールドゲット
+	Audio::LoadAudio(3, L"BGM&SE\\rakka.wav", EFFECT);		// 落下音
+	Audio::LoadAudio(10, L"BGM&SE\\nageru.wav", EFFECT);    // お金を投げる
+
+	//ギミック
+	Audio::LoadAudio(4, L"BGM&SE\\deru.wav", EFFECT);  // ブロックがでる
+	Audio::LoadAudio(5, L"BGM&SE\\kieru.wav", EFFECT); // ブロックが消える
+	Audio::LoadAudio(6, L"BGM&SE\\Goal.wav", EFFECT);  // ゴール
+
+	//敵
+	Audio::LoadAudio(7, L"BGM&SE\\kuzureru.wav", EFFECT); // ゴーレムが崩れる
+	Audio::LoadAudio(8, L"BGM&SE\\go-remu2.wav", EFFECT); // ゴーレムの足音
+	Audio::LoadAudio(9, L"BGM&SE\\inosisi.wav", EFFECT);  // イノシシの足音
 
 
 	////ボリュームを1.5増やす
 	//float v = Audio::VolumeMaster(1.5);
 
 	//音楽スタート
-	//Audio::Start(0);
+	Audio::Start(0);
 }
 
 //実行中メソッド

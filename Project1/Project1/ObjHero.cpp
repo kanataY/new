@@ -209,6 +209,7 @@ void CObjHero::Action()
 				Objs::InsertObj(coin, OBJ_COIN, 16);
 				coin->SetHeroPos(0);//コインに主人公の向きを送る
 			}
+			Audio::Start(10); //コインを投げる音を出す。
 		}
 		//コインを出すフラグをオンにする
 		m_coinshot_flag = true;
