@@ -49,6 +49,8 @@ void CObjRushEnemy::Action()
 {
 	//ブロック情報を持ってくる
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	//主人公の情報を持ってくる
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	
 	//アニメーションーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
 	m_ani_time++;//フレーム動作感覚タイムを進める
@@ -63,7 +65,14 @@ void CObjRushEnemy::Action()
 	}
 	//アニメーション終了－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 
-	
+	if(Audio::CheckSound(9) == false)
+		Audio::Start(9);
+
+	//主人公から離れている場合は音を消す。
+	if (m_px + block->GetScroll() + 240.0f < hero->GetX() || m_px + block->GetScroll() - 240.0f > hero->GetX())
+	{
+		Audio::Stop(9);
+	}
 
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);

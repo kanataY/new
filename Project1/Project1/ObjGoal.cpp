@@ -19,6 +19,7 @@ CObjGoal::CObjGoal(float x, float y)
 void CObjGoal::Init()
 {
 	m_hit_draw = 64.0f;
+	m_audio_flag = false;
 
 	//当たり判定用HitBoxを作成
 	Hits::SetHitBox(this, m_px, m_py, 10, 10, ELEMENT_ENEMY, OBJ_GOAL, 1);
@@ -68,16 +69,30 @@ void CObjGoal::Hit()
 {
 	//HitBox取得
 	CHitBox* hit = Hits::GetHitBox(this);
+	//主人公の情報を取得
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
 		m_hit_draw = 128.0f; // 主人公に当たった
 
-		//ステージを１進める
-		((UserData*)Save::GetData())->m_stage_count +=1;
-		if (((UserData*)Save::GetData())->m_stage_count < 6)
-			Scene::SetScene(new CSceneMain());
-		else
-			Scene::SetScene(new CSceneGameClear());
+		if (m_audio_flag == false)//一回のみ鳴らす
+		{
+			Audio::Start(6); //ゴール音
+			m_audio_flag = true;
+		}
+	}
+
+	if (m_audio_flag == true)
+	{
+		if (Audio::CheckSound(6) == false)	//効果音が鳴りやんでいたら、次のステージに進む
+		{
+			//ステージを１進める
+			((UserData*)Save::GetData())->m_stage_count += 1;
+			if (((UserData*)Save::GetData())->m_stage_count < 6)
+				Scene::SetScene(new CSceneMain());
+			else
+				Scene::SetScene(new CSceneGameClear());
+		}
 	}
 }

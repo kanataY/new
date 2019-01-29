@@ -4,6 +4,7 @@
 #include "GameL\WinInputs.h"
 #include "GameL\SceneManager.h"
 #include "GameL\MultiThread.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "GameL\UserData.h"
@@ -66,13 +67,19 @@ void CObjTitle::Action()
 
 			//フラグが0の時
 			if (m_key_flag == 0)
+			{
 				//フラグを1に
 				m_key_flag = 1;
+				Audio::Start(1);
+			}
 
 			//フラグが１の時
 			else if (m_key_flag == 1)
+			{
 				//フラグを0に
 				m_key_flag = 0;
+				Audio::Start(1);
+			}
 		}
 	}
 	//十字キーが押されてない時
@@ -91,6 +98,7 @@ void CObjTitle::Action()
 			if (m_key_flag == 0)
 			{
 				m_ani_start_flag = true;
+				Audio::Start(2);
 			}
 			//終了の位置なら
 			if (m_key_flag == 1)
@@ -134,8 +142,9 @@ void CObjTitle::Action()
 		m_ani_frame++;//frame進める
 		m_ani_time2 = 0;
 	}
-	if (m_ani_frame == 10)//フレームが最後まで進んだら戻す
+	if (m_ani_frame == 9)//フレームが最後まで進んだら戻す
 	{
+		Audio::Stop(2);
 		//シーンをメニューへ
 		((UserData*)Save::GetData())->m_stage_count = 1; //メインに変える
 		Scene::SetScene(new CSceneMain());

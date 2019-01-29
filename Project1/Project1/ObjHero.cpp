@@ -43,6 +43,7 @@ void CObjHero::Init()
 	m_gold_Y = false;
 	m_gold_M = false;
 	m_coinshot_flag = false;
+	m_goal_flag = false;
 
 	m_ani_time = 0;
 	m_ani_frame = 1;  //ê√é~ÉtÉåÅ[ÉÄÇèâä˙Ç…Ç∑ÇÈ
@@ -77,203 +78,217 @@ void CObjHero::Action()
 	//ï‚ê≥ÇÃèÓïÒÇéùÇ¡ÇƒÇ≠ÇÈ
 	//CObjCorrection* cor = (CObjCorrection*)Objs::GetObj(CORRECTION);
 
+	//ÉSÅ[ÉãÇµÇƒÇΩÇÁìÆÇ©ÇπÇ»Ç¢ÇÊÇ§Ç…Ç∑ÇÈ
+	if (m_goal_flag == false)
+	{
+		//ÉAÉjÉÅÅ[ÉVÉáÉìÅ[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[
 
-	//ÉAÉjÉÅÅ[ÉVÉáÉìÅ[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[
-	
-	if (m_ani_time > m_ani_max_time)//ÉtÉåÅ[ÉÄìÆçÏä¥äoÉ^ÉCÉÄÇ™ç≈ëÂÇ‹Ç≈çsÇ¡ÇΩÇÁ
-	{
-		m_ani_frame++;//ÉtÉåÅ[ÉÄÇêiÇﬂÇÈ
-		m_ani_time = 0;
-	}
-	if (m_ani_frame == 4)//ÉtÉåÅ[ÉÄÇ™ç≈å„Ç‹Ç≈êiÇÒÇæÇÁñﬂÇ∑
-	{
-		m_ani_frame = 0;
-	}
-	//ÉAÉjÉÅÅ[ÉVÉáÉìèIóπÅ|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|
-
-	//HitBoxÇÃà íuÇÃïœçX
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_px + 15.0f, m_py + 15.0f);
-
-	//à⁄ìÆèàóùÅ|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|
-	if (Input::GetVKey(VK_RIGHT) == true&&hit->CheckObjNameHit(OBJ_GOLEM)==nullptr)  //âEà⁄ìÆ
-	{
-		m_ani_time++;//ÉtÉåÅ[ÉÄìÆçÏä¥äoÉ^ÉCÉÄÇêiÇﬂÇÈ
-		if (hit->CheckObjNameHit(OBJ_GOLEM) != nullptr)
-			m_speed = 0.1f;
-		m_vx += m_speed;
-		m_pos = 0.0f;
-	}
-	if (Input::GetVKey(VK_LEFT) == true && hit->CheckObjNameHit(OBJ_GOLEM) == nullptr)  //ç∂à⁄ìÆ
-	{
-		m_ani_time++;//ÉtÉåÅ[ÉÄìÆçÏä¥äoÉ^ÉCÉÄÇêiÇﬂÇÈ
-		if (hit->CheckObjNameHit(OBJ_GOLEM) != nullptr)
-			m_speed = 0.1f;
-		m_vx += -m_speed;
-		m_pos = 1.0f;
-	}
-	if (Input::GetVKey(VK_UP) == true)//è„à⁄ìÆ
-	{
-		m_vy += -m_speed*3;
-	}
-	if (Input::GetVKey(VK_DOWN) == true && m_py < 536)//â∫à⁄ìÆ
-	{
-		m_vy += m_speed;
-	}
-	if(Input::GetVKey(VK_RIGHT) != true&& Input::GetVKey(VK_LEFT) != true)
-	{
-		m_ani_frame = 1;
-	}
-	
-	//--------------------------------------------------------------------------------------
-	//Ç®ã‡ÇíuÇ≠Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[
-	m_gold_time++;//ã‡âÚÇÃä‘äuÇëùÇ‚Ç∑
-	m_coin_time++;
-	//ÉXÉeÅ[ÉWÇÃî‘çÜÇ…ÇÊÇ¡ÇƒÇ®ÇØÇÈã‡âÚÇÃêîÇê›íË
-	if (m_drop_gold == false)//àÍìxê›íËÇµÇΩå„è„èëÇ´Ç∑ÇÈóp
-	{
-		switch (((UserData*)Save::GetData())->m_stage_count)
+		if (m_ani_time > m_ani_max_time)//ÉtÉåÅ[ÉÄìÆçÏä¥äoÉ^ÉCÉÄÇ™ç≈ëÂÇ‹Ç≈çsÇ¡ÇΩÇÁ
 		{
-		case 1://ÉXÉeÅ[ÉW1
-			m_gold_restriction_max = 7;
-			m_drop_gold = true;
-			break;
-		case 2://ÉXÉeÅ[ÉW2
-			m_gold_restriction_max = 9;
-			m_drop_gold = true;
-			break;
-		case 3://ÉXÉeÅ[ÉW3
-			m_gold_restriction_max = 12;
-			m_drop_gold = true;
-			break;
-		case 4://ÉXÉeÅ[ÉW4
-			m_gold_restriction_max = 8;
-			m_drop_gold = true;
-			break;
-		case 5://ÉXÉeÅ[ÉW4
-			m_gold_restriction_max = 15;
-			m_drop_gold = true;
-			break;
+			m_ani_frame++;//ÉtÉåÅ[ÉÄÇêiÇﬂÇÈ
+			m_ani_time = 0;
 		}
-	}
-	//ã‡âÚÇ…êGÇÍÇΩÇÁè„å¿ÇéOå¬ëùÇ‚Ç∑
-	if (hit->CheckObjNameHit(OBJ_DROP_GOLD) != nullptr)
-	{
-		m_gold_restriction_max += 3;
-	}
-
-	m_ppx = (m_px - block->GetScroll()) / 64; //éÂêlåˆÇÃà íuÇ©ÇÁÉ}ÉbÉvÇÃà íuÇéÊÇ¡ÇƒÇ≠ÇÈ
-	m_ppy = m_py / 64;
-
-	if(m_pos == 0.0f) //âEå¸Ç´ÇÃéûÇÕí≤êÆÇ∑ÇÈÅB
-		m_ppx += 0.8f;		//éléÃå‹ì¸Ç∑ÇÈèÄîıÅAí≤êÆÇ∑ÇÈ
-
-	m_ppy += 0.5f;
-
-	m_ppx = (int)m_ppx;	//intå^Ç…ïœçXÇµÇƒéléÃå‹ì¸Ç∑ÇÈ
-	m_ppy = (int)m_ppy;
-
-	if (block->GetMapRecord(m_ppx + 1, m_ppy) == 0 && m_pos == 0.0f ||
-		block->GetMapRecord(m_ppx - 1, m_ppy) == 0 && m_pos == 1.0f ||
-		block->GetMap(m_ppx + 1, m_ppy) == 97 && m_pos == 0.0f ||
-		block->GetMap(m_ppx - 1, m_ppy) == 97 && m_pos == 1.0f)//ç°Ç¢ÇÈà íuÇÃâEë§ÅAç∂ë§Ç™ÉuÉçÉbÉNÇæÇ¡ÇΩÇÁã‡âÚÇíuÇØÇ»Ç¢ÇÊÇ§Ç…Ç∑ÇÈ
-	{
-		if (Input::GetVKey('C') == true)  //ã‡âÚÇíuÇ≠
+		if (m_ani_frame == 4)//ÉtÉåÅ[ÉÄÇ™ç≈å„Ç‹Ç≈êiÇÒÇæÇÁñﬂÇ∑
 		{
-			//ã‡âÚÇÕàÍìxÇ…àÍâÒÇæÇØ,íuÇ¢ÇΩå„ä‘äuÇ™ãÛÇ¢ÇƒÇ©ÇÁìÒå¬ñ⁄ÇíuÇØÇÈ   ãÛíÜÇ≈ÇÕÇ®ÇØÇ»Ç¢ÇÊÇ§Ç…   ã‡âÚÇÃå¬êîÇ™éwíËÇ≥ÇÍÇΩêîÇÇ±Ç¶ÇƒÇ¢Ç»ÇØÇÍÇŒ
-			if (m_gold_flag == false && m_gold_spawn == false && m_gold_time > 50 && m_vy == 0.0f&&m_gold_restriction < m_gold_restriction_max)
+			m_ani_frame = 0;
+		}
+		//ÉAÉjÉÅÅ[ÉVÉáÉìèIóπÅ|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|
+
+		//HitBoxÇÃà íuÇÃïœçX
+		CHitBox* hit = Hits::GetHitBox(this);
+		hit->SetPos(m_px + 15.0f, m_py + 15.0f);
+
+		//à⁄ìÆèàóùÅ|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|
+		if (Input::GetVKey(VK_RIGHT) == true && hit->CheckObjNameHit(OBJ_GOLEM) == nullptr)  //âEà⁄ìÆ
+		{
+			m_ani_time++;//ÉtÉåÅ[ÉÄìÆçÏä¥äoÉ^ÉCÉÄÇêiÇﬂÇÈ
+			if (hit->CheckObjNameHit(OBJ_GOLEM) != nullptr)
+				m_speed = 0.1f;
+			m_vx += m_speed;
+			m_pos = 0.0f;
+		}
+		if (Input::GetVKey(VK_LEFT) == true && hit->CheckObjNameHit(OBJ_GOLEM) == nullptr)  //ç∂à⁄ìÆ
+		{
+			m_ani_time++;//ÉtÉåÅ[ÉÄìÆçÏä¥äoÉ^ÉCÉÄÇêiÇﬂÇÈ
+			if (hit->CheckObjNameHit(OBJ_GOLEM) != nullptr)
+				m_speed = 0.1f;
+			m_vx += -m_speed;
+			m_pos = 1.0f;
+		}
+		if (Input::GetVKey(VK_UP) == true)//è„à⁄ìÆ
+		{
+			m_vy += -m_speed * 3;
+		}
+		if (Input::GetVKey(VK_DOWN) == true && m_py < 536)//â∫à⁄ìÆ
+		{
+			m_vy += m_speed;
+		}
+		if (Input::GetVKey(VK_RIGHT) != true && Input::GetVKey(VK_LEFT) != true)
+		{
+			m_ani_frame = 1;
+		}
+
+		//--------------------------------------------------------------------------------------
+		//Ç®ã‡ÇíuÇ≠Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[
+		m_gold_time++;//ã‡âÚÇÃä‘äuÇëùÇ‚Ç∑
+		m_coin_time++;
+		//ÉXÉeÅ[ÉWÇÃî‘çÜÇ…ÇÊÇ¡ÇƒÇ®ÇØÇÈã‡âÚÇÃêîÇê›íË
+		if (m_drop_gold == false)//àÍìxê›íËÇµÇΩå„è„èëÇ´Ç∑ÇÈóp
+		{
+			switch (((UserData*)Save::GetData())->m_stage_count)
 			{
-				//ã‡âÚÇê∂ê¨
-				//ç∂å¸Ç´
-				if (m_pos == 1)
+			case 1://ÉXÉeÅ[ÉW1
+				m_gold_restriction_max = 7;
+				m_drop_gold = true;
+				break;
+			case 2://ÉXÉeÅ[ÉW2
+				m_gold_restriction_max = 9;
+				m_drop_gold = true;
+				break;
+			case 3://ÉXÉeÅ[ÉW3
+				m_gold_restriction_max = 12;
+				m_drop_gold = true;
+				break;
+			case 4://ÉXÉeÅ[ÉW4
+				m_gold_restriction_max = 8;
+				m_drop_gold = true;
+				break;
+			case 5://ÉXÉeÅ[ÉW4
+				m_gold_restriction_max = 15;
+				m_drop_gold = true;
+				break;
+			}
+		}
+		//ã‡âÚÇ…êGÇÍÇΩÇÁè„å¿ÇéOå¬ëùÇ‚Ç∑
+		if (hit->CheckObjNameHit(OBJ_DROP_GOLD) != nullptr)
+		{
+			m_gold_restriction_max += 3;
+			Audio::Start(2); //ã‡âÚÇÃéÊìæâπÇñ¬ÇÁÇ∑
+		}
+
+		m_ppx = (m_px - block->GetScroll()) / 64; //éÂêlåˆÇÃà íuÇ©ÇÁÉ}ÉbÉvÇÃà íuÇéÊÇ¡ÇƒÇ≠ÇÈ
+		m_ppy = m_py / 64;
+
+		if (m_pos == 0.0f) //âEå¸Ç´ÇÃéûÇÕí≤êÆÇ∑ÇÈÅB
+			m_ppx += 0.8f;		//éléÃå‹ì¸Ç∑ÇÈèÄîıÅAí≤êÆÇ∑ÇÈ
+
+		m_ppy += 0.5f;
+
+		m_ppx = (int)m_ppx;	//intå^Ç…ïœçXÇµÇƒéléÃå‹ì¸Ç∑ÇÈ
+		m_ppy = (int)m_ppy;
+
+		if (block->GetMapRecord(m_ppx + 1, m_ppy) == 0 && m_pos == 0.0f ||
+			block->GetMapRecord(m_ppx - 1, m_ppy) == 0 && m_pos == 1.0f ||
+			block->GetMap(m_ppx + 1, m_ppy) == 97 && m_pos == 0.0f ||
+			block->GetMap(m_ppx - 1, m_ppy) == 97 && m_pos == 1.0f)//ç°Ç¢ÇÈà íuÇÃâEë§ÅAç∂ë§Ç™ÉuÉçÉbÉNÇæÇ¡ÇΩÇÁã‡âÚÇíuÇØÇ»Ç¢ÇÊÇ§Ç…Ç∑ÇÈ
+		{
+			if (Input::GetVKey('C') == true)  //ã‡âÚÇíuÇ≠
+			{
+				//ã‡âÚÇÕàÍìxÇ…àÍâÒÇæÇØ,íuÇ¢ÇΩå„ä‘äuÇ™ãÛÇ¢ÇƒÇ©ÇÁìÒå¬ñ⁄ÇíuÇØÇÈ   ãÛíÜÇ≈ÇÕÇ®ÇØÇ»Ç¢ÇÊÇ§Ç…   ã‡âÚÇÃå¬êîÇ™éwíËÇ≥ÇÍÇΩêîÇÇ±Ç¶ÇƒÇ¢Ç»ÇØÇÍÇŒ
+				if (m_gold_flag == false && m_gold_spawn == false && m_gold_time > 50 && m_vy == 0.0f&&m_gold_restriction < m_gold_restriction_max)
 				{
-					CObjGold* kane = new CObjGold(m_px - 75.0f - block->GetScroll(), m_py);
-					Objs::InsertObj(kane, OBJ_GOLD, 16);
+					//ã‡âÚÇê∂ê¨
+					//ç∂å¸Ç´
+					if (m_pos == 1)
+					{
+						CObjGold* kane = new CObjGold(m_px - 75.0f - block->GetScroll(), m_py);
+						Objs::InsertObj(kane, OBJ_GOLD, 16);
+					}
+					else//âEå¸Ç´
+					{
+						CObjGold* kane = new CObjGold(m_px + 75.0f - block->GetScroll(), m_py);
+						Objs::InsertObj(kane, OBJ_GOLD, 16);
+					}
+					m_gold_flag = true;
+					m_gold_time = 0;//ä‘äuÇÇ†ÇØÇÈ
+					m_gold_restriction++;
+				}
+			}
+			else
+				m_gold_flag = false;
+		}
+
+		//ÉRÉCÉìçUåÇ-----------------------------------------------------------------------------
+		if (Input::GetVKey('V') == true)//VÇ≈éÀèo(âº)
+		{
+			//ÉRÉCÉìÇèoÇ∑ÉtÉâÉOÇ™ÉIÉtÇ≈ÉRÉCÉìÇ™ë∂ç›ÇµÇ»Ç¢éû
+			if (m_coinshot_flag == false && m_coin_time > 50 && coin == nullptr&&m_coin_restriction < 10)
+			{
+				//å¸Ç´Ç…ÇÊÇ¡ÇƒèoÇ∑èÍèäÇïœÇ¶ÇÈ
+				if (m_pos == 1)//ç∂å¸Ç´
+				{
+					//ÉRÉCÉìÇèoÇ∑
+					CObjCoin* coin = new CObjCoin(m_px, m_py + 25.0f);
+					Objs::InsertObj(coin, OBJ_COIN, 16);
+					coin->SetHeroPos(1);//ÉRÉCÉìÇ…éÂêlåˆÇÃå¸Ç´ÇëóÇÈ
 				}
 				else//âEå¸Ç´
 				{
-					CObjGold* kane = new CObjGold(m_px + 75.0f - block->GetScroll(), m_py);
-					Objs::InsertObj(kane, OBJ_GOLD, 16);
+					//ÉRÉCÉìÇèoÇ∑
+					CObjCoin* coin = new CObjCoin(m_px + 25.0f, m_py + 25.0f);
+					Objs::InsertObj(coin, OBJ_COIN, 16);
+					coin->SetHeroPos(0);//ÉRÉCÉìÇ…éÂêlåˆÇÃå¸Ç´ÇëóÇÈ
 				}
-				m_gold_flag = true;
-				m_gold_time = 0;//ä‘äuÇÇ†ÇØÇÈ
-				m_gold_restriction++;
+				Audio::Start(10); //ÉRÉCÉìÇìäÇ∞ÇÈâπÇèoÇ∑ÅB
+				//ÉRÉCÉìÇèoÇ∑ÉtÉâÉOÇÉIÉìÇ…Ç∑ÇÈ
+				m_coinshot_flag = true;
+				m_coin_restriction++;
+				m_coin_time = 0;//ä‘äuÇÇ†ÇØÇÈ
 			}
 		}
-		else
-			m_gold_flag = false;
-	}
-
-	//ÉRÉCÉìçUåÇ-----------------------------------------------------------------------------
-	if (Input::GetVKey('V') == true)//VÇ≈éÀèo(âº)
-	{
-		//ÉRÉCÉìÇèoÇ∑ÉtÉâÉOÇ™ÉIÉtÇ≈ÉRÉCÉìÇ™ë∂ç›ÇµÇ»Ç¢éû
-		if (m_coinshot_flag == false&& m_coin_time > 50 && coin==nullptr&&m_coin_restriction<10)
-		{
-			//å¸Ç´Ç…ÇÊÇ¡ÇƒèoÇ∑èÍèäÇïœÇ¶ÇÈ
-			if (m_pos == 1)//ç∂å¸Ç´
-			{
-				//ÉRÉCÉìÇèoÇ∑
-				CObjCoin* coin = new CObjCoin(m_px, m_py+25.0f);
-				Objs::InsertObj(coin, OBJ_COIN, 16);
-				coin->SetHeroPos(1);//ÉRÉCÉìÇ…éÂêlåˆÇÃå¸Ç´ÇëóÇÈ
-			}
-			else//âEå¸Ç´
-			{
-				//ÉRÉCÉìÇèoÇ∑
-				CObjCoin* coin = new CObjCoin(m_px+25.0f, m_py+25.0f);
-				Objs::InsertObj(coin, OBJ_COIN, 16);
-				coin->SetHeroPos(0);//ÉRÉCÉìÇ…éÂêlåˆÇÃå¸Ç´ÇëóÇÈ
-			}
-			//ÉRÉCÉìÇèoÇ∑ÉtÉâÉOÇÉIÉìÇ…Ç∑ÇÈ
-			m_coinshot_flag = true;
-			m_coin_restriction++;
-			m_coin_time = 0;//ä‘äuÇÇ†ÇØÇÈ
-		}
-	}
-	else//î≠éÀÉ{É^ÉìÇ™âüÇ≥ÇÍÇƒÇ»Ç¢éûÉRÉCÉìî≠éÀÉtÉâÉOÇÕÉIÉtÇ…Ç∑ÇÈ
-		m_coinshot_flag = false;
-	//Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|--------------------------------------------
-	//ÉXÉRÉA----------------------------------------------------------------------------
+		else//î≠éÀÉ{É^ÉìÇ™âüÇ≥ÇÍÇƒÇ»Ç¢éûÉRÉCÉìî≠éÀÉtÉâÉOÇÕÉIÉtÇ…Ç∑ÇÈ
+			m_coinshot_flag = false;
+		//Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|--------------------------------------------
+		//ÉXÉRÉA----------------------------------------------------------------------------
 
 
 
-	//ñÄéC
-	m_vx += -(m_vx * 0.15f);
+		//ñÄéC
+		m_vx += -(m_vx * 0.15f);
 
-	//é©óRóéâ∫â^ìÆ
-	m_vy += 9.8 / (8.0f);
-	//ÉWÉÉÉìÉvèIóπÅ[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[
+		//é©óRóéâ∫â^ìÆ
+		m_vy += 9.8 / (8.0f);
+		//ÉWÉÉÉìÉvèIóπÅ[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[Å[
 
-	//ÉuÉçÉbÉNÇ…ÇÃÇ⁄ÇÍÇÈÇÊÇ§Ç…Ç∑ÇÈ
-	float b = m_py + 32.0f;
-	
+		//ÉuÉçÉbÉNÇ…ÇÃÇ⁄ÇÍÇÈÇÊÇ§Ç…Ç∑ÇÈ
+		float b = m_py + 32.0f;
 
-	block->BlockHit(&m_px, &m_py, true,
-		&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-		&m_block_type, false, false, 0,false,true
-	);
 
-	//ìñÇΩÇËîªíËä÷òA
-	HitBox();
-
-	if (m_vy == 0.0f) // ãÛíÜÇ…Ç¢ÇÈÇ∆Ç´Ç…è„ÇÍÇ»Ç≠Ç∑ÇÈÅB
-		block->BlockHit(&m_px, &b, true,
+		block->BlockHit(&m_px, &m_py, true,
 			&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
-			&m_block_type, false, true, &m_py, &m_gold_M, true
+			&m_block_type, false, false, 0, false, true
 		);
-	
-	//Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|
 
-	//ÉvÉåÉCÉÑÅ[ÉäÉXÉ^Å[Égèàóù------------------------------------------------------------------------------
-	if (hit->CheckObjNameHit(OBJ_JUMP_ENEMY) != nullptr||hit->CheckObjNameHit(OBJ_THORN)!=nullptr|| Input::GetVKey('R') == true || m_py > 3000)
-	{
-		Scene::SetScene(new CSceneMain());
+		//ìñÇΩÇËîªíËä÷òA
+		HitBox();
+
+		if (m_vy == 0.0f) // ãÛíÜÇ…Ç¢ÇÈÇ∆Ç´Ç…è„ÇÍÇ»Ç≠Ç∑ÇÈÅB
+			block->BlockHit(&m_px, &b, true,
+				&m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy,
+				&m_block_type, false, true, &m_py, &m_gold_M, true
+			);
+
+		//Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|Å|
+
+		//ÉvÉåÉCÉÑÅ[ÉäÉXÉ^Å[Égèàóù------------------------------------------------------------------------------
+		if (hit->CheckObjNameHit(OBJ_JUMP_ENEMY) != nullptr || hit->CheckObjNameHit(OBJ_THORN) != nullptr
+			|| Input::GetVKey('R') == true || m_py > 3000)
+		{
+			if(Audio::CheckSound(3) == false)
+			Scene::SetScene(new CSceneMain());
+		}
+		//óéâ∫ÇµÇΩÇ∆Ç´Ç…âπÇñ¬ÇÁÇ∑ÅB
+		if (m_py > 600)
+		{
+			if (Audio::CheckSound(3) == false)
+				Audio::Start(3);
+		}
+
+		//------------------------------------------------------------------------------------------------
+		//à íuÇÃçXêV
+		m_px += m_vx;
+		m_py += m_vy;
 	}
-	//------------------------------------------------------------------------------------------------
-	//à íuÇÃçXêV
-	m_px += m_vx;
-	m_py += m_vy;
 }
 
 		
@@ -492,4 +507,10 @@ void CObjHero::HitBox()
 	}
 	
 
+
+	//ÉSÅ[ÉãÇ…ìñÇΩÇ¡ÇΩéû
+	if (hit->CheckObjNameHit(OBJ_GOAL) != nullptr)
+	{
+		m_goal_flag = true;
+	}
 }

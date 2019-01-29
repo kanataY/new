@@ -26,6 +26,9 @@ void CObjGolem::Init()
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 	m_speed = 0.5f;
+	m_audio_flag = false;
+	m_audio_footsteps_flag = false;
+
 	m_ani_time = 0;
 	m_ani_frame = 0;  //Ã~ƒtƒŒ[ƒ€‚ğ‰Šú‚É‚·‚é
 	m_ani_max_time = 15; //ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔŠu•
@@ -67,6 +70,19 @@ void CObjGolem::Action()
 	{
 		m_ani_frame = 0;
 	}
+
+	//»‰Œ‚ª‚Å‚éƒAƒjƒ[ƒVƒ‡ƒ“‚É‘«‰¹‚ğo‚·
+	if ((m_ani_frame == 3 && m_audio_footsteps_flag == false) || (m_ani_frame == 7 && m_audio_footsteps_flag == false))
+	{
+		Audio::Start(8);
+		m_audio_footsteps_flag = true;	//ˆê‰ñ‚Ì‚İ–Â‚ç‚·
+	}
+
+	if(m_ani_frame == 4 || m_ani_frame == 1)//ƒtƒŒ[ƒ€‚ªi‚ñ‚¾‚ç‚à‚¤ˆê“x–Â‚ç‚¹‚é‚æ‚¤‚É–ß‚·
+	{
+		m_audio_footsteps_flag = false;
+	}
+
 	//ƒAƒjƒ[ƒVƒ‡ƒ“I—¹|||||||||||||||||||||||||||||||||||||||||||||
 
 	//HitBox‚ÌˆÊ’u‚Ì•ÏX
@@ -115,6 +131,13 @@ void CObjGolem::Action()
 	m_px += m_vx;
 	m_py += m_vy;
 
+	//€‚ñ‚¾‚Æ‚«‰¹‚ğo‚·
+	if (m_del == true && m_audio_flag == false)
+	{
+		Audio::Start(7); //•ö‚ê‚é‰¹
+		m_audio_flag = true;
+	}
+
 	//€–Sˆ—
 	if (m_ani_frame_del > 2)
 	{
@@ -135,6 +158,7 @@ void CObjGolem::Action()
 		CObjDropGold* drop = new CObjDropGold(m_px, m_py+40);
 		Objs::InsertObj(drop, OBJ_DROP_GOLD, 16);
 
+		Audio::Stop(7);//•ö‚ê‚é‰¹‚ğ~‚ß‚é
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 		return;//Á–Åˆ—‚ÍA‚±‚±‚ÅƒAƒNƒVƒ‡ƒ“ƒƒ]ƒbƒh‚ğI—¹‚³‚¹‚é

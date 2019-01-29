@@ -193,7 +193,7 @@ void CObjBlock::Action()
 				{
 					m_swich_time++;//スイッチが押されてからしばらくしたら通れるようにする
 
-					if (m_swich_time > 50000)
+					if (m_swich_time > 60000)
 					{
 						//列の中から998を探す
 						if (((UserData*)Save::GetData())->m_stage_count == 3)	//ステージ３なら最初は描画しないので判定も変える
@@ -226,8 +226,9 @@ void CObjBlock::Action()
 					}
 				}
 
-				if (swi->GetSwitchFlag() == false)//スイッチが押されてない場合は判定を消さない
+				else if (swi->GetSwitchFlag() == false)//スイッチが押されてない場合は判定を消さない
 				{
+					m_swich_time = 0;
 					//列の中から998を探す
 					if (((UserData*)Save::GetData())->m_stage_count == 3)	//ステージ３なら最初は描画しないので判定も変える
 					{
@@ -245,7 +246,6 @@ void CObjBlock::Action()
 							m_map[i][j] = 98;	//通れなくする。
 						}
 					}
-					m_swich_time = 0;
 				}
 			}
 		}
@@ -339,9 +339,8 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F* dst, float c[] , int i , int
 	src.m_left = x;
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = src.m_top + 64.0f;
-	//描画
-
-	if (m_map[i - 1][j] == 1)
+	//描画)
+	if (m_map[i - 1][j] == 1 && i >= 0)
 	{
 		Draw::Draw(2, &src, dst, c, 0.0f);
 	}

@@ -52,6 +52,7 @@ private:
 	bool m_gold_Y;
 	bool m_gold_M;
 	bool m_drop_gold = false;
+	bool m_goal_flag;  //ゴールした時のフラグ
 	//-アニメーション
 	int m_ani_time; //アニメーションフレーム動作感覚
 	int m_ani_frame;//描画フレーム

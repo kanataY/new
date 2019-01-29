@@ -23,4 +23,5 @@ private:
 	float  m_draw_right;    //横の描画
 	float  m_draw_bottom;	//縦の描画
 	bool   m_swich_flag;     //スイッチが押されているかどうかを入れる変数
+	bool   m_audio_flag;    //音楽を一回のみ鳴らす
 };

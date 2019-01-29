@@ -50,7 +50,7 @@ namespace GameL
 			static void Stop(int id);					//ストップ
 			static float Volume(float t,int id);		//個々のサウンドボリューム変更
 			static float VolumeMaster(float t);			//全体のサウンドボリューム変更
-
+			static bool CheckSound(int id);				//サウンドが流れているかどうか調べる
 		private:
 			static IXAudio2*						m_pXAudio2;				//XAudio2オブジェクト
 			static IXAudio2MasteringVoice*			m_pMasteringVoice;		//マスターボリューム

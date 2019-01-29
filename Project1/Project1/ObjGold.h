@@ -33,7 +33,7 @@ private:
 	bool  m_gold_flag; //フラグ
 	bool  m_hero_flag;
 	bool  m_switch_gold_flag; //ゴールドがスイッチ押したときに使う変数
-
+	bool  m_audio;     //音を一回だけ鳴らす
 
 	//blockとの衝突状態確認用
 	bool m_hit_up;

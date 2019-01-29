@@ -5,6 +5,7 @@
 #include "GameL\HitBoxManager.h"
 #include "GameL\DrawFont.h"
 #include "GameL\UserData.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjGold.h"
@@ -29,6 +30,7 @@ void CObjGold::Init()
 	m_gold_flag = false;
 	m_hero_flag = false;
 	m_switch_gold_flag = false;
+	m_audio = false;
 
 	m_switch_time = 0;
 	//blockとの衝突状態確認用
@@ -69,6 +71,13 @@ void CObjGold::Action()
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
+
+	//金塊が落ちていない場合は音を一回鳴らす。
+	if (m_vy == 0.0f && m_audio == false)
+	{
+		Audio::Start(1); //金塊を置く音を鳴らす
+		m_audio = true;
+	}
 
 	if (m_py > 1500) //下に落ちたら消す
 	{
