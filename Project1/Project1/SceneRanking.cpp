@@ -30,7 +30,10 @@ CSceneRanking::~CSceneRanking()
 //ランキング初期化メソッド
 void CSceneRanking::InitScene()
 {
-
+	Draw::LoadImageW(L"Image\\ranking\\Numeric.png", 0, TEX_SIZE_256);//ランキングの数字画像															
+	Draw::LoadImageW(L"Image\\ranking\\ranking_back.png", 1, TEX_SIZE_1024);//ランキングの背景																  
+	Draw::LoadImageW(L"Image\\ranking\\Bit.png", 2, TEX_SIZE_64);//ランキングの位の文字
+	Draw::LoadImageW(L"Image\\ranking\\ranking.png", 3, TEX_SIZE_256);//ランキングの位の文字
 	CObjRanking* obj = new CObjRanking();		//ランキングオブジェクト作成
 	Objs::InsertObj(obj, OBJ_RANKING, 10);		//ランキングオブジェクト登録
 
