@@ -35,105 +35,105 @@ void CObjRanking::Action()
 //ドロー
 void CObjRanking::Draw()
 {
-	//float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-	////ランキング専用背景描画
-	//RECT_F src; //描画元切り取り位置
-	//RECT_F dst; //描画先表示位置
+	//ランキング専用背景描画
+	RECT_F src; //描画元切り取り位置
+	RECT_F dst; //描画先表示位置
 
-	////最大桁数格納用変数
-	//int max_number = 0;
+	//最大桁数格納用変数
+	int max_number = 0;
 
-	////ランキングごとの桁数を格納用変数
-	//int number[RANKING_MAX_COUNT];
+	//ランキングごとの桁数を格納用変数
+	int number[RANKING_MAX_COUNT];
 
-	////数値の最大桁数を調べる(左ぞろえをするため)
-	//for (int ranking_count = 0; ranking_count < RANKING_MAX_COUNT; ranking_count++)
-	//{
-	//	//ランニングのranking_count番の数値を格納
-	//	int ranking = ((UserData*)Save::GetData())->m_ranking[ranking_count];
-	//	//数値が9桁～1桁の間で何桁あるかなどを調べる
-	//	for (int num_max = 100000000, digit = 9; num_max >= 1; num_max /= 10, digit--)
-	//	{
-	//		//桁数を調べる
-	//		if ((ranking / num_max != 0 && ranking > 0) || num_max == 1)
-	//		{
-	//			//桁を格納
-	//			number[ranking_count] = digit;
-	//			//桁が最大桁数以上なら上書き
-	//			if (max_number < digit)
-	//			{
-	//				max_number = digit;
-	//			}
-	//			break;
-	//		}
-	//	}
-	//}
+	//数値の最大桁数を調べる(左ぞろえをするため)
+	for (int ranking_count = 0; ranking_count < RANKING_MAX_COUNT; ranking_count++)
+	{
+		//ランニングのranking_count番の数値を格納
+		int ranking = ((UserData*)Save::GetData())->m_ranking[ranking_count];
+		//数値が9桁～1桁の間で何桁あるかなどを調べる
+		for (int num_max = 100000000, digit = 9; num_max >= 1; num_max /= 10, digit--)
+		{
+			//桁数を調べる
+			if ((ranking / num_max != 0 && ranking > 0) || num_max == 1)
+			{
+				//桁を格納
+				number[ranking_count] = digit;
+				//桁が最大桁数以上なら上書き
+				if (max_number < digit)
+				{
+					max_number = digit;
+				}
+				break;
+			}
+		}
+	}
 
-	////背景の描画----------------------------------
-	////切り取り位置の設定
-	//src.m_top = 0.0f;
-	//src.m_left = 0.0f;
-	//src.m_right = 1024.0f;
-	//src.m_bottom = 1024.0f;
+	//背景の描画----------------------------------
+	//切り取り位置の設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 1024.0f;
+	src.m_bottom = 1024.0f;
 
-	////表示位置の設定
-	//dst.m_top = 0.0f;
-	//dst.m_left = 0.0f;
-	//dst.m_right = 800.0f;
-	//dst.m_bottom = 600.0f;
+	//表示位置の設定
+	dst.m_top = 0.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = 800.0f;
+	dst.m_bottom = 600.0f;
 
-	////描画
-	//Draw::Draw(1, &src, &dst, c, 0.0f);
-	////-----------------------------------------------------------------
+	//描画
+	Draw::Draw(1, &src, &dst, c, 0.0f);
+	//-----------------------------------------------------------------
 
-	////ランキングを文字列化
-	//for (int ranking_count = 0; ranking_count < RANKING_MAX_COUNT - 1; ranking_count++)
-	//{
-	//	//ランキングのranking_count番の数値を格納
-	//	int ranking = ((UserData*)Save::GetData())->m_ranking[ranking_count];
-	//	
-	//	//順位描画
-	//	DrawNumber(128.0f* ranking_count + 128.0f, 64.0f + 64.0f, 64.0f, ranking_count + 1, m_interval, c);
-	//	//ランキングの値描画処理
-	//	DrawNumber(128.0f* ranking_count + 128.0f, 224.0f + (max_number - number[ranking_count]) * 64.0f, 64.0f, ranking, m_interval, c);
-	//}
-	////位の描画-------------------------------------------------------------
-	////切り取り位置の設定
-	//src.m_top = 0.0f;
-	//src.m_left = 0.0f;
-	//src.m_right = 64.0f;
-	//src.m_bottom = 64.0f;
+	//ランキングを文字列化
+	for (int ranking_count = 0; ranking_count < RANKING_MAX_COUNT - 1; ranking_count++)
+	{
+		//ランキングのranking_count番の数値を格納
+		int ranking = ((UserData*)Save::GetData())->m_ranking[ranking_count];
+		
+		//順位描画
+		DrawNumber(128.0f* ranking_count + 128.0f, 64.0f + 64.0f, 64.0f, ranking_count + 1, m_interval, c);
+		//ランキングの値描画処理
+		DrawNumber(128.0f* ranking_count + 128.0f, 224.0f + (max_number - number[ranking_count]) * 64.0f, 64.0f, ranking, m_interval, c);
+	}
+	//位の描画-------------------------------------------------------------
+	//切り取り位置の設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 64.0f;
+	src.m_bottom = 64.0f;
 
-	////表示位置の設定
-	//dst.m_top = 138.0f;
-	//dst.m_left =175.0f;
-	//dst.m_right =dst.m_left+56.0f;
-	//dst.m_bottom =dst.m_top+56.0f;
-	////描画
-	//Draw::Draw(2, &src, &dst, c, 0.0f);
+	//表示位置の設定
+	dst.m_top = 138.0f;
+	dst.m_left =175.0f;
+	dst.m_right =dst.m_left+56.0f;
+	dst.m_bottom =dst.m_top+56.0f;
+	//描画
+	Draw::Draw(2, &src, &dst, c, 0.0f);
 
-	////表示位置の設定
-	//dst.m_top = 265.0f;
-	//dst.m_left = 175.0f;
-	//dst.m_right = dst.m_left + 56.0f;
-	//dst.m_bottom = dst.m_top + 56.0f;
-	////描画
-	//Draw::Draw(2, &src, &dst, c, 0.0f);
+	//表示位置の設定
+	dst.m_top = 265.0f;
+	dst.m_left = 175.0f;
+	dst.m_right = dst.m_left + 56.0f;
+	dst.m_bottom = dst.m_top + 56.0f;
+	//描画
+	Draw::Draw(2, &src, &dst, c, 0.0f);
 
-	////表示位置の設定
-	//dst.m_top = 392.0f;
-	//dst.m_left = 175.0f;
-	//dst.m_right = dst.m_left + 56.0f;
-	//dst.m_bottom = dst.m_top + 56.0f;
-	////描画
-	//Draw::Draw(2, &src, &dst, c, 0.0f);
-	////------------------------------------------------------------------------------
-	//wchar_t str[128];
-	////戻るときに使う文字設定
-	//swprintf_s(str, L"ZkeyでMenuへ");
-	////戻るときに使う文字を描画
-	//Font::StrDraw(str, 5, 580, 20, c);
+	//表示位置の設定
+	dst.m_top = 392.0f;
+	dst.m_left = 175.0f;
+	dst.m_right = dst.m_left + 56.0f;
+	dst.m_bottom = dst.m_top + 56.0f;
+	//描画
+	Draw::Draw(2, &src, &dst, c, 0.0f);
+	//------------------------------------------------------------------------------
+	wchar_t str[128];
+	//戻るときに使う文字設定
+	swprintf_s(str, L"ZkeyでMenuへ");
+	//戻るときに使う文字を描画
+	Font::StrDraw(str, 5, 580, 20, c);
 
 }
 

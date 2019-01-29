@@ -491,6 +491,23 @@ void CObjHero::HitBox()
 		m_px -= 1.0f;//場所は決まっていて左にしか当たらないのでこれを使ってる
 	}
 
+	if (hit->CheckObjNameHit(OBJ_GOAL) != nullptr)
+	{
+		int m_gold_point = 0;//ポイント保存用
+		if (m_gold_restriction_max - m_gold_restriction == 0)//金塊が0
+		{
+			m_gold_point += 1000;//1000ポイント加算
+		}
+		if (m_gold_restriction_max - m_gold_restriction > 0)//金塊が0より多い
+		{
+			m_gold_point += 2000 * (m_gold_restriction_max - m_gold_restriction);//2000ポイント*残数加算
+		}
+		//スコアにコイン残数によるポイントと金塊のポイントを加算
+		((UserData*)Save::GetData())->m_point += ((10-m_coin_restriction)*1000)+m_gold_point;
+	}
+	
+
+
 	//ゴールに当たった時
 	if (hit->CheckObjNameHit(OBJ_GOAL) != nullptr)
 	{
