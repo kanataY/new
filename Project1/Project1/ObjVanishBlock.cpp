@@ -32,7 +32,7 @@ void CObjVanishBlock::Init()
 		m_draw_bottom = 576.0f;
 	}
 	m_swich_flag = false;
-
+	m_audio_flag = false;
 	
 }
 //アクション
@@ -113,7 +113,7 @@ void CObjVanishBlock::Hit()
 	{
 		if (swi->GetSwitchFlag() == true) //スイッチが押されていた場合
 		{
-			if (block->GetSwichTime() > 50000)//スイッチが押されてからしばらくしたら描画を消す
+			if (block->GetSwichTime() > 60000)//スイッチが押されてからしばらくしたら描画を消す
 			{
 				m_swich_flag = true;
 				if (((UserData*)Save::GetData())->m_stage_count == 3)  //ステージ３なら描画変化
@@ -121,6 +121,19 @@ void CObjVanishBlock::Hit()
 					m_draw_right = 256.0f;  //横の描画幅を変える
 					m_draw_bottom = 64.0f;  //縦
 					Hits::DeleteHitBox(this);
+					if (m_audio_flag == false) //一回のみ鳴らす
+					{
+						Audio::Start(4);        //ブロックの出現音を鳴らす
+						m_audio_flag = true;
+					}
+				}
+				else
+				{
+					if (m_audio_flag == false) //一回のみ鳴らす
+					{
+						Audio::Start(5);        //ブロックの消える音を鳴らす
+						m_audio_flag = true;
+					}
 				}
 			}
 		}

@@ -312,3 +312,22 @@ void CAudio:: FindChunk(const unsigned char* pData,const char* pChunckName,unsig
 	}
 	return;
 }
+
+//サウンドが流れているかどうかを調べる
+bool CAudio::CheckSound(int id)
+{
+	//エフェクトサウンド
+	for (int i = 0; i < (SCENE_AUDIO_EFFCT_MAX << 1); i++)
+	{
+		//サウンド配列二周の間で使用されていない場所確認する
+		int count = (i == 0) ? 0 : (SCENE_AUDIO_EFFCT_MAX - 1) % i;
+
+		//サウンドの状態を取得
+		XAUDIO2_VOICE_STATE stats;
+		m_AudioData[id]->m_pSourceVoice[count]->GetState(&stats);
+
+		if (stats.BuffersQueued != NULL)//ボイスがあればtrueを返す
+			return true;
+	}
+	return false;//ボイスが無ければfalseを返す
+}

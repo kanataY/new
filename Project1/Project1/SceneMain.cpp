@@ -70,11 +70,11 @@ void CSceneMain::InitScene()
 	CObjhero_hitbox* hero_hit = new CObjhero_hitbox();
 	Objs::InsertObj(hero_hit, HERO_HITBOX, 10);
 
-	//背景（ブロック）オブジェクト作成
-	CObjGolem* gol = new CObjGolem(400,300);
-	Objs::InsertObj(gol, OBJ_GOLEM, 13);
-	CObjGolemJudgment* go = new CObjGolemJudgment(400, 300);
-	Objs::InsertObj(go, GOLEM_JUDGMENT,13);
+	////背景（ブロック）オブジェクト作成
+	//CObjGolem* gol = new CObjGolem(400,300);
+	//Objs::InsertObj(gol, OBJ_GOLEM, 13);
+	//CObjGolemJudgment* go = new CObjGolemJudgment(400, 300);
+	//Objs::InsertObj(go, GOLEM_JUDGMENT,13);
 
 	//音楽読み込み
 	Audio::LoadAudio(0, L"BGM&SE\\main2.wav", BACK_MUSIC);
@@ -83,7 +83,7 @@ void CSceneMain::InitScene()
 	//主人公
 	Audio::LoadAudio(1, L"BGM&SE\\gold.wav", EFFECT);		//ゴールド置いた音
 	Audio::LoadAudio(2, L"BGM&SE\\gold_get.wav", EFFECT);	// ゴールドゲット
-	Audio::LoadAudio(3, L"BGM&SE\\rakka.wav", EFFECT);		// 落下音
+	Audio::LoadAudio(3, L"BGM&SE\\rakka2.wav", EFFECT);		// 落下音
 	Audio::LoadAudio(10, L"BGM&SE\\nageru.wav", EFFECT);    // お金を投げる
 
 	//ギミック
@@ -95,7 +95,7 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(7, L"BGM&SE\\kuzureru.wav", EFFECT); // ゴーレムが崩れる
 	Audio::LoadAudio(8, L"BGM&SE\\go-remu2.wav", EFFECT); // ゴーレムの足音
 	Audio::LoadAudio(9, L"BGM&SE\\inosisi.wav", EFFECT);  // イノシシの足音
-
+	Audio::LoadAudio(11, L"BGM&SE\\attack.wav", EFFECT);   // ジャンプが攻撃を受けた時
 
 	////ボリュームを1.5増やす
 	//float v = Audio::VolumeMaster(1.5);
@@ -118,7 +118,7 @@ void CSceneMain::MapCreate(int map[][MAP_X])
 	int size;			   //ステージ情報の大きさ
 
 	//ステージごとにステージの名前を格納
-	switch (((UserData*)Save::GetData())->m_stage_count)
+	switch (((UserData*)Save::GetData())->m_stage_count  =5)
 	{
 	case 1:
 		p = Save::ExternalDataOpen(L"Stage01.csv", &size);//外部データ読み込み

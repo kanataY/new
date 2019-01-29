@@ -26,6 +26,8 @@ private:
 	int m_pos;//ポスター
 	int m_jump_time;//ジャンプするまでの時間
 	bool m_jump_flag;//ジャンプしたフラグ
+	bool m_audio_flag; //音楽を一回のみ鳴らす用
+
 	//-アニメーション
 	int m_ani_time; //アニメーションフレーム動作感覚
 	int m_ani_frame;//描画フレーム

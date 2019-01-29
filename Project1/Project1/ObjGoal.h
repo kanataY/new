@@ -20,4 +20,5 @@ private:
 	float m_py;
 
 	float  m_hit_draw; //描画の横幅　主人公に当たったら変更
+	bool   m_audio_flag; //音楽一回だけ＆次に移行させる
 };

@@ -18,7 +18,7 @@ void CObjswitch::Init()
 {
 	switch_on_flag = false;
 	//当たり判定用HitBoxを作成
-	Hits::SetHitBox(this, m_px, m_py, 64, 18, ELEMENT_NULL, OBJ_SWITCH, 1);
+	Hits::SetHitBox(this, m_px, m_py, 52, 18, ELEMENT_NULL, OBJ_SWITCH, 1);
 }
 //アクション
 void CObjswitch::Action()
@@ -29,7 +29,7 @@ void CObjswitch::Action()
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);
 	
-	hit->SetPos(m_px + block->GetScroll(), m_py + 12.0f);//押されている
+	hit->SetPos(m_px + 6.0f + block->GetScroll(), m_py + 12.0f);//押されている
 
 }
 //ドロー

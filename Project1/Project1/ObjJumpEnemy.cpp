@@ -26,6 +26,8 @@ void CObjJumpEnemy::Init()
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 	m_speed = 0.8f;
+	m_audio_flag = false;
+
 	//blockとの衝突状態確認用
 	m_hit_up = false;
 	m_hit_down = false;
@@ -119,6 +121,13 @@ void CObjJumpEnemy::Action()
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
+
+	//コインに当たった時に音を鳴らす
+	if (hit->CheckObjNameHit(OBJ_COIN) != nullptr && m_audio_flag == false)
+	{
+		m_audio_flag = true;
+		Audio::Start(11);
+	}
 
 	//削除条件　コインに当たる、下に落ちる
 	if(m_py > 1500 || hit->CheckObjNameHit(OBJ_COIN) != nullptr) //下に落ちたら死ぬ
