@@ -26,7 +26,7 @@ void CObjRanking::Init()
 void CObjRanking::Action()
 {
 	//Zキーが押されたらシーンメニューへ
-	if (Input::GetVKey('Z') == true)
+	if (Input::GetVKey(VK_RETURN) == true)
 	{
 		Scene::SetScene(new CSceneTitle());
 	}
@@ -147,9 +147,9 @@ void CObjRanking::Draw()
 	//------------------------------------------------------------------------------
 	wchar_t str[128];
 	//戻るときに使う文字設定
-	swprintf_s(str, L"ZkeyでMenuへ");
+	swprintf_s(str, L"EnterkeyでMenuへ");
 	//戻るときに使う文字を描画
-	Font::StrDraw(str, 5, 580, 20, c);
+	Font::StrDraw(str, 480, 540, 40, c);
 
 }
 
