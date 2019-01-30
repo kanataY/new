@@ -147,7 +147,7 @@ void CObjTitle::Action()
 	}
 	if (m_ani_frame == 10 && Audio::CheckSound(2) == false)//フレームが最後まで進んだら戻す
 	{
-		Audio::Stop(2);
+		
 		//シーンをメニューへ
 		((UserData*)Save::GetData())->m_stage_count = 1; //メインに変える
 		Scene::SetScene(new CSceneMain());
@@ -198,7 +198,7 @@ void CObjTitle::Draw()
 	dst.m_bottom = dst.m_top+512.0f;
 
 	//1番目に登録しているsrc・dst・cで描画する
-	Draw::Draw(14, &src, &dst, c, 0.0f);
+	Draw::Draw(15, &src, &dst, c, 0.0f);
 	//-------------------------------------------------------------
 
 	//スタートの文字-------------------------------------------
@@ -217,8 +217,8 @@ void CObjTitle::Draw()
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 134.0f;
 
-		//10番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(10, &src, &dst, c, 0.0f);
+		//11番目に登録しているsrc・dst・cで描画する
+		Draw::Draw(11, &src, &dst, c, 0.0f);
 	}
 	if (m_ani_frame >= 4 && m_key_flag == 1)
 	{
@@ -234,8 +234,8 @@ void CObjTitle::Draw()
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 134.0f;
 
-		//11番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(11, &src, &dst, c, 0.0f);
+		//12番目に登録しているsrc・dst・cで描画する
+		Draw::Draw(12, &src, &dst, c, 0.0f);
 	}
 	///-------------------------------------------------------------
 	//ランキングの文字-------------------------------------------
@@ -253,8 +253,8 @@ void CObjTitle::Draw()
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 128.0f;
 
-		//12番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(12, &src, &dst, c, 0.0f);
+		//13番目に登録しているsrc・dst・cで描画する
+		Draw::Draw(13, &src, &dst, c, 0.0f);
 	}
 	if (m_ani_frame >= 4 && m_key_flag == 0)
 	{
@@ -270,8 +270,8 @@ void CObjTitle::Draw()
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 128.0f;
 
-		//13番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(13, &src, &dst, c, 0.0f);
+		//14番目に登録しているsrc・dst・cで描画する
+		Draw::Draw(14, &src, &dst, c, 0.0f);
 	}
 	///-------------------------------------------------------------
 	//終了の文字-------------------------------------------
@@ -289,8 +289,8 @@ void CObjTitle::Draw()
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 128.0f;
 
-		//12番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(12, &src, &dst, c, 0.0f);
+		//15番目に登録しているsrc・dst・cで描画する
+		Draw::Draw(15, &src, &dst, c, 0.0f);
 	}
 	if(m_ani_frame >= 4 && m_key_flag == 0)
 	{
@@ -306,8 +306,8 @@ void CObjTitle::Draw()
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 128.0f;
 
-		//13番目に登録しているsrc・dst・cで描画する
-		Draw::Draw(13, &src, &dst, c, 0.0f);
+		//14番目に登録しているsrc・dst・cで描画する
+		Draw::Draw(14, &src, &dst, c, 0.0f);
 	}
 	///-------------------------------------------------------------
 }
