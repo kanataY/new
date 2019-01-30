@@ -93,7 +93,7 @@ void CSceneMain::InitScene()
 
 	//敵
 	Audio::LoadAudio(7, L"BGM&SE\\kuzureru.wav", EFFECT); // ゴーレムが崩れる
-	Audio::LoadAudio(8, L"BGM&SE\\go-remu2.wav", EFFECT); // ゴーレムの足音
+	Audio::LoadAudio(8, L"BGM&SE\\go-rem10.wav", EFFECT); // ゴーレムの足音
 	Audio::LoadAudio(9, L"BGM&SE\\inosisi.wav", EFFECT);  // イノシシの足音
 	Audio::LoadAudio(11, L"BGM&SE\\attack.wav", EFFECT);   // ジャンプが攻撃を受けた時
 
@@ -118,7 +118,7 @@ void CSceneMain::MapCreate(int map[][MAP_X])
 	int size;			   //ステージ情報の大きさ
 
 	//ステージごとにステージの名前を格納
-	switch (((UserData*)Save::GetData())->m_stage_count  =5)
+	switch (((UserData*)Save::GetData())->m_stage_count)
 	{
 	case 1:
 		p = Save::ExternalDataOpen(L"Stage01.csv", &size);//外部データ読み込み

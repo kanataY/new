@@ -185,12 +185,15 @@ void CObjTitle::Action()
 	}
 	if (m_ani_time2 > m_ani_max_time2)
 	{
-		m_ani_frame++;//framei‚ß‚é
-		m_ani_time2 = 0;
+		if (m_ani_frame < 10)
+		{
+			m_ani_frame++;//framei‚ß‚é
+			m_ani_time2 = 0;
+		}
 	}
-	if (m_ani_frame == 9)//ƒtƒŒ[ƒ€‚ªÅŒã‚Ü‚Åi‚ñ‚¾‚ç–ß‚·
+	if (m_ani_frame == 10 && Audio::CheckSound(2) == false)//ƒtƒŒ[ƒ€‚ªÅŒã‚Ü‚Åi‚ñ‚¾‚ç–ß‚·
 	{
-		Audio::Stop(2);
+		
 		//ƒV[ƒ“‚ğƒƒjƒ…[‚Ö
 		((UserData*)Save::GetData())->m_stage_count = 1; //ƒƒCƒ“‚É•Ï‚¦‚é
 		Scene::SetScene(new CSceneMain());
@@ -220,7 +223,7 @@ void CObjTitle::Draw()
 	dst.m_left = 0.0f;
 	dst.m_right = 800.0f;
 	dst.m_bottom = 600.0f;
-	if (m_ani_frame < 10)//ƒV[ƒ“‘JˆÚ‚Ì11‚É“o˜^‚µ‚Ä‚¢‚é‰æ‘œ‚ªo‚Ä‚­‚é‚Ì‚Å§Œä‚·‚é
+	if (m_ani_frame < 11)//ƒV[ƒ“‘JˆÚ‚Ì11‚É“o˜^‚µ‚Ä‚¢‚é‰æ‘œ‚ªo‚Ä‚­‚é‚Ì‚Å§Œä‚·‚é
 	{
 		//m_ani_frame‚Æ“¯‚¶”Ô†‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
 		Draw::Draw(m_ani_frame, &src, &dst, c, 0.0f);
@@ -241,7 +244,7 @@ void CObjTitle::Draw()
 	dst.m_bottom = dst.m_top+512.0f;
 
 	//1”Ô–Ú‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
-	Draw::Draw(14, &src, &dst, c, 0.0f);
+	Draw::Draw(15, &src, &dst, c, 0.0f);
 	//-------------------------------------------------------------
 
 	//ƒXƒ^[ƒg‚Ì•¶š-------------------------------------------
@@ -260,8 +263,8 @@ void CObjTitle::Draw()
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 134.0f;
 
-		//10”Ô–Ú‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
-		Draw::Draw(10, &src, &dst, c, 0.0f);
+		//11”Ô–Ú‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
+		Draw::Draw(11, &src, &dst, c, 0.0f);
 	}
 	if (m_ani_frame >= 4 && m_key_flag == 1)
 	{
@@ -277,8 +280,8 @@ void CObjTitle::Draw()
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 134.0f;
 
-		//11”Ô–Ú‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
-		Draw::Draw(11, &src, &dst, c, 0.0f);
+		//12”Ô–Ú‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
+		Draw::Draw(12, &src, &dst, c, 0.0f);
 	}
 	///-------------------------------------------------------------
 	//ƒ‰ƒ“ƒLƒ“ƒO‚Ì•¶š-------------------------------------------
@@ -296,8 +299,8 @@ void CObjTitle::Draw()
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 128.0f;
 
-		//12”Ô–Ú‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
-		Draw::Draw(12, &src, &dst, c, 0.0f);
+		//13”Ô–Ú‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
+		Draw::Draw(13, &src, &dst, c, 0.0f);
 	}
 	if (m_ani_frame >= 4 && m_key_flag == 0)
 	{
@@ -313,8 +316,8 @@ void CObjTitle::Draw()
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 128.0f;
 
-		//13”Ô–Ú‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
-		Draw::Draw(13, &src, &dst, c, 0.0f);
+		//14”Ô–Ú‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
+		Draw::Draw(14, &src, &dst, c, 0.0f);
 	}
 	///-------------------------------------------------------------
 	//I—¹‚Ì•¶š-------------------------------------------
@@ -332,8 +335,8 @@ void CObjTitle::Draw()
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 128.0f;
 
-		//12”Ô–Ú‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
-		Draw::Draw(12, &src, &dst, c, 0.0f);
+		//15”Ô–Ú‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
+		Draw::Draw(15, &src, &dst, c, 0.0f);
 	}
 	if(m_ani_frame >= 4 && m_key_flag == 0)
 	{
@@ -349,8 +352,8 @@ void CObjTitle::Draw()
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 128.0f;
 
-		//13”Ô–Ú‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
-		Draw::Draw(13, &src, &dst, c, 0.0f);
+		//14”Ô–Ú‚É“o˜^‚µ‚Ä‚¢‚ésrcEdstEc‚Å•`‰æ‚·‚é
+		Draw::Draw(14, &src, &dst, c, 0.0f);
 	}
 	///-------------------------------------------------------------
 }

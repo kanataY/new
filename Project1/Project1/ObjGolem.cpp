@@ -123,13 +123,18 @@ void CObjGolem::Action()
 		m_pos = 0.0f;
 	}
 	
-		//自由落下運動
-		m_vy += 9.8 / (16.0f);
+	//自由落下運動
+	m_vy += 9.8 / (16.0f);
 	
 	m_vx += -(m_vx * 0.16f);
+
 	//位置の更新
 	m_px += m_vx;
 	m_py += m_vy;
+
+	//落ちているとき
+	if (m_py > 600.0f)
+		Audio::Stop(8);    //足音を消す
 
 	//死んだとき音を出す
 	if (m_del == true && m_audio_flag == false)

@@ -40,13 +40,14 @@ void CSceneTitle::InitScene()
 	Draw::LoadImageW(L"Image\\Title\\title8.png", 7, TEX_SIZE_1024);
 	Draw::LoadImageW(L"Image\\Title\\title9.png", 8, TEX_SIZE_1024);
 	Draw::LoadImageW(L"Image\\Title\\title10.png", 9, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Image\\Title\\title11.png", 10, TEX_SIZE_1024);
 
-	Draw::LoadImageW(L"Image\\Title\\start.png", 10, TEX_SIZE_256);
-	Draw::LoadImageW(L"Image\\Title\\start2.png", 11, TEX_SIZE_256);
-	Draw::LoadImageW(L"Image\\Title\\end.png", 12, TEX_SIZE_256);
-	Draw::LoadImageW(L"Image\\Title\\end2.png", 13, TEX_SIZE_256);
+	Draw::LoadImageW(L"Image\\Title\\start.png", 11, TEX_SIZE_256);
+	Draw::LoadImageW(L"Image\\Title\\start2.png", 12, TEX_SIZE_256);
+	Draw::LoadImageW(L"Image\\Title\\end.png", 13, TEX_SIZE_256);
+	Draw::LoadImageW(L"Image\\Title\\end2.png", 14, TEX_SIZE_256);
 
-	Draw::LoadImageW(L"Image\\Title\\title.png", 14, TEX_SIZE_512);
+	Draw::LoadImageW(L"Image\\Title\\title.png", 15, TEX_SIZE_512);
 	//音楽情報の読み込み
 
 	////バックミュージックスタート
@@ -54,7 +55,7 @@ void CSceneTitle::InitScene()
 
 	//効果音
 	Audio::LoadAudio(1, L"BGM&SE\\pinponn2.wav", EFFECT);		//カーソルを動かしたときの音
-	Audio::LoadAudio(2, L"BGM&SE\\pinponn4.wav", EFFECT);		//決定音
+	Audio::LoadAudio(2, L"BGM&SE\\pinponn3.wav", EFFECT);		//決定音
 
 	//音楽スタート
 	Audio::Start(0);
