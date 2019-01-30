@@ -93,7 +93,7 @@ void CSceneMain::InitScene()
 
 	//敵
 	Audio::LoadAudio(7, L"BGM&SE\\kuzureru.wav", EFFECT); // ゴーレムが崩れる
-	Audio::LoadAudio(8, L"BGM&SE\\go-remu2.wav", EFFECT); // ゴーレムの足音
+	Audio::LoadAudio(8, L"BGM&SE\\go-rem10.wav", EFFECT); // ゴーレムの足音
 	Audio::LoadAudio(9, L"BGM&SE\\inosisi.wav", EFFECT);  // イノシシの足音
 	Audio::LoadAudio(11, L"BGM&SE\\attack.wav", EFFECT);   // ジャンプが攻撃を受けた時
 

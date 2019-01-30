@@ -139,10 +139,13 @@ void CObjTitle::Action()
 	}
 	if (m_ani_time2 > m_ani_max_time2)
 	{
-		m_ani_frame++;//frame進める
-		m_ani_time2 = 0;
+		if (m_ani_frame < 10)
+		{
+			m_ani_frame++;//frame進める
+			m_ani_time2 = 0;
+		}
 	}
-	if (m_ani_frame == 9)//フレームが最後まで進んだら戻す
+	if (m_ani_frame == 10 && Audio::CheckSound(2) == false)//フレームが最後まで進んだら戻す
 	{
 		Audio::Stop(2);
 		//シーンをメニューへ
@@ -174,7 +177,7 @@ void CObjTitle::Draw()
 	dst.m_left = 0.0f;
 	dst.m_right = 800.0f;
 	dst.m_bottom = 600.0f;
-	if (m_ani_frame < 10)//シーン遷移の時11に登録している画像が出てくるので制御する
+	if (m_ani_frame < 11)//シーン遷移の時11に登録している画像が出てくるので制御する
 	{
 		//m_ani_frameと同じ番号に登録しているsrc・dst・cで描画する
 		Draw::Draw(m_ani_frame, &src, &dst, c, 0.0f);
