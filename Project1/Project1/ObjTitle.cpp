@@ -72,9 +72,55 @@ void CObjTitle::Action()
 				m_key_flag = 1;
 				Audio::Start(1);
 			}
+			//フラグが１の時
+			else if (m_key_flag == 1)
+			{
+				//フラグを0に
+				m_key_flag = 0;
+				Audio::Start(1);
+			}
+			//フラグ2の時
+			else if (m_key_flag == 2)
+			{
+				//フラグを1に
+				m_key_flag = 1;
+				Audio::Start(1);
+			}
+		}
+	}
+	//十字キーが押されてない時
+	else
+	{
+		//キーのコントロールはfalse
+		m_key_control = false;
+	}
+	//十字キーの上か下を押したとき
+	if (Input::GetVKey(VK_RIGHT) == true && m_ani_frame == 4)
+	{
+		//キーのコントロールがfalseなら
+		if (m_key_control == false)
+		{
+			//キーのコントロールをtrueにする
+			m_key_control = true;
+
+			//フラグが0の時
+			if (m_key_flag == 0)
+			{
+				//フラグを1に
+				m_key_flag = 1;
+				Audio::Start(1);
+			}
 
 			//フラグが１の時
 			else if (m_key_flag == 1)
+			{
+				//フラグを2に
+				m_key_flag = 2;
+				Audio::Start(1);
+			}
+
+			//フラグが2の時
+			else if (m_key_flag == 2)
 			{
 				//フラグを0に
 				m_key_flag = 0;
