@@ -57,7 +57,7 @@ void CObjTitle::Action()
 	m_scene_start_control++;
 
 	//十字キーの上か下を押したとき
-	if ((Input::GetVKey(VK_LEFT) == true || Input::GetVKey(VK_RIGHT) == true) && m_ani_frame == 4)
+	if (Input::GetVKey(VK_LEFT) == true && m_ani_frame == 4)
 	{
 		//キーのコントロールがfalseなら
 		if (m_key_control == false)
@@ -213,7 +213,7 @@ void CObjTitle::Draw()
 
 		//描画位置設定
 		dst.m_top = 420.0f;
-		dst.m_left = 525.0f;
+		dst.m_left = 545.0f;
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 134.0f;
 
@@ -230,7 +230,7 @@ void CObjTitle::Draw()
 
 		//描画位置設定
 		dst.m_top = 420.0f;
-		dst.m_left = 525.0f;
+		dst.m_left = 545.0f;
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 134.0f;
 
@@ -238,7 +238,42 @@ void CObjTitle::Draw()
 		Draw::Draw(11, &src, &dst, c, 0.0f);
 	}
 	///-------------------------------------------------------------
+	//ランキングの文字-------------------------------------------
+	if (m_ani_frame >= 4 && m_key_flag == 1)
+	{
+		//切り取り位置設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 256.0f;
 
+		//描画位置設定
+		dst.m_top = 425.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = dst.m_left + 256.0f;
+		dst.m_bottom = dst.m_top + 128.0f;
+
+		//12番目に登録しているsrc・dst・cで描画する
+		Draw::Draw(12, &src, &dst, c, 0.0f);
+	}
+	if (m_ani_frame >= 4 && m_key_flag == 0)
+	{
+		//切り取り位置設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 256.0f;
+		src.m_bottom = 256.0f;
+
+		//描画位置設定
+		dst.m_top = 425.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = dst.m_left + 256.0f;
+		dst.m_bottom = dst.m_top + 128.0f;
+
+		//13番目に登録しているsrc・dst・cで描画する
+		Draw::Draw(13, &src, &dst, c, 0.0f);
+	}
+	///-------------------------------------------------------------
 	//終了の文字-------------------------------------------
 	if (m_ani_frame >= 4&&m_key_flag==1)
 	{
@@ -250,7 +285,7 @@ void CObjTitle::Draw()
 
 		//描画位置設定
 		dst.m_top = 425.0f;
-		dst.m_left = 15.0f;
+		dst.m_left = 0.0f;
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 128.0f;
 
@@ -267,7 +302,7 @@ void CObjTitle::Draw()
 
 		//描画位置設定
 		dst.m_top = 425.0f;
-		dst.m_left = 15.0f;
+		dst.m_left = 0.0f;
 		dst.m_right = dst.m_left + 256.0f;
 		dst.m_bottom = dst.m_top + 128.0f;
 

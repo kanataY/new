@@ -26,7 +26,7 @@ void CObjRanking::Init()
 void CObjRanking::Action()
 {
 	//Zキーが押されたらシーンメニューへ
-	if (Input::GetVKey('Z') == true)
+	if (Input::GetVKey(VK_RETURN) == true)
 	{
 		Scene::SetScene(new CSceneTitle());
 	}
@@ -86,6 +86,22 @@ void CObjRanking::Draw()
 	//描画
 	Draw::Draw(1, &src, &dst, c, 0.0f);
 	//-----------------------------------------------------------------
+	//背景の描画----------------------------------
+	//切り取り位置の設定
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 256.0f;
+	src.m_bottom = 256.0f;
+
+	//表示位置の設定
+	dst.m_top = -90.0f;
+	dst.m_left = 170.0f;
+	dst.m_right = dst.m_left+450.0f;
+	dst.m_bottom = dst.m_top+320.0f;
+
+	//描画
+	Draw::Draw(3, &src, &dst, c, 0.0f);
+	//-----------------------------------------------------------------
 
 	//ランキングを文字列化
 	for (int ranking_count = 0; ranking_count < RANKING_MAX_COUNT - 1; ranking_count++)
@@ -96,7 +112,7 @@ void CObjRanking::Draw()
 		//順位描画
 		DrawNumber(128.0f* ranking_count + 128.0f, 64.0f + 64.0f, 64.0f, ranking_count + 1, m_interval, c);
 		//ランキングの値描画処理
-		DrawNumber(128.0f* ranking_count + 128.0f, 224.0f + (max_number - number[ranking_count]) * 64.0f, 64.0f, ranking, m_interval, c);
+		DrawNumber(128.0f* ranking_count + 128.0f, 254.0f + (max_number - number[ranking_count]) * 64.0f, 64.0f, ranking, m_interval, c);
 	}
 	//位の描画-------------------------------------------------------------
 	//切り取り位置の設定
@@ -106,15 +122,15 @@ void CObjRanking::Draw()
 	src.m_bottom = 64.0f;
 
 	//表示位置の設定
-	dst.m_top = 138.0f;
-	dst.m_left =175.0f;
+	dst.m_top = 132.0f;
+	dst.m_left =178.0f;
 	dst.m_right =dst.m_left+56.0f;
 	dst.m_bottom =dst.m_top+56.0f;
 	//描画
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 
 	//表示位置の設定
-	dst.m_top = 265.0f;
+	dst.m_top = 260.0f;
 	dst.m_left = 175.0f;
 	dst.m_right = dst.m_left + 56.0f;
 	dst.m_bottom = dst.m_top + 56.0f;
@@ -122,7 +138,7 @@ void CObjRanking::Draw()
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 
 	//表示位置の設定
-	dst.m_top = 392.0f;
+	dst.m_top = 388.0f;
 	dst.m_left = 175.0f;
 	dst.m_right = dst.m_left + 56.0f;
 	dst.m_bottom = dst.m_top + 56.0f;
@@ -131,9 +147,9 @@ void CObjRanking::Draw()
 	//------------------------------------------------------------------------------
 	wchar_t str[128];
 	//戻るときに使う文字設定
-	swprintf_s(str, L"ZkeyでMenuへ");
+	swprintf_s(str, L"EnterkeyでMenuへ");
 	//戻るときに使う文字を描画
-	Font::StrDraw(str, 5, 580, 20, c);
+	Font::StrDraw(str, 480, 540, 40, c);
 
 }
 
