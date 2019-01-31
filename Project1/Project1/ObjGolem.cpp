@@ -83,6 +83,13 @@ void CObjGolem::Action()
 		m_audio_footsteps_flag = false;
 	}
 
+	//ŽålŒö‚©‚ç—£‚ê‚Ä‚¢‚éê‡‚Í‰¹‚ðÁ‚·B
+	if (m_px + block->GetScroll() + 600.0f < hero->GetX() || m_px + block->GetScroll() - 600.0f > hero->GetX())
+	{
+		Audio::Stop(8);
+		Audio::Stop(7);
+	}
+
 	//ƒAƒjƒ[ƒVƒ‡ƒ“I—¹|||||||||||||||||||||||||||||||||||||||||||||
 
 	//HitBox‚ÌˆÊ’u‚Ì•ÏX
