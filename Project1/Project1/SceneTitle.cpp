@@ -53,7 +53,7 @@ void CSceneTitle::InitScene()
 	//音楽情報の読み込み
 
 	////バックミュージックスタート
-	Audio::LoadAudio(0, L"BGM&SE\\syareotu.wav", BACK_MUSIC);
+	Audio::LoadAudio(0, L"BGM&SE\\main1.wav", BACK_MUSIC);
 
 	//効果音
 	Audio::LoadAudio(1, L"BGM&SE\\pinponn2.wav", EFFECT);		//カーソルを動かしたときの音
