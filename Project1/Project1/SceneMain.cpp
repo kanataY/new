@@ -39,6 +39,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"Image\\back\\back.png", 0, TEX_SIZE_1024);    
 	Draw::LoadImageW(L"Image\\back\\block.png", 1, TEX_SIZE_64);
 	Draw::LoadImageW(L"Image\\back\\block2.png", 2, TEX_SIZE_64);
+	Draw::LoadImageW(L"Image\\back\\back2.png", 14, TEX_SIZE_1024);
 	//主人公関連----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\hero\\hero1.png", 3, TEX_SIZE_256);
 	Draw::LoadImageW(L"Image\\item\\gold.png", 4, TEX_SIZE_64);
@@ -76,8 +77,9 @@ void CSceneMain::InitScene()
 	//CObjGolemJudgment* go = new CObjGolemJudgment(400, 300);
 	//Objs::InsertObj(go, GOLEM_JUDGMENT,13);
 
-	//音楽読み込み
+	//音楽読み込み　BMG
 	Audio::LoadAudio(0, L"BGM&SE\\main2.wav", BACK_MUSIC);
+	Audio::LoadAudio(12, L"BGM&SE\\main3.wav", BACK_MUSIC);
 
 	//SE
 	//主人公
@@ -100,8 +102,16 @@ void CSceneMain::InitScene()
 	////ボリュームを1.5増やす
 	//float v = Audio::VolumeMaster(1.5);
 
-	//音楽スタート
-	Audio::Start(0);
+	//音楽スタート     ステージ１と２と３でBGMを変える
+	if (((UserData*)Save::GetData())->m_stage_count == 1 || ((UserData*)Save::GetData())->m_stage_count == 2
+		|| ((UserData*)Save::GetData())->m_stage_count == 3)
+	{
+		Audio::Start(0);
+	}
+	else    //ステージ４と５はBGMを変える 
+	{
+		Audio::Start(12);
+	}
 }
 
 //実行中メソッド

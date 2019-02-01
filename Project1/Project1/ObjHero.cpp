@@ -49,11 +49,14 @@ void CObjHero::Init()
 	m_ani_frame = 1;  //静止フレームを初期にする
 	m_ani_max_time = 8; //アニメーション間隔幅
 
-	m_ani_change = 2;//アニメーションを2に
+	m_ani_change = 3;//アニメーションを2に
 
 	m_gold_restriction = 0; //金塊の個数制限
 	m_gold_restriction_max = 0;
-	m_coin_restriction=0;//コインの個数制限
+	if((((UserData*)Save::GetData())->m_stage_count == 5))
+		m_coin_restriction=8;//コインの個数制限
+	else
+		m_coin_restriction = 0;//コインの個数制限
 
 	//blockとの衝突状態確認用
 	m_hit_up = false;

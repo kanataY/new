@@ -20,13 +20,18 @@ void CObjRanking::Init()
 	//戻るときの文字のサイズ
 	//バイト数が１のとき0.5	２のとき1.0とする
 	float m_interval = 6.5f;
+	m_enter_flag = true;
 }
 
 //アクション
 void CObjRanking::Action()
 {
-	//Zキーが押されたらシーンメニューへ
-	if (Input::GetVKey(VK_RETURN) == true)
+	//エンターキーを押していない時に進めるようにする
+	if (Input::GetVKey(VK_RETURN) == false)
+		m_enter_flag = false;
+
+	//ENTERキーが押されたらシーンメニューへ
+	if (Input::GetVKey(VK_RETURN) == true && m_enter_flag == false)
 	{
 		Scene::SetScene(new CSceneTitle());
 	}

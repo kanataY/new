@@ -278,8 +278,16 @@ void CObjBlock::Draw()
 	dst.m_right = 800.0f;
 	dst.m_bottom = 700.0f;
 
-	//描画
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	//描画 ステージ１と２,3で背景を昼に変える
+	if (((UserData*)Save::GetData())->m_stage_count == 1 || ((UserData*)Save::GetData())->m_stage_count == 2
+		|| ((UserData*)Save::GetData())->m_stage_count == 3)
+	{
+		Draw::Draw(0, &src, &dst, c, 0.0f);
+	}
+	else //ステージ４，５は夕方にする
+	{
+		Draw::Draw(14, &src, &dst, c, 0.0f);
+	}
 
 	//マップチップによるblock設置
 	for (int i = 0; i < 10; i++)
@@ -340,7 +348,7 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F* dst, float c[] , int i , int
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = src.m_top + 64.0f;
 	//描画)
-	if (m_map[i - 1][j] == 1 && i >= 0)
+	if (m_map[i - 1][j] == 1 && i > 0)
 	{
 		Draw::Draw(2, &src, dst, c, 0.0f);
 	}
