@@ -195,6 +195,7 @@ void CObjTitle::Action()
 		
 		//ƒV[ƒ“‚ğƒƒjƒ…[‚Ö
 		((UserData*)Save::GetData())->m_stage_count = 1; //ƒƒCƒ“‚É•Ï‚¦‚é
+		((UserData*)Save::GetData())->m_restart = 0;     //ƒŠƒXƒ^[ƒg”‚ğ0‚É‚·‚é
 		Scene::SetScene(new CSceneMain());
 	}
 	//ƒAƒjƒ[ƒVƒ‡ƒ“I—¹|||||||||||||||||||||||||||||||||||||||||||||

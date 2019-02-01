@@ -63,6 +63,7 @@ struct UserData
 	int m_point;		//GameMainで得たポイント
 	int m_stage_count;//ステージの種類
 	int m_ranking[RANKING_MAX_COUNT];//ランキング格納配列
+	int m_restart;
 	/*wchar_t m_name[RANKING_MAX_COUNT][MAX_CHAR_COUNT];*/
 };
 //------------------------------------------------

@@ -92,7 +92,11 @@ void CObjGoal::Hit()
 			if (((UserData*)Save::GetData())->m_stage_count < 6)
 				Scene::SetScene(new CSceneMain());
 			else
+			{
+				//リスタートした回数によって得点を減らす
+				((UserData*)Save::GetData())->m_point -= (((UserData*)Save::GetData())->m_restart * 1000);
 				Scene::SetScene(new CSceneGameClear());
+			}
 		}
 	}
 }

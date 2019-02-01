@@ -67,6 +67,7 @@ void CObjHero::Init()
 
 	m_block_type = 0; //踏んでいるblockの種類を確認用
 	m_drop_gold = false;//ゴールド拾った時用
+
 	//HitBox
 	Hits::SetHitBox(this, m_px, m_py, 37, 50, ELEMENT_HERO, OBJ_HERO, 1);
 }
@@ -85,7 +86,6 @@ void CObjHero::Action()
 	if (m_goal_flag == false)
 	{
 		//アニメーションーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
-
 		if (m_ani_time > m_ani_max_time)//フレーム動作感覚タイムが最大まで行ったら
 		{
 			m_ani_frame++;//フレームを進める
@@ -277,8 +277,11 @@ void CObjHero::Action()
 		if (hit->CheckObjNameHit(OBJ_JUMP_ENEMY) != nullptr || hit->CheckObjNameHit(OBJ_THORN) != nullptr
 			|| Input::GetVKey('R') == true || m_py > 3000)
 		{
-			if(Audio::CheckSound(3) == false)
-			Scene::SetScene(new CSceneMain());
+			if (Audio::CheckSound(3) == false)
+			{
+				((UserData*)Save::GetData())->m_restart += 1; //リスタートした数を増やす
+				Scene::SetScene(new CSceneMain());
+			}
 		}
 		//落下したときに音を鳴らす。
 		if (m_py > 600)
@@ -286,7 +289,6 @@ void CObjHero::Action()
 			if (Audio::CheckSound(3) == false)
 				Audio::Start(3);
 		}
-
 		//------------------------------------------------------------------------------------------------
 		//位置の更新
 		m_px += m_vx;
