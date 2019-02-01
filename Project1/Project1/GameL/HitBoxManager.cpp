@@ -364,34 +364,34 @@ bool CHitBoxManager:: Hit(HIT_BOX* a, HIT_BOX* b, HIT_DATA* hit)
 //当たり判定描画メソッド
 void  CHitBoxManager::DrawHitBox()
 {
-	float col[4]={0.5f,0.0f,0.0f,0.2f};
-	
-	// イタレーター
-    for(auto itr =m_ListHitBox->begin() ; itr != m_ListHitBox->end() ; itr++ )
-	{
-		col[3] = 0.2f;
-		if(		(*itr)->GetStatus()->e==0)	{ col[0]=0.5f;col[1]=0.5f;col[2]=1.0f; }
-		else if((*itr)->GetStatus()->e==1)	{ col[0]=0.5f;col[1]=1.0f;col[2]=0.3f; }
-		else if((*itr)->GetStatus()->e==2)  { col[0]=1.0f;col[1]=0.5f;col[2]=0.3f; col[3] = 0.5;
-		}
-		else if((*itr)->GetStatus()->e==3)	{ col[0]=0.3f;col[1]=1.0f;col[2]=0.5f; }
-		else if ((*itr)->GetStatus()->e == 4) { col[0] = 0.0f; col[1] = 0.0f; col[2] = 1.0f; col[3] = 0.5; }
-		else if((*itr)->GetStatus()->e==5)	{ col[0]=1.0f;col[1]=1.0f;col[2]=1.0f; }
-		else if((*itr)->GetStatus()->e==6)	{ col[0]=1.0f;col[1]=0.0f;col[2]=0.0f; }
-		else if((*itr)->GetStatus()->e==7)  { col[0]=0.0f;col[1]=1.0f;col[2]=0.0f; }
-		else if((*itr)->GetStatus()->e==8)	{ col[0]=0.0f;col[1]=0.0f;col[2]=1.0f; }
-		else if((*itr)->GetStatus()->e==9)	{ col[0]=0.0f;col[1]=0.0f;col[2]=0.0f; }
-		else if((*itr)->GetStatus()->e==10)	{ col[0]=1.0f;col[1]=1.0f;col[2]=1.0f; }
-		else								{ col[0]=0.5f;col[1]=0.5f;col[2]=0.5f; }
-		
-		//当たり判定描画
-		CDrawTexture::DrawHitBox(
-			(*itr)->GetHitBox()->x,
-			(*itr)->GetHitBox()->y,
-			(*itr)->GetHitBox()->h,
-			(*itr)->GetHitBox()->w,
-			col
-		);
-
-	}
+//	float col[4]={0.5f,0.0f,0.0f,0.2f};
+//	
+//	// イタレーター
+//    for(auto itr =m_ListHitBox->begin() ; itr != m_ListHitBox->end() ; itr++ )
+//	{
+//		col[3] = 0.2f;
+//		if(		(*itr)->GetStatus()->e==0)	{ col[0]=0.5f;col[1]=0.5f;col[2]=1.0f; }
+//		else if((*itr)->GetStatus()->e==1)	{ col[0]=0.5f;col[1]=1.0f;col[2]=0.3f; }
+//		else if((*itr)->GetStatus()->e==2)  { col[0]=1.0f;col[1]=0.5f;col[2]=0.3f; col[3] = 0.5;
+//		}
+//		else if((*itr)->GetStatus()->e==3)	{ col[0]=0.3f;col[1]=1.0f;col[2]=0.5f; }
+//		else if ((*itr)->GetStatus()->e == 4) { col[0] = 0.0f; col[1] = 0.0f; col[2] = 1.0f; col[3] = 0.5; }
+//		else if((*itr)->GetStatus()->e==5)	{ col[0]=1.0f;col[1]=1.0f;col[2]=1.0f; }
+//		else if((*itr)->GetStatus()->e==6)	{ col[0]=1.0f;col[1]=0.0f;col[2]=0.0f; }
+//		else if((*itr)->GetStatus()->e==7)  { col[0]=0.0f;col[1]=1.0f;col[2]=0.0f; }
+//		else if((*itr)->GetStatus()->e==8)	{ col[0]=0.0f;col[1]=0.0f;col[2]=1.0f; }
+//		else if((*itr)->GetStatus()->e==9)	{ col[0]=0.0f;col[1]=0.0f;col[2]=0.0f; }
+//		else if((*itr)->GetStatus()->e==10)	{ col[0]=1.0f;col[1]=1.0f;col[2]=1.0f; }
+//		else								{ col[0]=0.5f;col[1]=0.5f;col[2]=0.5f; }
+//		
+//		//当たり判定描画
+//		CDrawTexture::DrawHitBox(
+//			(*itr)->GetHitBox()->x,
+//			(*itr)->GetHitBox()->y,
+//			(*itr)->GetHitBox()->h,
+//			(*itr)->GetHitBox()->w,
+//			col
+//		);
+//
+//	}
 }

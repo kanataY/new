@@ -64,7 +64,7 @@ void CObjthorn::Draw()
 	RECT_F src; //描画元切り取り位置
 	RECT_F dst; //描画先表示位置
 	//切り取り位置の設定
-	src.m_top = 0.0f;
+	src.m_top = 1.0f;
 	src.m_left = 0.0f;
 	src.m_right = src.m_left + 16.0f;
 	src.m_bottom = src.m_top + 16.0f;
@@ -77,7 +77,7 @@ void CObjthorn::Draw()
 		dst.m_top = 0.0f + m_py;
 		dst.m_left = 64.0f + m_px + block->GetScroll();
 		dst.m_right = 0.0f + m_px + block->GetScroll();
-		dst.m_bottom = 64.0f + m_py;
+		dst.m_bottom = 70.0f + m_py;
 	}
 	else
 	{
@@ -85,7 +85,7 @@ void CObjthorn::Draw()
 		dst.m_top = 64.0f + m_py;
 		dst.m_left = 64.0f + m_px + block->GetScroll();
 		dst.m_right = 0.0f + m_px + block->GetScroll();
-		dst.m_bottom = 0.0f + m_py;
+		dst.m_bottom = -6.0f + m_py;
 	}
 	//10番目に登録したグラフィックをsrc・dst・c・の情報を元に描画
 	Draw::Draw(10, &src, &dst, c, 0.0);
