@@ -52,7 +52,7 @@ void CSceneMain::InitScene()
 	//ギミック----------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\gimmick\\Chest.png", 8, TEX_SIZE_128);
 	Draw::LoadImageW(L"Image\\gimmick\\switch.png", 9, TEX_SIZE_128);
-	Draw::LoadImageW(L"Image\\gimmick\\thorn.png", 10, TEX_SIZE_16);
+	Draw::LoadImageW(L"Image\\gimmick\\thorn2.png", 10, TEX_SIZE_16);
 	//--------------------------------------------------------------------------------------
 	//主人公オブジェクト作成
 	CObjHero* he = new CObjHero();
