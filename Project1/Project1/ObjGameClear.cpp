@@ -18,6 +18,9 @@ void CObjGameClear::Init()
 	m_ani_time = 0;
 	m_ani_frame = 0;
 	m_ani_max_time = 8;
+
+	//ランキングに入れる
+	Ranking();
 }
 
 //アクション
@@ -85,4 +88,44 @@ void CObjGameClear::Draw()
 
 	Draw::Draw(5, &src, &dst, c, 0.0f);
 	
+}
+
+
+//Ranking関数---------------------------------------------
+//内容
+//最終スコアがランキングのどこにランクインしたどうかを調べてランキングに入れる関数
+void CObjGameClear::Ranking()
+{
+	//値交換用
+	int w;
+
+	//スコアをランキングの最後に入れる
+	((UserData*)Save::GetData())->m_ranking[RANKING_MAX_COUNT - 1] = ((UserData*)Save::GetData())->m_point;
+
+	//ランキング変動確認
+	//バブルソート
+	for (int i = 0; i < RANKING_MAX_COUNT - 1; i++)
+	{
+		for (int j = i + 1; j < RANKING_MAX_COUNT; j++)
+		{
+			if (((UserData*)Save::GetData())->m_ranking[i] < ((UserData*)Save::GetData())->m_ranking[j])
+			{
+				//値の変更
+				w = ((UserData*)Save::GetData())->m_ranking[i];
+				((UserData*)Save::GetData())->m_ranking[i] = ((UserData*)Save::GetData())->m_ranking[j];
+				((UserData*)Save::GetData())->m_ranking[j] = w;
+
+				//スコアがランキング入りを果たしたかどうか
+			/*	if (j == RANKING_MAX_COUNT - 1)
+				{
+					m_ranking_in_floag = true;
+				}*/
+			}
+		}
+	}
+
+	//ステージ1で初期化する
+	((UserData*)Save::GetData())->m_stage_count = 1;
+
+	Save::Seve();//セーブ
 }

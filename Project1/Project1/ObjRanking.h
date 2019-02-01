@@ -16,4 +16,5 @@ public:
 	void DrawNumber(float dst_top, float dst_left, float dst_size, int num, float interval, float c[4]);//数字を描画関数
 private:
 	float m_interval;//値と値の間隔幅をせばめる値
+	bool  m_enter_flag; //エンターを押したかどうかを入れる
 };
