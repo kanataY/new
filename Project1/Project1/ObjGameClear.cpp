@@ -49,6 +49,8 @@ void CObjGameClear::Action()
 		Scene::SetScene(new CSceneTitle());
 	}
 
+
+	
 }
 
 //ドロー
@@ -56,7 +58,7 @@ void CObjGameClear::Draw()
 {
 	//clear画面
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
-	float color[4] = { 1.0f,1.0f,1.0f,0.5f };
+	float color[4] = { 0.0f,0.0f,0.0f,1.0f };
 	RECT_F src;	//描画先切り取り位置
 	RECT_F dst;	//描画先表示位置
 
@@ -83,11 +85,16 @@ void CObjGameClear::Draw()
 	//描画位置設定
 	dst.m_top = 100.0f;
 	dst.m_left = 120.0f;
-	dst.m_right = dst.m_left+600.0f;
-	dst.m_bottom = dst.m_top+300.0f;
+	dst.m_right = dst.m_left + 600.0f;
+	dst.m_bottom = dst.m_top + 300.0f;
 
 	Draw::Draw(5, &src, &dst, c, 0.0f);
-	
+
+
+	wchar_t str[128];
+	swprintf_s(str, L"得点：%d点", ((UserData*)Save::GetData())->m_point);
+	Font::StrDraw(str, 200, 64,48, color);
+
 }
 
 

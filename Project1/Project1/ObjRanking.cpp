@@ -155,7 +155,6 @@ void CObjRanking::Draw()
 	swprintf_s(str, L"Enterkey‚ÅMenu‚Ö");
 	//–ß‚é‚Æ‚«‚ÉŽg‚¤•¶Žš‚ð•`‰æ
 	Font::StrDraw(str, 480, 540, 40, c);
-
 }
 
 
