@@ -93,7 +93,7 @@ void CObjVanishBlock::Draw()
 			//•\Ž¦ˆÊ’u‚ÌÝ’è
 			dst.m_top = 0.0f + m_py - 64.0f;
 			dst.m_left = 0.0f + m_px + block->GetScroll();
-			dst.m_right = 256.0f + m_px + block->GetScroll();
+			dst.m_right = 320.0f + m_px + block->GetScroll();
 			dst.m_bottom = 32.0f + m_py - 64.0f;
 
 			Draw::Draw(1, &src, &dst, c, 0.0);
