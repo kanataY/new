@@ -36,10 +36,19 @@ void CSceneMain::InitScene()
 	int map[MAP_Y][MAP_X];
 	MapCreate(map);
 	//背景.ブロック----------------------------------------------------------------------------------------------------
-	Draw::LoadImageW(L"Image\\back\\back.png", 0, TEX_SIZE_1024);    
-	Draw::LoadImageW(L"Image\\back\\block.png", 1, TEX_SIZE_64);
+	Draw::LoadImageW(L"Image\\back\\back.png", 0, TEX_SIZE_1024);  
+	//音楽スタート     ステージ１と２と３でBGMを変える
+	if (((UserData*)Save::GetData())->m_stage_count == 5)
+	{
+		Draw::LoadImageW(L"Image\\back\\block3.png", 1, TEX_SIZE_64);
+	}
+	else
+	{
+		Draw::LoadImageW(L"Image\\back\\block.png", 1, TEX_SIZE_64);
+	}
 	Draw::LoadImageW(L"Image\\back\\block2.png", 2, TEX_SIZE_64);
 	Draw::LoadImageW(L"Image\\back\\back2.png", 14, TEX_SIZE_1024);
+	Draw::LoadImageW(L"Image\\back\\back3.png", 15, TEX_SIZE_1024);
 	//主人公関連----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\hero\\hero1.png", 3, TEX_SIZE_256);
 	Draw::LoadImageW(L"Image\\item\\gold.png", 4, TEX_SIZE_64);
@@ -128,7 +137,7 @@ void CSceneMain::MapCreate(int map[][MAP_X])
 	int size;			   //ステージ情報の大きさ
 
 	//ステージごとにステージの名前を格納
-	switch (((UserData*)Save::GetData())->m_stage_count = 5)
+	switch (((UserData*)Save::GetData())->m_stage_count)
 	{
 	case 1:
 		p = Save::ExternalDataOpen(L"Stage01.csv", &size);//外部データ読み込み
