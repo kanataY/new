@@ -134,7 +134,7 @@ void CObjBlock::Action()
 		{
 			//消えるブロックを出す
 			CObjVanishBlock* vanish = new CObjVanishBlock(ex * 64, i * 64);
-			Objs::InsertObj(vanish, OBJ_VANISHBLOCK, 16);
+			Objs::InsertObj(vanish, OBJ_VANISHBLOCK, 11);
 			if (((UserData*)Save::GetData())->m_stage_count == 3)	//ステージ３なら最初は描画しないので判定も変える
 			{
 				m_map[i][ex] = 97;	
