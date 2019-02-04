@@ -324,14 +324,28 @@ void CObjHero::Draw()
 	
 	//残りの数字を描画する-------------------------------------------------
 	static wchar_t  c_siro[8];
-	static float cl_siro[4] = { 0.0f,0.0f,0.0f,1.0f };
+	static float cl_kuro[4] = { 0.0f,0.0f,0.0f,1.0f };
+	static float cl_siro[4] = { 1.0f,1.0f,1.0f,1.0f };
 	//金塊残数
 	swprintf_s(c_siro, L"X %d", m_gold_restriction_max-m_gold_restriction);
-	CDrawFont::StrDraw(c_siro, 735, 16, 32, cl_siro);
+	if (((UserData*)Save::GetData())->m_stage_count == 5)//ステージ5の時文字が見えんので修正
+	{
+		CDrawFont::StrDraw(c_siro, 735, 16, 32, cl_siro);
+	}
+	else
+	{
+		CDrawFont::StrDraw(c_siro, 735, 16, 32, cl_kuro);
+	}
 	//コイン残数
 	swprintf_s(c_siro, L"X %d", 10 - m_coin_restriction);
-	CDrawFont::StrDraw(c_siro, 735, 64, 32, cl_siro);
-
+	if (((UserData*)Save::GetData())->m_stage_count == 5)//ステージ5の時文字が見えんので修正
+	{
+		CDrawFont::StrDraw(c_siro, 735, 64, 32, cl_siro);
+	}
+	else
+	{
+		CDrawFont::StrDraw(c_siro, 735, 64, 32, cl_kuro);
+	}
 	//金塊画像描画----------------------------------------------------------------------------------------------------
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
@@ -361,17 +375,30 @@ void CObjHero::Draw()
 	Draw::Draw(7, &src, &dst, c, 0.0);
 	//---------------------------------------------------------------------------------
 	//得点の描画ーーーーーーーーーーーーーーーーーーーーーーーーーーー
-	float cc[4] = { 0.0f,0.0f,0.0f,1.0f };
 	wchar_t str[128];
 	swprintf_s(str, L"得点：%d点", ((UserData*)Save::GetData())->m_point);
-	Font::StrDraw(str, 350, 16, 32, cc);
+	if (((UserData*)Save::GetData())->m_stage_count == 5)//ステージ5の時文字が見えんので修正
+	{
+		Font::StrDraw(str, 350, 16, 32, cl_siro);
+	}
+	else
+	{
+		Font::StrDraw(str, 350, 16, 32, cl_kuro);
+	}
 	//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 
 	//リスタート文字の描画ーーーーーーーーーーーーーーーーーーーーーーーーーー
 	
 	wchar_t str2[128];
 	swprintf_s(str2, L"Rでリスタート");
-	Font::StrDraw(str2, 20, 16, 32, cc);
+	if (((UserData*)Save::GetData())->m_stage_count == 5)//ステージ5の時文字が見えんので修正
+	{
+		Font::StrDraw(str2, 20, 16, 32, cl_siro);
+	}
+	else
+	{
+		Font::StrDraw(str2, 20, 16, 32, cl_kuro);
+	}
 	//－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－－
 }
 

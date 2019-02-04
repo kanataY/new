@@ -36,10 +36,21 @@ void CSceneMain::InitScene()
 	int map[MAP_Y][MAP_X];
 	MapCreate(map);
 	//背景.ブロック----------------------------------------------------------------------------------------------------
-	Draw::LoadImageW(L"Image\\back\\back.png", 0, TEX_SIZE_1024);    
-	Draw::LoadImageW(L"Image\\back\\block.png", 1, TEX_SIZE_64);
+	Draw::LoadImageW(L"Image\\back\\back.png", 0, TEX_SIZE_1024);  
+	//ステージ5だけブロックと背景変える
+	if (((UserData*)Save::GetData())->m_stage_count == 5)
+	{
+		Draw::LoadImageW(L"Image\\back\\block3.png", 1, TEX_SIZE_64);
+		Draw::LoadImageW(L"Image\\back\\back3.png", 14, TEX_SIZE_1024);
+	}
+	else
+	{
+		Draw::LoadImageW(L"Image\\back\\block.png", 1, TEX_SIZE_64);
+		Draw::LoadImageW(L"Image\\back\\back2.png", 14, TEX_SIZE_1024);
+	}
 	Draw::LoadImageW(L"Image\\back\\block2.png", 2, TEX_SIZE_64);
-	Draw::LoadImageW(L"Image\\back\\back2.png", 14, TEX_SIZE_1024);
+	
+	
 	//主人公関連----------------------------------------------------------------------------------------------------
 	Draw::LoadImageW(L"Image\\hero\\hero1.png", 3, TEX_SIZE_256);
 	Draw::LoadImageW(L"Image\\item\\gold.png", 4, TEX_SIZE_64);
@@ -59,10 +70,6 @@ void CSceneMain::InitScene()
 	CObjHero* he = new CObjHero();
 	Objs::InsertObj(he, OBJ_HERO, 13);
 
-	////スイッチオブジェクト作成
-	//CObjswitch* swi = new CObjswitch(300, 480);
-	//Objs::InsertObj(swi, OBJ_SWITCH, 13);
-
 	//背景（ブロック）オブジェクト作成
 	CObjBlock* block = new CObjBlock(map);
 	Objs::InsertObj(block, OBJ_BLOCK, 10);
@@ -70,12 +77,6 @@ void CSceneMain::InitScene()
 	//主人公のヒットボックス二個目（必要）
 	CObjhero_hitbox* hero_hit = new CObjhero_hitbox();
 	Objs::InsertObj(hero_hit, HERO_HITBOX, 10);
-
-	////背景（ブロック）オブジェクト作成
-	//CObjGolem* gol = new CObjGolem(400,300);
-	//Objs::InsertObj(gol, OBJ_GOLEM, 13);
-	//CObjGolemJudgment* go = new CObjGolemJudgment(400, 300);
-	//Objs::InsertObj(go, GOLEM_JUDGMENT,13);
 
 	//音楽読み込み　BMG
 	Audio::LoadAudio(0, L"BGM&SE\\main2.wav", BACK_MUSIC);
