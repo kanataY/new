@@ -340,11 +340,11 @@ void CObjHero::Draw()
 	swprintf_s(c_siro, L"X %d", 10 - m_coin_restriction);
 	if (((UserData*)Save::GetData())->m_stage_count == 5)//ステージ5の時文字が見えんので修正
 	{
-		CDrawFont::StrDraw(c_siro, 735, 64, 32, cl_siro);
+		CDrawFont::StrDraw(c_siro, 735, 62, 32, cl_siro);
 	}
 	else
 	{
-		CDrawFont::StrDraw(c_siro, 735, 64, 32, cl_kuro);
+		CDrawFont::StrDraw(c_siro, 735, 62, 32, cl_kuro);
 	}
 	//金塊画像描画----------------------------------------------------------------------------------------------------
 	src.m_top = 0.0f;
@@ -364,10 +364,10 @@ void CObjHero::Draw()
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = 32.0f;
-	src.m_bottom = 33.0f;
+	src.m_bottom = 32.0f;
 
 	//表示位置の設定
-	dst.m_top = 65.0f;
+	dst.m_top = 64.0f;
 	dst.m_left = 695.0f;
 	dst.m_right = dst.m_left + 32.0f;
 	dst.m_bottom = dst.m_top + 32.0f;
