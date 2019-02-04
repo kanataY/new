@@ -81,6 +81,7 @@ void CSceneMain::InitScene()
 	//音楽読み込み　BMG
 	Audio::LoadAudio(0, L"BGM&SE\\main2.wav", BACK_MUSIC);
 	Audio::LoadAudio(12, L"BGM&SE\\main3.wav", BACK_MUSIC);
+	Audio::LoadAudio(13, L"BGM&SE\\main4.wav", BACK_MUSIC);
 
 	//SE
 	//主人公
@@ -104,14 +105,17 @@ void CSceneMain::InitScene()
 	//float v = Audio::VolumeMaster(1.5);
 
 	//音楽スタート     ステージ１と２と３でBGMを変える
-	if (((UserData*)Save::GetData())->m_stage_count == 1 || ((UserData*)Save::GetData())->m_stage_count == 2
-		|| ((UserData*)Save::GetData())->m_stage_count == 3)
+	if (((UserData*)Save::GetData())->m_stage_count == 1 || ((UserData*)Save::GetData())->m_stage_count == 2)
 	{
 		Audio::Start(0);
 	}
-	else    //ステージ４と５はBGMを変える 
+	else if (((UserData*)Save::GetData())->m_stage_count == 3 || ((UserData*)Save::GetData())->m_stage_count == 4)   //ステージ3と4はBGMを変える 
 	{
 		Audio::Start(12);
+	}
+	else //ステージ５はBGMを変える
+	{
+		Audio::Start(13);
 	}
 }
 

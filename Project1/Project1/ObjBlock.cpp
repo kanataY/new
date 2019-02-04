@@ -279,15 +279,15 @@ void CObjBlock::Draw()
 	dst.m_bottom = 700.0f;
 
 	//描画 ステージ１と２,3で背景を昼に変える
-	if (((UserData*)Save::GetData())->m_stage_count == 1 || ((UserData*)Save::GetData())->m_stage_count == 2
-		|| ((UserData*)Save::GetData())->m_stage_count == 3)
+	if (((UserData*)Save::GetData())->m_stage_count == 1 || ((UserData*)Save::GetData())->m_stage_count == 2 )
 	{
 		Draw::Draw(0, &src, &dst, c, 0.0f);
 	}
-	else //ステージ４，５は夕方にする
+	else if(((UserData*)Save::GetData())->m_stage_count == 3 || ((UserData*)Save::GetData())->m_stage_count == 4 || ((UserData*)Save::GetData())->m_stage_count == 5)//ステージ４，５は夕方にする
 	{
 		Draw::Draw(14, &src, &dst, c, 0.0f);
 	}
+	
 
 	//マップチップによるblock設置
 	for (int i = 0; i < 10; i++)

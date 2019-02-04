@@ -122,10 +122,8 @@ void CObjHero::Action()
 		{
 			m_vy += -m_speed * 3;
 		}
-		if (Input::GetVKey(VK_DOWN) == true && m_py < 536)//下移動
-		{
-			m_vy += m_speed;
-		}
+
+		//右と左を押していない時アニメーションを左に戻す
 		if (Input::GetVKey(VK_RIGHT) != true && Input::GetVKey(VK_LEFT) != true)
 		{
 			m_ani_frame = 1;
@@ -162,18 +160,18 @@ void CObjHero::Action()
 				break;
 			}
 		}
-		//金塊に触れたら上限を三個増やす
+		//金塊アイテムに触れたら上限を三個増やす
 		if (hit->CheckObjNameHit(OBJ_DROP_GOLD) != nullptr)
 		{
 			m_gold_restriction_max += 3;
-			Audio::Start(2); //金塊の取得音を鳴らす
+			Audio::Start(2); //金塊アイテムの取得音を鳴らす
 		}
 
 		m_ppx = (m_px - block->GetScroll()) / 64; //主人公の位置からマップの位置を取ってくる
 		m_ppy = m_py / 64;
 
 		if (m_pos == 0.0f) //右向きの時は調整する。
-			m_ppx += 0.8f;		//四捨五入する準備、調整する
+			m_ppx += 0.7f;		//四捨五入する準備、調整する
 
 		m_ppy += 0.5f;
 
@@ -212,7 +210,7 @@ void CObjHero::Action()
 		}
 
 		//コイン攻撃-----------------------------------------------------------------------------
-		if (Input::GetVKey('V') == true)//Vで射出(仮)
+		if (Input::GetVKey('V') == true)//Vで射出
 		{
 			//コインを出すフラグがオフでコインが存在しない時
 			if (m_coinshot_flag == false && m_coin_time > 50 && coin == nullptr&&m_coin_restriction < 10)
@@ -277,7 +275,7 @@ void CObjHero::Action()
 		if (hit->CheckObjNameHit(OBJ_JUMP_ENEMY) != nullptr || hit->CheckObjNameHit(OBJ_THORN) != nullptr
 			|| Input::GetVKey('R') == true || m_py > 3000)
 		{
-			if (Audio::CheckSound(3) == false)
+			if (Audio::CheckSound(3) == false) //落ちている音が鳴ってない時
 			{
 				((UserData*)Save::GetData())->m_restart += 1; //リスタートした数を増やす
 				Scene::SetScene(new CSceneMain());
