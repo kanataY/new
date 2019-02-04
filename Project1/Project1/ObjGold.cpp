@@ -79,7 +79,7 @@ void CObjGold::Action()
 		m_audio = true;
 	}
 
-	if (m_py > 1500) //‰º‚É—Ž‚¿‚½‚çÁ‚·
+	if (m_py > 700) //‰º‚É—Ž‚¿‚½‚çÁ‚·
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
