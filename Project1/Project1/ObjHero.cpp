@@ -79,8 +79,6 @@ void CObjHero::Action()
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	CObjCoin* coin = ( CObjCoin*)Objs::GetObj(OBJ_COIN);    //コイン情報
 	CObjGolem* golem = (CObjGolem*)Objs::GetObj(OBJ_GOLEM);	//ゴーレム情報
-	//補正の情報を持ってくる
-	//CObjCorrection* cor = (CObjCorrection*)Objs::GetObj(CORRECTION);
 
 	//ゴールしてたら動かせないようにする
 	if (m_goal_flag == false)

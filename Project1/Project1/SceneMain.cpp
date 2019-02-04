@@ -94,6 +94,8 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(4, L"BGM&SE\\deru.wav", EFFECT);  // ブロックがでる
 	Audio::LoadAudio(5, L"BGM&SE\\kieru.wav", EFFECT); // ブロックが消える
 	Audio::LoadAudio(6, L"BGM&SE\\Goal.wav", EFFECT);  // ゴール
+	Audio::LoadAudio(14, L"BGM&SE\\karas.wav", EFFECT);  // ゴール
+
 
 	//敵
 	Audio::LoadAudio(7, L"BGM&SE\\kuzureru.wav", EFFECT); // ゴーレムが崩れる

@@ -5,6 +5,7 @@
 #include "GameL\HitBoxManager.h"
 #include "GameL\UserData.h"
 #include "GameL\DrawFont.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjBlock.h"
@@ -188,7 +189,6 @@ void CObjBlock::Action()
 			CObjswitch* swi = (CObjswitch*)Objs::GetObj(OBJ_SWITCH);
 			if (swi != nullptr)
 			{
-
 				if (swi->GetSwitchFlag() == true)//スイッチが押されてる場合は判定を消す
 				{
 					m_swich_time++;//スイッチが押されてからしばらくしたら通れるようにする
@@ -223,6 +223,10 @@ void CObjBlock::Action()
 								m_map_Record[i][j] = 0; //記録用も消す
 							}
 						}
+					}
+					if (((UserData*)Save::GetData())->m_stage_count == 5 && Audio::CheckSound(14) == false)	//ステージ３なら最初は描画しないので判定も変える
+					{
+						Audio::Start(14);
 					}
 				}
 

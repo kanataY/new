@@ -5,6 +5,7 @@
 #include "GameL\HitBoxManager.h"
 #include "GameL\DrawFont.h"
 #include "GameL\Audio.h"
+#include "GameL\UserData.h"
 
 #include "GameHead.h"
 #include "ObjRushEnemy.h"
@@ -26,6 +27,8 @@ void CObjRushEnemy::Init()
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 	m_speed = 1.0f;
+	m_xmemo = m_px;
+
 	m_ani_time = 0;
 	m_ani_frame = 0;  //静止フレームを初期にする
 	m_ani_max_time = 12; //アニメーション間隔幅
@@ -73,6 +76,15 @@ void CObjRushEnemy::Action()
 	{
 		Audio::Stop(9);
 	}
+
+	//謎解きに失敗したらカラスが鳴く
+	if ((((UserData*)Save::GetData())->m_stage_count == 3))
+	{
+		//イノシシが左に行き過ぎた場合
+		if (m_px < m_xmemo - 768.0f && Audio::CheckSound(14) == false)
+			Audio::Start(14);
+	}
+
 
 	//HitBoxの位置の変更
 	CHitBox* hit = Hits::GetHitBox(this);

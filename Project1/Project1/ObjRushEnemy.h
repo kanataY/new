@@ -24,6 +24,7 @@ private:
 	float m_vy; //移動量
 	float m_vx;
 	float m_speed;
+	float m_xmemo; //位置記録
 	//-アニメーション
 	int m_ani_time; //アニメーションフレーム動作感覚
 	int m_ani_frame;//描画フレーム
