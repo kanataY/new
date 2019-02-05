@@ -95,6 +95,9 @@ void CObjGoal::Hit()
 			{
 				//リスタートした回数によって得点を減らす
 				((UserData*)Save::GetData())->m_point -= (((UserData*)Save::GetData())->m_restart * 1000);
+				//合計得点が０より小さい場合
+				if (((UserData*)Save::GetData())->m_point < 0)
+					((UserData*)Save::GetData())->m_point = 0;
 				Scene::SetScene(new CSceneGameClear());
 			}
 		}

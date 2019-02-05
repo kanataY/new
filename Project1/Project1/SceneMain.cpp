@@ -79,7 +79,7 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(hero_hit, HERO_HITBOX, 10);
 
 	//音楽読み込み　BMG
-	Audio::LoadAudio(0, L"BGM&SE\\main2.wav", BACK_MUSIC);
+	Audio::LoadAudio(0, L"BGM&SE\\main5.wav", BACK_MUSIC);
 	Audio::LoadAudio(12, L"BGM&SE\\main3.wav", BACK_MUSIC);
 	Audio::LoadAudio(13, L"BGM&SE\\main4.wav", BACK_MUSIC);
 
@@ -94,6 +94,8 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(4, L"BGM&SE\\deru.wav", EFFECT);  // ブロックがでる
 	Audio::LoadAudio(5, L"BGM&SE\\kieru.wav", EFFECT); // ブロックが消える
 	Audio::LoadAudio(6, L"BGM&SE\\Goal.wav", EFFECT);  // ゴール
+	Audio::LoadAudio(14, L"BGM&SE\\karas.wav", EFFECT);  // ゴール
+
 
 	//敵
 	Audio::LoadAudio(7, L"BGM&SE\\kuzureru.wav", EFFECT); // ゴーレムが崩れる

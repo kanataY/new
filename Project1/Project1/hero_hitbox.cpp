@@ -48,6 +48,7 @@ void CObjhero_hitbox::Action()
 			{
 				float r2 = hit_data[i]->r;
 
+				//‹à‰ò‚Ìã‚ÉÚ‚Á‚Ä‚¢‚éê‡
 				if (r2 >= 202 && r2 < 330)
 				{
 					hit_check = true;

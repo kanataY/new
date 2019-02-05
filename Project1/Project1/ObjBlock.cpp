@@ -5,6 +5,7 @@
 #include "GameL\HitBoxManager.h"
 #include "GameL\UserData.h"
 #include "GameL\DrawFont.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjBlock.h"
@@ -188,7 +189,6 @@ void CObjBlock::Action()
 			CObjswitch* swi = (CObjswitch*)Objs::GetObj(OBJ_SWITCH);
 			if (swi != nullptr)
 			{
-
 				if (swi->GetSwitchFlag() == true)//スイッチが押されてる場合は判定を消す
 				{
 					m_swich_time++;//スイッチが押されてからしばらくしたら通れるようにする
@@ -223,6 +223,10 @@ void CObjBlock::Action()
 								m_map_Record[i][j] = 0; //記録用も消す
 							}
 						}
+					}
+					if (((UserData*)Save::GetData())->m_stage_count == 5 && Audio::CheckSound(14) == false)	//ステージ３なら最初は描画しないので判定も変える
+					{
+						Audio::Start(14);
 					}
 				}
 
@@ -347,13 +351,18 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F* dst, float c[] , int i , int
 	src.m_left = x;
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = src.m_top + 64.0f;
-	//描画)
-	if (m_map[i - 1][j] == 1 && i > 0)
+	//描画
+	if (i > 0)
 	{
-		Draw::Draw(2, &src, dst, c, 0.0f);
+		if (m_map[i - 1][j] == 1)
+		{
+			Draw::Draw(2, &src, dst, c, 0.0f);
+		}
+		else
+			Draw::Draw(1, &src, dst, c, 0.0f);
 	}
-	else
-	Draw::Draw(1, &src, dst, c, 0.0f);
+	else 
+		Draw::Draw(1, &src, dst, c, 0.0f);
 }
 
 //BlockHit関数
