@@ -351,13 +351,18 @@ void CObjBlock::BlockDraw(float x, float y, RECT_F* dst, float c[] , int i , int
 	src.m_left = x;
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = src.m_top + 64.0f;
-	//ï`âÊ)
-	if (m_map[i - 1][j] == 1 && i > 0)
+	//ï`âÊ
+	if (i > 0)
 	{
-		Draw::Draw(2, &src, dst, c, 0.0f);
+		if (m_map[i - 1][j] == 1)
+		{
+			Draw::Draw(2, &src, dst, c, 0.0f);
+		}
+		else
+			Draw::Draw(1, &src, dst, c, 0.0f);
 	}
-	else
-	Draw::Draw(1, &src, dst, c, 0.0f);
+	else 
+		Draw::Draw(1, &src, dst, c, 0.0f);
 }
 
 //BlockHitä÷êî
