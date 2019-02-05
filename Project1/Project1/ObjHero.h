@@ -51,8 +51,10 @@ private:
 	bool m_coinshot_flag;//コインを出しすぎないようにするため
 	bool m_gold_Y;
 	bool m_gold_M;
-	bool m_drop_gold = false;
-	bool m_goal_flag;  //ゴールした時のフラグ
+	bool m_drop_gold;
+	bool m_goal_flag; //ゴールした時のフラグ
+	bool m_r_tap_flag;//リスタート管理
+	int  m_tap_time;  //タップされた時間
 	//-アニメーション
 	int m_ani_time; //アニメーションフレーム動作感覚
 	int m_ani_frame;//描画フレーム

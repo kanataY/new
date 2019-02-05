@@ -45,6 +45,9 @@ void CObjHero::Init()
 	m_coinshot_flag = false;
 	m_goal_flag = false;
 
+	m_r_tap_flag = false;
+	m_tap_time = 0;
+
 	m_ani_time = 0;
 	m_ani_frame = 1;  //Ã~ƒtƒŒ[ƒ€‚ğ‰Šú‚É‚·‚é
 	m_ani_max_time = 8; //ƒAƒjƒ[ƒVƒ‡ƒ“ŠÔŠu•
@@ -77,7 +80,7 @@ void CObjHero::Action()
 {
 	//ƒuƒƒbƒNî•ñ‚ğ‚Á‚Ä‚­‚é
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	CObjCoin* coin = ( CObjCoin*)Objs::GetObj(OBJ_COIN);    //ƒRƒCƒ“î•ñ
+	CObjCoin* coin = (CObjCoin*)Objs::GetObj(OBJ_COIN);    //ƒRƒCƒ“î•ñ
 	CObjGolem* golem = (CObjGolem*)Objs::GetObj(OBJ_GOLEM);	//ƒS[ƒŒƒ€î•ñ
 	//•â³‚Ìî•ñ‚ğ‚Á‚Ä‚­‚é
 	//CObjCorrection* cor = (CObjCorrection*)Objs::GetObj(CORRECTION);
@@ -270,10 +273,22 @@ void CObjHero::Action()
 			);
 
 		//|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
 		//ƒvƒŒƒCƒ„[ƒŠƒXƒ^[ƒgˆ—------------------------------------------------------------------------------
+		m_tap_time++;
+		if (Input::GetVKey('R') == true)
+		{
+			if (m_tap_time > 180)
+			{
+				m_r_tap_flag = true;
+				m_tap_time = 0;
+			}
+		}
+		else
+		{
+			m_r_tap_flag = false;
+		}
 		if (hit->CheckObjNameHit(OBJ_JUMP_ENEMY) != nullptr || hit->CheckObjNameHit(OBJ_THORN) != nullptr
-			|| Input::GetVKey('R') == true || m_py > 3000)
+			||  m_r_tap_flag==true || m_py > 3000)
 		{
 			if (Audio::CheckSound(3) == false) //—‚¿‚Ä‚¢‚é‰¹‚ª–Â‚Á‚Ä‚È‚¢
 			{
@@ -293,9 +308,6 @@ void CObjHero::Action()
 		m_py += m_vy;
 	}
 }
-
-		
-
 //•`‰æ
 void CObjHero::Draw()
 {
@@ -355,7 +367,7 @@ void CObjHero::Draw()
 	dst.m_top = 15.0f;
 	dst.m_left = 695.0f;
 	dst.m_right = dst.m_left + 32.0f;
-	dst.m_bottom = dst.m_top+32.0f;
+	dst.m_bottom = dst.m_top + 32.0f;
 	//13”Ô–Ú‚É“o˜^‚µ‚½ƒOƒ‰ƒtƒBƒbƒN‚ğsrcEdstEcE‚Ìî•ñ‚ğŒ³‚É•`‰æ
 	Draw::Draw(13, &src, &dst, c, 0.0);
 	//--------------------------------------------------------------------------
