@@ -79,7 +79,7 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(hero_hit, HERO_HITBOX, 10);
 
 	//âπäyì«Ç›çûÇ›Å@BMG
-	Audio::LoadAudio(0, L"BGM&SE\\main2.wav", BACK_MUSIC);
+	Audio::LoadAudio(0, L"BGM&SE\\main5.wav", BACK_MUSIC);
 	Audio::LoadAudio(12, L"BGM&SE\\main3.wav", BACK_MUSIC);
 	Audio::LoadAudio(13, L"BGM&SE\\main4.wav", BACK_MUSIC);
 
